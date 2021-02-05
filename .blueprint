@@ -1,0 +1,16 @@
+created:
+    - database/factories/ArticleFactory.php
+    - database/factories/TagFactory.php
+    - database/migrations/2021_02_05_135129_create_articles_table.php
+    - database/migrations/2021_02_05_135130_create_tags_table.php
+    - database/migrations/2021_02_05_135131_create_article_tag_table.php
+    - app/Models/Article.php
+    - app/Models/Tag.php
+    - database/seeders/ArticleSeeder.php
+    - database/seeders/TagSeeder.php
+models:
+    Models\Article: { title: string, slug: 'string default:', body: 'text nullable', image: 'string nullable', featured: 'boolean default:0', published_at: 'datetime nullable' }
+    Models\Tag: { name: string, slug: string }
+    Models\User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
+    Article: { title: string, slug: 'string unique default:''''', body: 'text nullable', image: 'string nullable', featured: 'boolean default:0', published_at: 'datetime nullable', timestamps: timestamps, softdeletes: softDeletes, relationships: { belongsToMany: Tag } }
+    Tag: { name: string, slug: 'string unique', timestamps: timestamps, softdeletes: softDeletes, relationships: { belongsToMany: Article } }

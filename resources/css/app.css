@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.link {
+    @apply font-medium underline;
+}
+
+.nav-link {
+    @apply text-sm uppercase transition-all duration-200 ease-in-out cursor-pointer;
+}
+
+.nav-link:hover {
+    @apply text-orange-600;
+}
