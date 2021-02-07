@@ -1,4 +1,4 @@
-<div class="grid {{ $articles->count() > 1 ? 'lg:grid-cols-2' : '' }} gap-4 md:gap-8">
+<div {{ $attributes->merge(['class' => 'grid gap-4 md:gap-8' . ($articles->count() > 1 ? ' lg:grid-cols-2' : '') ]) }}>
     @foreach($articles as $article)
         <div>
             <x-articles.image :article="$article" class="h-64 rounded-lg" />

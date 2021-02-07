@@ -40,7 +40,7 @@
             {!! Str::of($article->body)->markdown() !!}
         </div>
 
-        <div class="bg-gray-50 p-4 md:p-12 xl:p-16 text-center mb-8 lg:mb-16 rounded-lg">
+        <div class="bg-gray-50 p-4 md:p-12 xl:p-16 text-center rounded-lg">
             <div class="text-2xl mb-4">
                 Thank you for reading this article.
             </div>
@@ -58,7 +58,7 @@
             </a>
         </div>
 
-        <x-articles.list-two-up :articles="$similarArticles" />
+        <x-articles.list-two-up class="mt-8 lg:mb-16" :articles="$similarArticles" />
 
         <div class="flex justify-center my-8 lg:my-16">
             <a class="px-4 py-2 border rounded-lg hover:border-orange-600 transition-colors duration-300 ease-in-out"
