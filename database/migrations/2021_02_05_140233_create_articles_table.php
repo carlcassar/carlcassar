@@ -17,8 +17,10 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique()->default('');
+            $table->text('description')->nullable();
             $table->text('body')->nullable();
             $table->string('image')->nullable();
+            $table->string('icon')->nullable();
             $table->boolean('featured')->default('0');
             $table->dateTime('published_at')->nullable();
             $table->softDeletes();

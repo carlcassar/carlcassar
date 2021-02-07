@@ -1,16 +1,24 @@
 created:
+    - app/Http/Controllers/ArticleController.php
+    - app/Http/Controllers/TagController.php
     - database/factories/ArticleFactory.php
     - database/factories/TagFactory.php
-    - database/migrations/2021_02_05_135129_create_articles_table.php
-    - database/migrations/2021_02_05_135130_create_tags_table.php
-    - database/migrations/2021_02_05_135131_create_article_tag_table.php
+    - database/migrations/2021_02_05_140233_create_articles_table.php
+    - database/migrations/2021_02_05_140234_create_tags_table.php
+    - database/migrations/2021_02_05_140235_create_article_tag_table.php
     - app/Models/Article.php
     - app/Models/Tag.php
     - database/seeders/ArticleSeeder.php
     - database/seeders/TagSeeder.php
+    - tests/Feature/Http/Controllers/ArticleControllerTest.php
+    - tests/Feature/Http/Controllers/TagControllerTest.php
+    - resources/views/article/index.blade.php
+    - resources/views/article/create.blade.php
+    - resources/views/tag/index.blade.php
+    - resources/views/tag/create.blade.php
+updated:
+    - routes/web.php
 models:
-    Models\Article: { title: string, slug: 'string default:', body: 'text nullable', image: 'string nullable', featured: 'boolean default:0', published_at: 'datetime nullable' }
-    Models\Tag: { name: string, slug: string }
     Models\User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
     Article: { title: string, slug: 'string unique default:''''', body: 'text nullable', image: 'string nullable', featured: 'boolean default:0', published_at: 'datetime nullable', timestamps: timestamps, softdeletes: softDeletes, relationships: { belongsToMany: Tag } }
     Tag: { name: string, slug: 'string unique', timestamps: timestamps, softdeletes: softDeletes, relationships: { belongsToMany: Article } }

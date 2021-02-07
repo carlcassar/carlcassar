@@ -15,11 +15,17 @@ module.exports = {
                     800: '#9c4221',
                     900: '#7b341e',
                 },
+            },
+            minHeight: {
+                64: '16rem',
+                96: '24rem'
             }
         },
     },
     variants: {
         extend: {},
     },
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/typography'),
+    ],
 };

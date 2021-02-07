@@ -8,25 +8,26 @@ use App\Models\Article;
 
 class ArticleFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Article::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function definition(): array
     {
         return [
             'title' => $this->faker->sentence(4),
             'slug' => $this->faker->slug,
+            'description' => $this->faker->text,
             'body' => $this->faker->text,
-            'image' => $this->faker->word,
+            'image' => $this->faker->imageUrl(),
+            'icon' => $this->faker->randomElement([
+                'bar-chart-fill',
+                'twitter',
+                'asterisk',
+                'at',
+                'award',
+                'book-fill',
+                'bug',
+                'calendar-date-fill'
+            ]),
             'featured' => $this->faker->boolean,
             'published_at' => $this->faker->dateTime(),
         ];

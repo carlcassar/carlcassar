@@ -11,25 +11,20 @@ class Tag extends Model
 {
     use HasFactory, SoftDeletes, CrudTrait;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
         'slug',
+        'colour'
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function articles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {

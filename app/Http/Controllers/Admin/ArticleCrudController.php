@@ -24,7 +24,6 @@ class ArticleCrudController extends CrudController
     protected function setupListOperation(): void
     {
         $this->crud->column('title');
-        $this->crud->column('slug');
         $this->crud->column('published_at')->type('check');
         $this->crud->addColumn([
             'label' => 'Published At',
@@ -42,9 +41,26 @@ class ArticleCrudController extends CrudController
 
         $this->crud->field('title')->type('text');
         $this->crud->field('slug')->type('text');
+        $this->crud->field('image')->type('text');
+        $this->crud->field('icon')->type('text');
+        $this->crud->field('description')->type('easymde');
         $this->crud->field('body')->type('easymde');
         $this->crud->field('published_at')->type('datetime_picker');
         $this->crud->field('featured')->type('checkbox');
+        $this->crud->field('tags')->type('relationship');
+    }
+
+    protected function setupShowOperation()
+    {
+        $this->crud->column('title')->type('text');
+        $this->crud->column('slug')->type('text');
+        $this->crud->column('image')->type('text');
+        $this->crud->column('icon')->type('text');
+        $this->crud->column('description')->type('markdown');
+        $this->crud->column('body')->type('markdown');
+        $this->crud->column('published_at')->type('datetime');
+        $this->crud->column('featured')->type('check');
+        $this->crud->column('tags')->type('relationship');
     }
 
     protected function setupUpdateOperation(): void

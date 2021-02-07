@@ -7,13 +7,8 @@ use Illuminate\Database\Seeder;
 
 class TagSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run(): void
     {
-        Tag::factory()->count(5)->create();
+        Tag::factory()->count(10)->create();
     }
 }

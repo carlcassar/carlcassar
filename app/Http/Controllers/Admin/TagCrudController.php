@@ -22,14 +22,16 @@ class TagCrudController extends CrudController
 
     protected function setupListOperation(): void
     {
-        $this->crud->setFromDb(); // columns
+        $this->crud->setFromDb();
     }
 
     protected function setupCreateOperation(): void
     {
         $this->crud->setValidation(TagRequest::class);
 
-        $this->crud->setFromDb(); // fields
+        $this->crud->field('name')->type('text');
+        $this->crud->field('slug')->type('text');
+        $this->crud->field('colour')->type('color_picker');
     }
 
     protected function setupUpdateOperation()

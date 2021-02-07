@@ -8,23 +8,13 @@ use App\Models\Tag;
 
 class TagFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Tag::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name,
-            'slug' => $this->faker->slug,
+            'name' => $name = $this->faker->words(2, true),
+            'slug' => Str::slug($name)
         ];
     }
 }
