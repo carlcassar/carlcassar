@@ -3,6 +3,15 @@ module.exports = {
     darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {
+            typography: {
+                DEFAULT: {
+                    css: {
+                        'pre code': {
+                            backgroundColor: 'transparent',
+                        },
+                    },
+                },
+            },
             colors: {
                 orange: {
                     100: '#fffaf0',
