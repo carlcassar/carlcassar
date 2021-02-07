@@ -1,4 +1,4 @@
-<x-layout :title="Home">
+<x-layout title="Home">
     <x-banner />
 
     <div>
