@@ -31,6 +31,15 @@ class Article extends Model implements Feedable
         'published_at' => 'datetime',
     ];
 
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::saving(function ($model) {
+            $model->title = Str::title($model->title);
+        });
+    }
+
     public function getRouteKeyName(): string
     {
         return 'slug';

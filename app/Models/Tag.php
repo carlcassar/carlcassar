@@ -6,6 +6,7 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Str;
 
 class Tag extends Model
 {
@@ -20,6 +21,14 @@ class Tag extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::saving(function ($model) {
+            $model->name = Str::title($model->name);
+        });
+    }
 
     public function getRouteKeyName()
     {
