@@ -5,6 +5,8 @@
 /public/css
 /public/js
 /public/mix-manifest.json
+/public/fonts
+/public/sitemap.xml
 /storage/*.key
 /vendor
 .env
@@ -13,5 +15,5 @@
 docker-compose.override.yml
 Homestead.json
 Homestead.yaml
-npm-debug.log
+npm-debug.loga
 yarn-error.log

@@ -74,4 +74,4 @@
         </script>
 
     </article>
-</x-layout>a
+</x-layout>
