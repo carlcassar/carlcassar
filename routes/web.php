@@ -17,8 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', HomeController::class)->name('home');
+Route::feeds();
 
-Route::resource('articles', ArticleController::class)->only('index', 'show');
-Route::resource('tags', TagController::class)->only('index', 'show');
+Route::get('/', HomeController::class)->name('home');
 Route::get('search', SearchController::class)->name('search');
+Route::resource('tags', TagController::class)->only('index', 'show');
+Route::resource('articles', ArticleController::class)->only('index', 'show');
+
