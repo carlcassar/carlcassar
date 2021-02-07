@@ -15,3 +15,7 @@
 .nav-link:hover {
     @apply text-orange-600;
 }
+
+a, a:focus {
+    @apply outline-none;
+}

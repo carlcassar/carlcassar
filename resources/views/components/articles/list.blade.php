@@ -5,7 +5,7 @@
 
         <div class="w-full lg:w-3/4">
             <a href="{{ route('articles.show', $article) }}">
-                <div class="text-2xl pb-2 md:text-3xl md:leading-none tracking-wide font-thin text-black">
+                <div class="text-2xl pb-2 md:text-3xl md:leading-none tracking-wide font-bold text-black">
                     {{ $article->title }}
                 </div>
 
