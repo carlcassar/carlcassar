@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'relative w-full text-white font-thin p-4']) }} style="
+<div {{ $attributes->merge(['class' => 'relative w-full text-white font-thin p-4 shadow-lg']) }} style="
     background:
     linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0) 100%),
     url({{ $article->image }}) center center,

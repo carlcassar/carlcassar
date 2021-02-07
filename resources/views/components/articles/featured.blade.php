@@ -1,5 +1,5 @@
 <div class="mb-8 lg:mb-14 w-full">
-    <x-articles.image :article="$article" iconSize="10em" class="h-96 rounded-t-lg" />
+    <x-articles.image :article="$article" iconSize="10em" class="h-64 rounded-t-lg" />
     <div class="rounded-b-lg lg::flex lg:justify-center md:text-center p-4 pb-8 lg:py-10 lg:pb-14 border">
         <a class="block text-2xl mb-4 md:text-3xl tracking-wide font-bold text-black mt-4"
            class="block"
