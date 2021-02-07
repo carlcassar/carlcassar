@@ -41,22 +41,37 @@
         </div>
 
         <div class="flex justify-center my-8 lg:my-16">
-            <div>
-                <a class="px-4 py-2 border rounded-lg" href="{{ route('articles.index') }}">
-                    See more articles
-                </a>
-            </div>
+            <a class="px-4 py-2 border rounded-lg hover:border-orange-600 transition-colors duration-300 ease-in-out" href="{{ route('articles.index') }}">
+                See more articles
+            </a>
         </div>
 
-        <div class="flex justify-center text-center py-4 md:text-xl leading-normal tracking-wide font-thin">
-            <div class="px-4 md:px-16 xl:px-32">
-                Thank you for reading this article. I hope you learned something useful.
-                If you've made it this far, you might like to follow me on
-                <ExternalLink :to="config.links.twitter" text="Twitter" />
+        <div class="bg-gray-50 p-4 md:p-12 xl:p-16 text-center mb-8 lg:mb-16 rounded-lg">
+            <div class="text-2xl mb-4">
+                Thank you for reading this article.
+            </div>
+            <div>
+                I hope you learned something useful.
+            </div>
+            <div>
+                If you've made it this far, you might like to follow me on Twitter
                 where I post similar content and connect with like-minded people.
             </div>
+            <a class="bg-gray-600 hover:bg-orange-600 text-white shadow-sm px-4 py-2 rounded-lg mt-8 inline-flex items-center justify-center space-x-2 transition-colors duration-300 ease-in-out"
+               href="https://www.twitter.com">
+                <i class="bi-twitter"></i>
+                <span>Follow me on Twitter</span>
+            </a>
         </div>
 
+        <script type="application/javascript"
+                src="https://utteranc.es/client.js"
+                repo="carlcassar/blog-comments"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
 
     </article>
-</x-layout>
+</x-layout>a
