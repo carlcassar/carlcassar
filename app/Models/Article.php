@@ -47,23 +47,40 @@ class Article extends Model implements Feedable
 
     public function scopeFeatured(Builder $query): Builder
     {
-        return $query->where('featured', true);
+        return $query->published()->where('featured', true);
+    }
+
+    public function scopeNotFeatured(Builder $query): Builder
+    {
+        return $query->published()->where('featured', false);
     }
 
     public function scopePublished(Builder $query): Builder
     {
-        return $query->whereNotNull('published_at');
+        return $query->whereNotNull('published_at')->orderBy('published_at', 'desc');
     }
 
-    public function scopeSearch(Builder $query, string $search): Builder
+    public function scopeTags(Builder $query, $tags): Builder
     {
-        return $query
+        return $query->whereHas('tags', function (Builder $query) use ($tags) {
+            $query->whereKey($tags->map->id);
+        });
+    }
+
+    public function scopeSimilarTo(Builder $query, Article $article): Builder
+    {
+        return $query->whereKeyNot($article->id)->tags($article->tags);
+    }
+
+    public function scopeSearch(Builder $query, $search): Builder
+    {
+        return $search ? $query
             ->where('title', 'LIKE', "%{$search}%")
             ->orWhere('description', 'LIKE', "%{$search}%")
             ->orWhere('body', 'LIKE', "%{$search}%")
             ->orWhereHas('tags', function ($query) use ($search) {
                 $query->where('name', 'LIKE', "%{$search}%");
-            });
+            }) : $query;
     }
 
     public function tags(): BelongsToMany
@@ -93,16 +110,13 @@ class Article extends Model implements Feedable
     public function getFeedItems()
     {
         return static::published()
-            ->orderBy('published_at', 'desc')
             ->limit(20)
             ->get();
     }
 
     public function getFeaturedFeedItems()
     {
-        return static::published()
-            ->featured()
-            ->orderBy('published_at', 'desc')
+        return static::featured()
             ->limit(20)
             ->get();
     }

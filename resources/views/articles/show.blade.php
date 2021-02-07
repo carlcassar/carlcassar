@@ -36,14 +36,8 @@
 
         <x-articles.image :article="$article" iconSize="10em" class="h-96 rounded-lg" />
 
-        <div class="prose lg:prose-xl mt-8 xl:mt-16 mx-auto">
+        <div class="prose lg:prose-xl mt-8 xl:mt-16 mx-auto mb-8 lg:mb-16">
             {!! Str::of($article->body)->markdown() !!}
-        </div>
-
-        <div class="flex justify-center my-8 lg:my-16">
-            <a class="px-4 py-2 border rounded-lg hover:border-orange-600 transition-colors duration-300 ease-in-out" href="{{ route('articles.index') }}">
-                See more articles
-            </a>
         </div>
 
         <div class="bg-gray-50 p-4 md:p-12 xl:p-16 text-center mb-8 lg:mb-16 rounded-lg">
@@ -61,6 +55,15 @@
                href="https://www.twitter.com">
                 <i class="bi-twitter"></i>
                 <span>Follow me on Twitter</span>
+            </a>
+        </div>
+
+        <x-articles.list-two-up :articles="$similarArticles" />
+
+        <div class="flex justify-center my-8 lg:my-16">
+            <a class="px-4 py-2 border rounded-lg hover:border-orange-600 transition-colors duration-300 ease-in-out"
+               href="{{ route('articles.index') }}">
+                See more articles
             </a>
         </div>
 

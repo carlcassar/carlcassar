@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -33,6 +34,13 @@ class Tag extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function scopeForPublishedArticles(Builder $query)
+    {
+        $query->whereHas('articles', function(Builder $query) {
+            $query->published();
+        });
     }
 
     public function articles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

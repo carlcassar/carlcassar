@@ -8,8 +8,9 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        return view('home', [
-            'articles' => Article::featured()->limit(5)->get()
+        return view('home.index', [
+            'featured' => Article::featured()->first(),
+            'articles' => Article::notFeatured()->limit(4)->get()
         ]);
     }
 }
