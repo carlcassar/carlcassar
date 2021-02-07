@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Tags">
     <x-title title="Tags" />
 
     <x-tag-cloud :tags="$tags" />

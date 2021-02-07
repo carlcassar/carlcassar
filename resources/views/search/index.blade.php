@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :title="'Search' . (request()->get('query') ? ' - ' . request()->get('query') : '')">
     <x-title title="Search">
         <form method="get">
             <div class="flex">

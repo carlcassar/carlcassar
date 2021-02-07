@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :title="$article->title" :description="$article->description">
     <article class="max-w-full">
 
         @if($article->updated_at < today()->subYear())
