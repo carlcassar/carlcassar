@@ -11,7 +11,7 @@ class ArticleController extends Controller
     public function index(Request $request): View
     {
         return view('articles.index', [
-            'articles' => Article::with('tags')->get()
+            'articles' => Article::with('tags')->paginate(5)
         ]);
     }
 
