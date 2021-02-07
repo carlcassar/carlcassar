@@ -7,22 +7,27 @@
             </p>
         @endif
 
-        <div>
-            <span class="uppercase tracking-widest text-sm text-gray-800 font-light">
+        <div class="mb-4">
+            <span class="uppercase tracking-widest text-sm">
                {{ $article->updated_at->isoFormat('LLLL') }}
             </span>
 
-            <span class="px-2">&vert;</span>
+            @if($article->tags->count())
+                <i class="bi-dot"></i>
 
-            <ul class="inline-flex space-x-2">
-                @foreach($article->tags as $tag)
-                    <li class="uppercase text-sm text-gray-500">
-                        <a href="{{ route('tags.show', $tag) }}">
-                            {{ $tag->name }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
+                <ul class="inline-flex space-x-2">
+                    @foreach($article->tags as $tag)
+                        <li class="uppercase text-sm tracking-widest">
+                            <a href="{{ route('tags.show', $tag) }}">
+                                {{ $tag->name }}
+                            </a>
+                            @if(!$loop->last)
+                                <i class="bi-dot"></i>
+                            @endif
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
 
         <div class="mb-2 sm:mb-8">

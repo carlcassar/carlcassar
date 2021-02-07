@@ -1,7 +1,7 @@
 @foreach($articles as $article)
 
     <div class="lg:flex items-center mb-8">
-            <x-articles.image :article="$article" class="h-64 rounded-lg w-full lg:w-1/4 mr-8 mb-4 " />
+        <x-articles.image :article="$article" class="h-64 rounded-lg w-full lg:w-1/4 mr-8 mb-4 " />
 
         <div class="w-full lg:w-3/4">
             <a href="{{ route('articles.show', $article) }}">
@@ -9,10 +9,13 @@
                     {{ $article->title }}
                 </div>
 
-                <div class="flex flex-wrap space-x-2 uppercase text-sm font-thin -ml-2 my-2">
+                <div class="flex flex-wrap space-x-2 tracking-widest uppercase text-sm -ml-2 my-2">
                     @foreach($article->tags as $tag)
-                        <a class="text-gray-700 hover:text-orange-600" href="{{ route('tags.show', $tag) }}">
+                        <a class="hover:text-orange-600" href="{{ route('tags.show', $tag) }}">
                             {{ $tag->name }}
+                            @if(!$loop->last)
+                                <i class="bi-dot"></i>
+                            @endif
                         </a>
                     @endforeach
                 </div>
