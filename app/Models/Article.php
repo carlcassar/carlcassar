@@ -33,9 +33,20 @@ class Article extends Model
         return 'slug';
     }
 
-    public function scopeFeatured(Builder $query)
+    public function scopeFeatured(Builder $query): Builder
     {
         return $query->where('featured', true);
+    }
+
+    public function scopeSearch(Builder $query, string $search): Builder
+    {
+        return $query
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('description', 'LIKE', "%{$search}%")
+            ->orWhere('body', 'LIKE', "%{$search}%")
+            ->orWhereHas('tags', function ($query) use ($search) {
+                $query->where('name', 'LIKE', "%{$search}%");
+            });
     }
 
     public function tags(): BelongsToMany

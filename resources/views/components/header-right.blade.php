@@ -1,5 +1,5 @@
 <div>
-    <a href="" class="nav-link ml-2">
+    <a href="{{ route('search') }}" class="nav-link ml-2">
         <x-icons.search />
     </a>
     <a href="https://www.github.com/carlcassar" target="_blank" rel="noopener noreferrer" class="nav-link ml-2">
