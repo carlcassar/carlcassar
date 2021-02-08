@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ $description ?? "Carl Cassar's blog on Laravel, PHP, JavaScript, DevOps and more." }}">
+    <meta name="description"
+          content="{{ $description ?? "Carl Cassar's blog on Laravel, PHP, JavaScript, DevOps and more." }}">
     <meta name="keywords" content="{{ $keywords ?? "PHP, Laravel, JavaScript, Vue, Nuxt, DevOps, GitHub, Analytics" }}">
     <meta name="image" content="{{ asset('/open-graph/logo1200x600.png') }}">
 
@@ -29,6 +30,10 @@
     <meta property="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-capable" content="yes">
 
+    @if(app()->environment('production'))
+        <script src="https://guppy.carlcassar.com/script.js" data-site="ISFHFHGE" defer></script>
+    @endif
+
     <title>Carl Cassar {{ isset($title) ? ' - ' . $title : '' }}</title>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
@@ -48,11 +53,11 @@
 </head>
 <body>
 <div class="container mx-auto md:leading-relaxed md:tracking-wide text-gray-900 md:text-lg">
-    <x-header/>
+    <x-header />
     <div class="-mt-8 md:mt-0 px-4 md:px-16 lg:px-32 mb-20 max-w-full">
         {{ $slot }}
     </div>
-    <x-footer/>
+    <x-footer />
 </div>
 @stack('scripts')
 </body>
