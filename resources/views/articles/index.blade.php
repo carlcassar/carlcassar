@@ -1,7 +1,13 @@
 <x-layout>
     <x-title title="Articles" />
 
-    <x-articles.list :articles="$articles" />
+    @if($articles->count())
+        <x-articles.list :articles="$articles" />
 
-    {{ $articles->links() }}
+        {{ $articles->links() }}
+    @else
+        <div class="text-center">
+            No articles were found.
+        </div>
+    @endif
 </x-layout>

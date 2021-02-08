@@ -1,7 +1,11 @@
 <x-layout title="Home">
     <x-banner />
 
-    <x-articles.featured :article="$featured" />
+    @if($featured)
+        <x-articles.featured :article="$featured" />
+    @endif
 
-    <x-articles.list-two-up :articles="$articles" />
+    @if($articles->count())
+        <x-articles.list-two-up :articles="$articles" />
+    @endif
 </x-layout>
