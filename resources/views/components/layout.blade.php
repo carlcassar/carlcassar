@@ -38,7 +38,7 @@
     <link href="{{ asset('/favicons/favicon-16x16.png') }}" rel="icon" type="image/png">
     <link href="{{ asset('/favicons/favicon-32x32.png') }}" rel="icon" type="image/png">
     <link href="{{ asset('/favicons/safari-pinned-tab.svg') }}" rel="mask-icon" type="image/svg" sizes="693x693">
-    <link href="{{ asset('/favicons/apple-touch-icon.png') }}" rel="apple-touch-icon'" type="image/svg" sizes="180x180">
+    <link href="{{ asset('/favicons/apple-touch-icon.png') }}" rel="apple-touch-icon" type="image/svg" sizes="180x180">
 
     @include('feed::links')
 
