@@ -27,7 +27,7 @@ class Tag extends Model
     {
         parent::boot();
         static::saving(function ($model) {
-            $model->name = Str::title($model->name);
+            $model->name = Str::ucfirst($model->name);
         });
     }
 
