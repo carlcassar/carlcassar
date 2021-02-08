@@ -3,12 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ $description ?? "Carl Cassar's blog on Laravel, PHP, Javascript, DevOps and more." }}">
+    <meta name="description" content="{{ $description ?? "Carl Cassar's blog on Laravel, PHP, JavaScript, DevOps and more." }}">
+    <meta name="keywords" content="{{ $keywords ?? "PHP, Laravel, JavaScript, Vue, Nuxt, DevOps, GitHub, Analytics" }}">
     <meta name="image" content="{{ asset('/open-graph/logo1200x600.png') }}">
 
     <meta property="og:title" content="Carl Cassar {{ isset($title) ? ' - ' . $title : '' }}" />
     <meta property="og:description"
-          content="{{ $description ?? "Carl Cassar's blog on Laravel, PHP, Javascript, DevOps and more." }}" />
+          content="{{ $description ?? "Carl Cassar's blog on Laravel, PHP, JavaScript, DevOps and more." }}" />
     <meta property="og:url" content="{{ config('app.url') }}" />
     <meta property="og:type" content="website" />
     <meta property="og:type" content="website" />

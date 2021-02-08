@@ -1,4 +1,4 @@
-<x-layout :title="$article->title" :description="$article->description">
+<x-layout :title="$article->title" :description="$article->description" :keywords="$article->tags->map->name->join(', ')">
     <article class="max-w-full">
 
         @if($article->updated_at < today()->subYear())
