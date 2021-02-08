@@ -2,7 +2,7 @@
     background:
     linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0) 100%),
     url({{ $article->image }}) center center,
-{{ optional($article->tags->first())->colour }};
+    {{ optional($article->primaryTag)->colour }};
     background-size: cover;
     ">
 
@@ -13,7 +13,7 @@
         </div>
 
         <div class="text-3xl font-bold">
-            {{ optional($article->tags->first())->name  }}
+            {{ optional($article->primaryTag)->name }}
         </div>
 
         <div class="text-2xl">

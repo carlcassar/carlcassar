@@ -50,9 +50,10 @@ class ArticleCrudController extends CrudController
         $this->crud->field('icon')->type('text');
         $this->crud->field('description')->type('easymde');
         $this->crud->field('body')->type('easymde');
+        $this->crud->field('tags')->type('relationship');
+        $this->crud->field('primaryTag')->type('relationship');
         $this->crud->field('published_at')->type('datetime_picker');
         $this->crud->field('featured')->type('checkbox');
-        $this->crud->field('tags')->type('relationship');
     }
 
     protected function setupShowOperation()
@@ -63,9 +64,10 @@ class ArticleCrudController extends CrudController
         $this->crud->column('icon')->type('text');
         $this->crud->column('description')->type('markdown');
         $this->crud->column('body')->type('markdown');
+        $this->crud->column('tags')->type('relationship');
+        $this->crud->column('primaryTag')->type('relationship');
         $this->crud->column('published_at')->type('datetime');
         $this->crud->column('featured')->type('check');
-        $this->crud->column('tags')->type('relationship');
     }
 
     protected function setupUpdateOperation(): void

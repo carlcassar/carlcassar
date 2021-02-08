@@ -13,9 +13,7 @@ class ArticleSeeder extends Seeder
         Article::factory()
             ->count(2)
             ->has(Tag::factory()->count(3))
-            ->create([
-                'image' => null
-            ]);
+            ->create(['image' => null]);
 
         Article::factory()
             ->has(Tag::factory()->count(2))

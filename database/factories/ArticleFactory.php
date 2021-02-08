@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Article;
@@ -13,6 +14,7 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
+            'primary_tag_id' => Tag::factory(),
             'title' => $this->faker->sentence(4),
             'slug' => $this->faker->slug,
             'description' => $this->faker->text,
