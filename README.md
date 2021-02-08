@@ -1,6 +1,6 @@
 # 👋 Hey!
 
-I'm Carl. I make websites and apps. I also write a [blog](https://www.carlcassar.com)about what I learn along the way.
+I'm Carl. I make websites and apps. I also write a [blog](https://www.carlcassar.com) about what I learn along the way.
 
 Get in touch if you're interested in php, laravel, javascript, vue, aws and other interesting topics:
 
