@@ -21,7 +21,7 @@
                 </div>
 
                 <p class="pb-2">
-                    {{ $article->description }}
+                    {!! Str::of($article->description)->markdown() !!}
                 </p>
                 <a class="mt-4 link" href="{{ route('articles.show', $article) }}">
                     Read this article

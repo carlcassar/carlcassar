@@ -45,7 +45,7 @@
                 {{ $article->title }}
             </h1>
             <p class="my-4 md:text-xl">
-                {!! $article->description !!}
+                {!! Str::of($article->description)->markdown() !!}
             </p>
         </div>
 

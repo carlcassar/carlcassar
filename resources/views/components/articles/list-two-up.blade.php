@@ -8,7 +8,7 @@
                     {{ $article->title }}
                 </a>
                 <div>
-                    {{ $article->description }}
+                    {!! Str::of($article->description)->markdown() !!}
                 </div>
                 <a href="{{ route('articles.show', $article) }}" class="block mt-2 link">
                     Read this article
