@@ -72,16 +72,16 @@
             </a>
         </div>
 
-        @push('scripts')
-            <script type="application/javascript"
-                    src="https://utteranc.es/client.js"
-                    repo="carlcassar/blog-comments"
-                    issue-term="pathname"
-                    theme="github-light"
-                    crossorigin="anonymous"
-                    async>
-            </script>
+        <script type="application/javascript"
+                src="https://utteranc.es/client.js"
+                repo="carlcassar/blog-comments"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
 
+        @push('scripts')
             <script id="twitter-wjs"
                     type="text/javascript"
                     async
