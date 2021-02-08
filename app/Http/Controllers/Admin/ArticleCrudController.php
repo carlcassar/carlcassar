@@ -23,15 +23,20 @@ class ArticleCrudController extends CrudController
 
     protected function setupListOperation(): void
     {
-        $this->crud->column('title');
+        $this->crud->column('title')->wrapper([
+            'href' => fn($crud, $column, $entry, $related_key) => backpack_url('article/' . $entry->id . '/edit')
+        ]);
+
         $this->crud->column('published_at')->type('check');
+
         $this->crud->addColumn([
             'label' => 'Published At',
             'type' => 'closure',
-            'function' => function(Article $article) {
+            'function' => function (Article $article) {
                 return $article->published_at ?? '-';
             }
         ]);
+
         $this->crud->column('featured')->type('check');
     }
 

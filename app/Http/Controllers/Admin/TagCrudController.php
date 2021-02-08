@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\TagRequest;
+use App\Models\Tag;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 class TagCrudController extends CrudController
@@ -15,14 +16,18 @@ class TagCrudController extends CrudController
 
     public function setup(): void
     {
-        $this->crud->setModel(\App\Models\Tag::class);
+        $this->crud->setModel(Tag::class);
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/tag');
         $this->crud->setEntityNameStrings('tag', 'tags');
     }
 
     protected function setupListOperation(): void
     {
-        $this->crud->setFromDb();
+        $this->crud->column('name')->type('text')->wrapper([
+            'href' => fn($crud, $column, $entry, $related_key) => backpack_url('tag/' . $entry->id . '/edit')
+        ]);
+        $this->crud->column('slug')->type('slug');
+        $this->crud->column('colour')->type('color');
     }
 
     protected function setupCreateOperation(): void
