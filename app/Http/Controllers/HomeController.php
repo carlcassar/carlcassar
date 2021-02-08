@@ -10,7 +10,7 @@ class HomeController extends Controller
     {
         return view('home.index', [
             'featured' => Article::featured()->first(),
-            'articles' => Article::notFeatured()->limit(4)->get()
+            'articles' => Article::notFeatured()->limit(6)->get()
         ]);
     }
 }
