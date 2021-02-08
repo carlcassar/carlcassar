@@ -6237,16 +6237,16 @@
     "packages-dev": [
         {
             "name": "backpack/generators",
-            "version": "v3.1.6",
+            "version": "v3.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/Generators.git",
-                "reference": "ef496d3f6d0811f769285cb4ab5160712915ed20"
+                "reference": "dec8b6fd350ba0768d964b470393d1fcd478e9b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/ef496d3f6d0811f769285cb4ab5160712915ed20",
-                "reference": "ef496d3f6d0811f769285cb4ab5160712915ed20",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/dec8b6fd350ba0768d964b470393d1fcd478e9b6",
+                "reference": "dec8b6fd350ba0768d964b470393d1fcd478e9b6",
                 "shasum": ""
             },
             "require": {
@@ -6295,9 +6295,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Laravel-Backpack/Generators/issues",
-                "source": "https://github.com/Laravel-Backpack/Generators/tree/v3.1.6"
+                "source": "https://github.com/Laravel-Backpack/Generators/tree/v3.1.7"
             },
-            "time": "2021-01-27T12:38:41+00:00"
+            "time": "2021-02-08T06:04:06+00:00"
         },
         {
             "name": "doctrine/instantiator",
