@@ -19,3 +19,7 @@
 a, a:focus {
     @apply outline-none;
 }
+
+input[type=text] {
+    -webkit-appearance: none;
+}
