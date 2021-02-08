@@ -3,7 +3,7 @@
     <div class="rounded-b-lg lg::flex lg:justify-center md:text-center p-4 pb-8 lg:py-10 lg:pb-14 border">
         <a class="block text-2xl mb-4 md:text-3xl tracking-wide font-bold text-black mt-4"
            class="block"
-           href="{{ route('article.show', $article) }}">
+           href="{{ route('articles.show', $article) }}">
             {{ $article->title }}
         </a>
         <div>

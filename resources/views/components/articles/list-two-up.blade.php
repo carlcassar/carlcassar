@@ -3,7 +3,7 @@
         <div>
             <x-articles.image :article="$article" class="h-64 rounded-lg" />
             <div class="md:px-4">
-                <a href="{{ route('article.show', $article) }}"
+                <a href="{{ route('articles.show', $article) }}"
                    class="block text-2xl pb-2 md:text-3xl tracking-wide font-bold text-black mt-4">
                     {{ $article->title }}
                 </a>

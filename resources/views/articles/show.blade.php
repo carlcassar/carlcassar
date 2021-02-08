@@ -26,7 +26,17 @@
                             @endif
                         </li>
                     @endforeach
+
                 </ul>
+            @endif
+
+            @if(backpack_auth())
+                <i class="bi-dot"></i>
+
+                <a class="uppercase text-sm tracking-widest"
+                   href="{{ route('article.edit', $article->id) }}">
+                    Edit
+                </a>
             @endif
         </div>
 
