@@ -4,8 +4,8 @@ I'm Carl. I make websites and apps. I also write a blog about what I learn along
 
 Get in touch if you're interested in php, laravel, javascript, vue, aws and other interesting topics:
 
-- [*Blog*](https://www.carlcassar.com)
-- [*Twitter*](https://www.twitter.com/carlcassar)
+- [*carlcassar.com*](https://www.carlcassar.com)
+- [*@carlcassar*](https://www.twitter.com/carlcassar)
 
 Here are some of the projects I'm currently working on:
 
