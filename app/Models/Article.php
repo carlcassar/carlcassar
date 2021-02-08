@@ -17,11 +17,13 @@ class Article extends Model implements Feedable
     use HasFactory, SoftDeletes, CrudTrait;
 
     protected $fillable = [
-        'title',
+        'icon',
         'slug',
         'body',
+        'title',
         'image',
         'featured',
+        'description',
         'published_at',
     ];
 
