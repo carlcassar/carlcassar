@@ -2,7 +2,7 @@
 
 I'm Carl. I make websites and apps. I also write a [blog](https://www.carlcassar.com) about what I learn along the way.
 
-Get in touch if you're interested in php, laravel, javascript, vue, aws and other interesting topics:
+Get in touch if you're interested in PHP, Laravel, Javascript, Vue, AWS and other interesting topics:
 
 - [*carlcassar.com*](https://www.carlcassar.com)
 - [*@carlcassar*](https://www.twitter.com/carlcassar)
