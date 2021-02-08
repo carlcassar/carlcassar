@@ -1,6 +1,6 @@
 <div class="mb-8 lg:mb-14 w-full">
-    <x-articles.image :article="$article" iconSize="10em" class="h-64 rounded-t-lg" />
-    <div class="rounded-b-lg lg::flex lg:justify-center md:text-center p-4 pb-8 lg:py-10 lg:pb-14 border">
+    <x-articles.image :article="$article" iconSize="10em" class="h-64 rounded-lg" />
+    <div class="lg::flex lg:justify-center md:text-center md:p-4 px-4 md:px-0">
         <a class="block text-2xl mb-4 md:text-3xl tracking-wide font-bold text-black mt-4"
            class="block"
            href="{{ route('articles.show', $article) }}">

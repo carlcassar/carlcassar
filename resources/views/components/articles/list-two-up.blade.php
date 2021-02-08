@@ -1,10 +1,10 @@
-<div {{ $attributes->merge(['class' => 'grid gap-4 md:gap-8' . ($articles->count() > 1 ? ' lg:grid-cols-2' : '') ]) }}>
+<div {{ $attributes->merge(['class' => 'grid gap-8 md:gap-8' . ($articles->count() > 1 ? ' lg:grid-cols-2' : '') ]) }}>
     @foreach($articles as $article)
         <div>
             <x-articles.image :article="$article" class="h-64 rounded-lg" />
-            <div class="md:px-4">
+            <div class="px-4">
                 <a href="{{ route('articles.show', $article) }}"
-                   class="block text-2xl pb-2 md:text-3xl tracking-wide font-bold text-black mt-4">
+                   class="block text-2xl pb-2 md:text-3xl tracking-wide font-bold text-black mt-2 md:mt-4">
                     {{ $article->title }}
                 </a>
                 <div class="prose max-w-full">

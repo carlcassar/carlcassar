@@ -1,5 +1,4 @@
 @foreach($articles as $article)
-
     <div class="lg:flex items-center mb-8 lg:space-x-8">
         <x-articles.image :article="$article" class="h-52 rounded-lg w-full lg:w-1/4 " />
 
