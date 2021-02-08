@@ -20,9 +20,10 @@
                     @endforeach
                 </div>
 
-                <p class="pb-2">
+                <div class="prose pb-2 max-w-full">
                     {!! Str::of($article->description)->markdown() !!}
-                </p>
+                </div>
+
                 <a class="mt-4 link" href="{{ route('articles.show', $article) }}">
                     Read this article
                     <svg class="h-5 w-5 inline-block"

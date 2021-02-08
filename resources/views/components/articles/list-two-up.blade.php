@@ -7,7 +7,7 @@
                    class="block text-2xl pb-2 md:text-3xl tracking-wide font-bold text-black mt-4">
                     {{ $article->title }}
                 </a>
-                <div>
+                <div class="prose max-w-full">
                     {!! Str::of($article->description)->markdown() !!}
                 </div>
                 <a href="{{ route('articles.show', $article) }}" class="block mt-2 link">

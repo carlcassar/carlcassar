@@ -6,8 +6,8 @@
            href="{{ route('articles.show', $article) }}">
             {{ $article->title }}
         </a>
-        <div>
-            {{ $article->description }}
+        <div class="prose max-w-full">
+            {!! Str::of($article->description)->markdown() !!}
         </div>
         <a class="block mt-4 link" href="{{ route('articles.show', $article) }}">
             Read this article
