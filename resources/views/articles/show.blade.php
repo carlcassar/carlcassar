@@ -72,14 +72,22 @@
             </a>
         </div>
 
-        <script type="application/javascript"
-                src="https://utteranc.es/client.js"
-                repo="carlcassar/blog-comments"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
+        @push('scripts')
+            <script type="application/javascript"
+                    src="https://utteranc.es/client.js"
+                    repo="carlcassar/blog-comments"
+                    issue-term="pathname"
+                    theme="github-light"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+
+            <script id="twitter-wjs"
+                    type="text/javascript"
+                    async
+                    defer
+                    src="https://platform.twitter.com/widgets.js"></script>
+        @endpush
 
     </article>
 </x-layout>

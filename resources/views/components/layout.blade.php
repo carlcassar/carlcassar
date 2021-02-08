@@ -39,11 +39,11 @@
     <link href="{{ asset('/favicons/safari-pinned-tab.svg') }}" rel="mask-icon" type="image/svg" sizes="693x693">
     <link href="{{ asset('/favicons/apple-touch-icon.png') }}" rel="apple-touch-icon'" type="image/svg" sizes="180x180">
 
+    @include('feed::links')
+
     <script src="{{ mix('/js/manifest.js') }}"></script>
     <script src="{{ mix('/js/vendor.js') }}"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
-
-    @include('feed::links')
 </head>
 <body>
 <div class="container mx-auto md:leading-relaxed md:tracking-wide text-gray-900 md:text-lg">
@@ -53,5 +53,6 @@
     </div>
     <x-footer/>
 </div>
+@stack('scripts')
 </body>
 </html>
