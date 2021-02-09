@@ -8,7 +8,7 @@ class ArticleRequest extends FormRequest
 {
     public function authorize()
     {
-        return backpack_auth()->check();
+        return auth()->check();
     }
 
     public function rules()

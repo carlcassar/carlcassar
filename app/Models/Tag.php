@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +10,7 @@ use Str;
 
 class Tag extends Model
 {
-    use HasFactory, SoftDeletes, CrudTrait;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',

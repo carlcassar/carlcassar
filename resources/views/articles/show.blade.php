@@ -32,14 +32,14 @@
                 </ul>
             @endif
 
-            @if(backpack_auth()->check())
+            @auth
                 <i class="bi-dot"></i>
 
                 <a class="uppercase text-sm tracking-widest"
                    href="{{ route('article.edit', $article->id) }}">
                     Edit
                 </a>
-            @endif
+            @endauth
         </div>
 
         <div class="mb-2 sm:mb-8">
