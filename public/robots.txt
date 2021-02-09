@@ -1,13 +1,11 @@
-# Group 1
 User-agent: *
-Disallow: /rss/
+Disallow: /admin/
 
-# Group 2
 User-agent: *
 Disallow: /feed/
 
-# Group 3
+User-agent: *
+Disallow: /search
+
 User-agent: *
 Allow: /
-
-Sitemap: https://www.carlcassar.com/sitemap.xml

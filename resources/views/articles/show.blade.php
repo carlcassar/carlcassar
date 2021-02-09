@@ -32,7 +32,7 @@
                 </ul>
             @endif
 
-            @if(backpack_auth())
+            @if(backpack_auth()->check())
                 <i class="bi-dot"></i>
 
                 <a class="uppercase text-sm tracking-widest"
