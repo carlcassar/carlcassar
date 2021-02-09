@@ -9,17 +9,18 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
-        "laravel/nova": "~3.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
+        "laravel/nova": "~3.0",
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "^1.0",
         "league/flysystem-cached-adapter": "^1.0",
         "spatie/laravel-feed": "^3.1",
         "spatie/laravel-ray": "^1.12",
-        "spatie/laravel-sitemap": "^5.9"
+        "spatie/laravel-sitemap": "^5.9",
+        "timothyasp/nova-color-field": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

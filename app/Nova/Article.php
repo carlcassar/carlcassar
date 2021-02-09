@@ -3,7 +3,12 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -11,7 +16,7 @@ class Article extends Resource
 {
     public static $model = \App\Models\Article::class;
 
-    public static $title = 'id';
+    public static $title = 'title';
 
     public static $search = [
         'id',
@@ -24,49 +29,54 @@ class Article extends Resource
         return [
             ID::make( 'id')->sortable(),
 
-            Text::make('title'),
+            Text::make('Title')
+                ->rules('required', 'min:2', 'max:255'),
+
+            Text::make('Slug')
+                ->rules('required', 'min:2', 'max:255')
+                ->onlyOnForms(),
+
+            Markdown::make('Description')
+                ->rules('required_with:published_at')
+                ->hideFromIndex(),
+
+            Markdown::make('Body')
+                ->rules('required_with:published_at')
+                ->hideFromIndex(),
+
+            Text::make('Icon')
+                ->rules('required')
+                ->hideFromIndex(),
+
+            BelongsTo::make('Primary Tag', 'primaryTag', Tag::class)
+                ->withoutTrashed(),
+
+            DateTime::make('Published At')
+                ->rules('date', 'nullable')
+                ->format('DD-MM-YYYY HH:mm')
+                ->pickerDisplayFormat('d-m-Y h:i'),
+
+            Boolean::make('Featured'),
+
+            BelongsToMany::make('Tags'),
         ];
     }
 
-    /**
-     * Get the cards available for the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function cards(Request $request)
     {
         return [];
     }
 
-    /**
-     * Get the filters available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function filters(Request $request)
     {
         return [];
     }
 
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function lenses(Request $request)
     {
         return [];
     }
 
-    /**
-     * Get the actions available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function actions(Request $request)
     {
         return [];
