@@ -54,7 +54,11 @@ class Article extends Resource
             DateTime::make('Published At')
                 ->rules('date', 'nullable')
                 ->format('DD-MM-YYYY HH:mm')
-                ->pickerDisplayFormat('d-m-Y h:i'),
+                ->pickerDisplayFormat('d-m-Y h:i')
+                ->nullable()
+                ->hideFromIndex(),
+
+            Boolean::make('Published', 'published_at')->onlyOnIndex(),
 
             Boolean::make('Featured'),
 
