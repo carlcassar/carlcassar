@@ -1,5 +1,5 @@
 <x-layout :title="$article->title"
-          :description="$article->description"
+          :description="strip_tags(Str::of($article->description)->markdown())"
           :keywords="$article->tags->map->name->join(', ')">
     <article class="max-w-full">
 
