@@ -69,7 +69,9 @@
                     where I post similar content and connect with like-minded people.
                 </div>
                 <a class="bg-gray-600 hover:bg-orange-600 text-white shadow-sm px-4 py-2 rounded-lg mt-8 inline-flex items-center justify-center space-x-2 transition-colors duration-300 ease-in-out"
-                   href="https://www.twitter.com">
+                   href="https://www.twitter.com/carlcassar"
+                   target="_blank"
+                   rel="nofollow nopener noreferrer">
                     <i class="bi-twitter"></i>
                     <span>Follow me on Twitter</span>
                 </a>
