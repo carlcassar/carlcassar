@@ -15,7 +15,7 @@
             </span>
 
             @if($article->tags->count())
-                <i class="bi-dot"></i>
+                <i class="hidden sm:inline-block bi-dot"></i>
 
                 <ul class="inline-flex space-x-2">
                     @foreach($article->tags as $tag)
@@ -23,9 +23,6 @@
                             <a href="{{ route('tags.show', $tag) }}">
                                 {{ $tag->name }}
                             </a>
-                            @if(!$loop->last)
-                                <i class="bi-dot"></i>
-                            @endif
                         </li>
                     @endforeach
 
@@ -33,7 +30,7 @@
             @endif
 
             @auth
-                <i class="bi-dot"></i>
+                <i class="hidden sm:inline-block bi-dot"></i>
 
                 <a class="uppercase text-sm tracking-widest"
                    href="{{ url('admin/resources/articles/' . $article->id . '/edit') }}">

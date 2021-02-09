@@ -12,11 +12,14 @@
                     @foreach($article->tags as $tag)
                         <a class="hover:text-orange-600" href="{{ route('tags.show', $tag) }}">
                             {{ $tag->name }}
-                            @if(!$loop->last)
-                                <i class="bi-dot"></i>
-                            @endif
                         </a>
                     @endforeach
+
+                    <i class="hidden sm:inline-block bi-dot"></i>
+
+                    <div>
+                        {{ $article->updated_at->diffForHumans() }}
+                    </div>
                 </div>
 
                 <div class="pb-2 max-w-full prose">
