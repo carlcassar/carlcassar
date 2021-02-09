@@ -36,7 +36,7 @@
                 <i class="bi-dot"></i>
 
                 <a class="uppercase text-sm tracking-widest"
-                   href="{{ route('article.edit', $article->id) }}">
+                   href="{{ url('admin/resources/articles/' . $article->id . '/edit') }}">
                     Edit
                 </a>
             @endauth
