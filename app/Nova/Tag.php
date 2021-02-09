@@ -3,7 +3,9 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Inspheric\Fields\Url;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Timothyasp\Color\Color;
@@ -24,15 +26,20 @@ class Tag extends Resource
         return [
             ID::make( 'id')->sortable(),
 
-            Text::make('name')
+            Text::make('Name')
                 ->rules('required', 'min:2', 'max:255'),
 
-            Text::make('slug')
-                ->rules('required', 'min:2', 'max:255')
-                ->hideFromIndex(),
+            Slug::make('Slug')
+                ->from('Name')
+                ->onlyOnForms()
+                ->rules('required', 'min:2', 'max:255'),
 
-            Color::make('colour')
+            Color::make('Colour')
                 ->rules('required', 'min:7', 'max:7'),
+
+            Url::make('Preview', fn () => route('tags.show', $this->resource))
+                ->clickable()
+                ->onlyOnDetail(),
         ];
     }
 

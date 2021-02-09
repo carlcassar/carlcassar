@@ -127,4 +127,9 @@ class Article extends Model implements Feedable
             ->limit(20)
             ->get();
     }
+
+    public function isPublished()
+    {
+        return !is_null($this->published_at);
+    }
 }

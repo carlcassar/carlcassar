@@ -3,12 +3,14 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Inspheric\Fields\Url;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Markdown;
+use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -27,14 +29,15 @@ class Article extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make( 'id')->sortable(),
+            ID::make('id')->sortable(),
 
             Text::make('Title')
                 ->rules('required', 'min:2', 'max:255'),
 
-            Text::make('Slug')
-                ->rules('required', 'min:2', 'max:255')
-                ->onlyOnForms(),
+            Slug::make('Slug')
+                ->from('Title')
+                ->onlyOnForms()
+                ->rules('required', 'min:2', 'max:255'),
 
             Markdown::make('Description')
                 ->rules('required_with:published_at')
@@ -49,6 +52,7 @@ class Article extends Resource
                 ->hideFromIndex(),
 
             BelongsTo::make('Primary Tag', 'primaryTag', Tag::class)
+                ->searchable()
                 ->withoutTrashed(),
 
             DateTime::make('Published At')
@@ -59,6 +63,11 @@ class Article extends Resource
                 ->hideFromIndex(),
 
             Boolean::make('Published', 'published_at')->onlyOnIndex(),
+
+            Url::make('Preview', fn () => route('articles.show', $this->resource))
+                ->clickable()
+                ->onlyOnDetail()
+                ->showOnDetail(fn() => $this->resource->isPublished()),
 
             Boolean::make('Featured'),
 
