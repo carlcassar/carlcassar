@@ -41,9 +41,7 @@ class Article extends Resource
                 ->onlyOnForms()
                 ->rules('required', 'min:2', 'max:255'),
 
-            Text::make('Image')
-                ->rules('min:2', 'max:255')
-                ->hideFromIndex(),
+            Text::make('Image')->hideFromIndex(),
 
             Markdown::make('Description')
                 ->rules('required_with:published_at')
