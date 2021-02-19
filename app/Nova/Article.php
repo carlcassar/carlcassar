@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use DmitryBubyakin\NovaMedialibraryField\Fields\Medialibrary;
 use Illuminate\Http\Request;
 use Inspheric\Fields\Url;
 use Laravel\Nova\Fields\BelongsTo;
@@ -13,6 +14,7 @@ use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Article extends Resource
 {
@@ -51,6 +53,11 @@ class Article extends Resource
                 ->rules('required_with:published_at')
                 ->hideFromIndex(),
 
+            Medialibrary::make('Media')
+                ->previewUsing(fn (Media $media) => $media->getTemporaryUrl(now()->addMinutes(5)))
+                ->downloadUsing(fn (Media $media) => $media->getTemporaryUrl(now()->addMinutes(5)))
+                ->copyAs('Public Url', fn (Media $media) => 'https://media.carlcassar.com/' . $media->getPath()),
+
             Text::make('Icon')
                 ->rules('required')
                 ->hideFromIndex(),
@@ -68,7 +75,7 @@ class Article extends Resource
 
             Boolean::make('Published', 'published_at')->onlyOnIndex(),
 
-            Url::make('Preview', fn () => route('articles.show', $this->resource))
+            Url::make('Preview', fn() => route('articles.show', $this->resource))
                 ->clickable()
                 ->onlyOnDetail()
                 ->showOnDetail(fn() => $this->resource->isPublished()),
