@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,8 @@ Route::feeds();
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('search', SearchController::class)->name('search');
+Route::get('privacy-policy', PrivacyPolicyController::class)->name('privacy-policy');
+
 Route::resource('tags', TagController::class)->only('index', 'show');
 Route::resource('articles', ArticleController::class)->only('index', 'show');
 
