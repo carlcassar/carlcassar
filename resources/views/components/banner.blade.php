@@ -8,7 +8,7 @@
 
     I make <a class="link" href="">websites</a> and apps.
     I write <a class="link" href="/articles">articles</a> and read
-    <a class="link" href="/tags/books">books</a>. Stick around if you're interested in
+    <a class="link" href="">books</a>. Stick around if you're interested in
     <a class="link" href="/tags/php">php</a>,
     <a class="link" href="/tags/laravel">laravel</a>,
     <a class="link" href="/tags/javascript">javascript</a>,
