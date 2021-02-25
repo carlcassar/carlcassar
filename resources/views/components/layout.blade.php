@@ -6,13 +6,11 @@
     <meta name="description"
           content="{{ $description ?? "Carl Cassar's blog on Laravel, PHP, JavaScript, DevOps and more." }}">
     <meta name="keywords" content="{{ $keywords ?? "PHP, Laravel, JavaScript, Vue, Nuxt, DevOps, GitHub, Analytics" }}">
-    <meta name="image" content="{{ asset('/open-graph/logo1200x600.png') }}">
 
     <meta property="og:title" content="Carl Cassar {{ isset($title) ? ' - ' . $title : '' }}" />
     <meta property="og:description"
           content="{{ $description ?? "Carl Cassar's blog on Laravel, PHP, JavaScript, DevOps and more." }}" />
     <meta property="og:url" content="{{ config('app.url') }}" />
-    <meta property="og:type" content="website" />
     <meta property="og:type" content="website" />
     <meta property="og:updated_time" content="{{ now()->toIso8601String() }}" />
     <meta property="og:image" content="{{ asset('/open-graph/logo1200x1200.png') }}" />
@@ -21,12 +19,15 @@
     <meta property="og:image" content="{{ asset('/open-graph/logo1200x600.png') }}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="600" />
+
     <meta property="theme-color" content="#ffffff" />
     <meta property="msapplication-TileColor" content="#ed8936" />
     <meta property="msapplication-TileImage" content="/favicons/mstile-150x150.png" />
-    <meta property="twitter:site" content="@carlcassar" />
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:card" content="summary_large_image" />
+
+    <meta name="twitter:site" content="@carlcassar" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@carlcassar" />
+
     <meta property="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-capable" content="yes">
 
