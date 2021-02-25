@@ -119,6 +119,7 @@ class Article extends Model implements Feedable, HasMedia
     public function getFeedItems()
     {
         return static::published()
+            ->orderByDesc('published_at')
             ->limit(20)
             ->get();
     }
@@ -126,6 +127,7 @@ class Article extends Model implements Feedable, HasMedia
     public function getFeaturedFeedItems()
     {
         return static::featured()
+            ->orderByDesc('published_at')
             ->limit(20)
             ->get();
     }

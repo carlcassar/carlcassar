@@ -11,6 +11,7 @@ class ArticleController extends Controller
     {
         return view('articles.index', [
             'articles' => Article::published()
+                ->orderByDesc('published_at')
                 ->with('tags')
                 ->paginate(5)
         ]);
@@ -20,7 +21,11 @@ class ArticleController extends Controller
     {
         return view('articles.show', [
             'article' => $article,
-            'similarArticles' => Article::published()->similarTo($article)->limit(2)->get()
+            'similarArticles' => Article::published()
+                ->orderByDesc('published_at')
+                ->similarTo($article)
+                ->limit(2)
+                ->get()
         ]);
     }
 }
