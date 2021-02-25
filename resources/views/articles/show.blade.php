@@ -3,15 +3,15 @@
           :keywords="$article->tags->map->name->join(', ')">
     <article class="max-w-full">
 
-        @if($article->updated_at < today()->subYear())
+        @if($article->published_at < today()->subYear())
             <p class="text-center md:text-left border border-yellow-300 p-4 rounded mb-4">
-                This article was updated over a year ago, so please be aware that some content may be out of date.
+                This article was published over a year ago, so please be aware that some content may be out of date.
             </p>
         @endif
 
         <div class="mb-4">
             <span class="uppercase tracking-widest text-sm">
-               {{ $article->updated_at->isoFormat('LLLL') }}
+               {{ $article->published_at->isoFormat('LLLL') }}
             </span>
 
             @if($article->tags->count())

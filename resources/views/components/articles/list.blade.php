@@ -18,7 +18,7 @@
                     <i class="hidden sm:inline-block bi-dot"></i>
 
                     <div>
-                        {{ $article->updated_at->diffForHumans() }}
+                        {{ $article->published_at->diffForHumans() }}
                     </div>
                 </div>
 
