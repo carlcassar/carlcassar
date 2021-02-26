@@ -8,7 +8,7 @@
 </head>
 <body>
 <div
-    class="w-screen h-screen p-10 relative text-white font-thin"
+    class="w-full h-screen p-20 relative text-white"
     style="
         background: linear-gradient(
         135deg,
@@ -23,11 +23,11 @@
         <i class="bi-{{ $article->icon ?? 'lightbulb-fill' }} opacity-20" style="font-size: 16em; line-height: 0"></i>
     </div>
 
-    <div class="text-8xl font-bold">
+    <div class="text-8xl font-bold mb-8">
         {{ optional($article->primaryTag)->name }}
     </div>
 
-    <div class="text-7xl">
+    <div class="text-7xl leading-tight font-light">
         {{ $article->title }}
     </div>
 </div>
