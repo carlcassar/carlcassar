@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Jobs\GenerateOpenGraphImage;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -41,6 +42,9 @@ class Article extends Model implements Feedable, HasMedia
         parent::boot();
         static::saving(function ($model) {
             $model->title = Str::title($model->title);
+        });
+        static::saved(function ($model) {
+            dispatch(new GenerateOpenGraphImage($model));
         });
     }
 
@@ -132,8 +136,22 @@ class Article extends Model implements Feedable, HasMedia
             ->get();
     }
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('openGraphImage')
+            ->useDisk('s3')
+            ->singleFile();
+    }
+
     public function isPublished()
     {
         return !is_null($this->published_at);
+    }
+
+    public function getOpenGraphImageAttribute()
+    {
+        $path = $this->getFirstMediaPath('openGraphImage');
+
+        return $path ? 'https://media.carlcassar.com/' . $path : null;
     }
 }

@@ -13,10 +13,7 @@
     <meta property="og:url" content="{{ config('app.url') }}" />
     <meta property="og:type" content="website" />
     <meta property="og:updated_time" content="{{ now()->toIso8601String() }}" />
-    <meta property="og:image" content="{{ asset('/open-graph/logo1200x1200.png') }}" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="1200" />
-    <meta property="og:image" content="{{ asset('/open-graph/logo1200x600.png') }}" />
+    <meta property="og:image" content="{{ asset($ogImage ?? '/open-graph/logo1200x600.png') }}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="600" />
 

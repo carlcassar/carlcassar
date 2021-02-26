@@ -13,7 +13,6 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Article extends Resource
@@ -31,7 +30,7 @@ class Article extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make('id')->sortable(),
+            ID::make('ID')->sortable(),
 
             Text::make('Title')
                 ->rules('required', 'min:2', 'max:255'),
@@ -55,6 +54,10 @@ class Article extends Resource
                 ->previewUsing(fn (Media $media) => $media->getTemporaryUrl(now()->addMinutes(5)))
                 ->downloadUsing(fn (Media $media) => $media->getTemporaryUrl(now()->addMinutes(5)))
                 ->copyAs('Public Url', fn (Media $media) => 'https://media.carlcassar.com/' . $media->getPath()),
+
+            Medialibrary::make('Open Graph Image', $collectionName = 'openGraphImage')
+                ->previewUsing(fn (Media $media) => $media->getTemporaryUrl(now()->addMinutes(5)))
+                ->downloadUsing(fn (Media $media) => $media->getTemporaryUrl(now()->addMinutes(5))),
 
             Text::make('Icon')
                 ->rules('required')

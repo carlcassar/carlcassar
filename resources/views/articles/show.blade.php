@@ -1,6 +1,7 @@
 <x-layout :title="$article->title"
           :description="strip_tags(Str::of($article->description)->markdown())"
-          :keywords="$article->tags->map->name->join(', ')">
+          :keywords="$article->tags->map->name->join(', ')"
+          :og-image="$article->openGraphImage">
     <article class="max-w-full">
 
         @if($article->published_at < today()->subYear())

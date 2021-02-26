@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ArticleOpenGraphImageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\SearchController;
@@ -26,4 +27,7 @@ Route::get('privacy-policy', PrivacyPolicyController::class)->name('privacy-poli
 
 Route::resource('tags', TagController::class)->only('index', 'show');
 Route::resource('articles', ArticleController::class)->only('index', 'show');
+
+Route::get('articles/{article}/open-graph-image', ArticleOpenGraphImageController::class)
+    ->name('articles.open-graph-image');
 
