@@ -12,6 +12,7 @@ use League\CommonMark\Environment\Environment;
 use League\CommonMark\Exception\CommonMarkException;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
+use League\CommonMark\Extension\Table\TableExtension;
 use League\CommonMark\MarkdownConverter;
 use Str;
 use Symfony\Component\Finder\SplFileInfo;
@@ -81,8 +82,8 @@ class MarkdownImport extends Command
             'tags' => collect($frontMatter->get('tags'))->join(', '),
             'published_at' => $this->date($frontMatter->get('published')),
             'deleted_at' => $this->date($frontMatter->get('deleted')),
-            'created_at' => $this->date($frontMatter->get('created', now())),
-            'updated_at' => $this->date($frontMatter->get('updated', now())),
+            'created_at' => $this->date($frontMatter->get('created'), now()),
+            'updated_at' => $this->date($frontMatter->get('updated'), now()),
         ]);
     }
 
@@ -105,6 +106,7 @@ class MarkdownImport extends Command
         $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension());
         $environment->addExtension(new FrontMatterExtension());
+        $environment->addExtension(new TableExtension());
 
         $converter = new MarkdownConverter($environment);
 

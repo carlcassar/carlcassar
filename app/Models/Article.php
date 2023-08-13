@@ -21,4 +21,9 @@ class Article extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }
