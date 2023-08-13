@@ -15,10 +15,14 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div>
+        <div class="min-h-screen flex flex-col items-center pt-20 bg-gray-100 dark:bg-gray-900">
+            <div class="flex flex-col items-center">
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    <x-application-logo class="w-14 h-14 fill-current text-gray-500" />
+                </a>
+                <a href="{{ route('home') }}"
+                   class="pt-4 text-2xl font-semibold transition-all duration-200 cursor-pointer dark:text-white hover:text-orange-700">
+                    carlcassar.com
                 </a>
             </div>
 
