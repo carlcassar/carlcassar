@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Artisan;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Artisan::call('app:markdown-import');
     }
 }

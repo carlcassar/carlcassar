@@ -4,7 +4,7 @@ description: "An in-depth review of five privacy-focused, cookie free alternativ
 tags:
     - tools
     - analytics
-published_at: "06-10-2020 8:23"
+published: "06-10-2020 8:23"
 ---
 
 I recently wrote an article on how to 

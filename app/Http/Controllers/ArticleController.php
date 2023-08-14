@@ -13,7 +13,7 @@ class ArticleController extends Controller
     public function index()
     {
         return view('articles.index', [
-            'articles' => Article::all(),
+            'articles' => Article::published()->get(),
         ]);
     }
 

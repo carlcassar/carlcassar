@@ -24,6 +24,7 @@ class Recents extends Component
     {
         return view('components.recents', [
             'recents' => Article::query()
+                ->published()
                 ->orderByDesc('published_at')
                 ->limit(3)
                 ->get(),
