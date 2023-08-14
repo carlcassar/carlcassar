@@ -30,11 +30,15 @@
     <!-- Page Content -->
     <div class="max-w-7xl mx-auto px-6 pb-12 lg:px-8 mt-6 md:flex md:space-x-4">
         <main class="flex-1 lg:pr-20">
+            <livewire:search-articles classes="md:hidden"/>
+
             {{ $slot }}
         </main>
 
-        <aside class="md:w-64 lg:w-96 md:mt-0 space-y-4">
-            <x-card class="md:p-8">
+        <aside class="md:w-64 lg:w-96 mt-4 md:mt-0 space-y-4">
+            <livewire:search-articles/>
+
+            <x-card class="sm:p-8">
                 <x-slot name="title">
                     Recent Articles
                 </x-slot>
@@ -49,7 +53,7 @@
                 </ul>
             </x-card>
 
-            <x-card class="md:p-8">
+            <x-card class="sm:p-8">
                 <x-slot name="title">
                     Tags
                 </x-slot>
@@ -63,7 +67,7 @@
                 </ul>
             </x-card>
 
-            <x-card class="md:p-8">
+            <x-card class="sm:p-8">
                 <x-slot name="title">
                     Years
                 </x-slot>
