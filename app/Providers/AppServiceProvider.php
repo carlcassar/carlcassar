@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        View::share('recents', $this->recents());
         View::share('tags', $this->allTags());
         View::share('years', $this->allYears());
     }
@@ -35,10 +36,18 @@ class AppServiceProvider extends ServiceProvider
 
     public function allYears()
     {
-        return $years = Article::get('created_at')
+        return Article::get('created_at')
             ->map(fn ($article) => $article->created_at)
             ->filter()
             ->map(fn ($date) => $date->format('Y'))
             ->unique();
+    }
+
+    public function recents()
+    {
+        return Article::query()
+            ->orderByDesc('published_at')
+            ->limit(3)
+            ->get();
     }
 }

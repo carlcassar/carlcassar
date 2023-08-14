@@ -5,9 +5,8 @@
         </h1>
     </x-slot>
 
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 pt-2 pb-20 space-y-4">
-        @foreach($articles as $article)
-            <div class="pb-10">
+    @foreach($articles as $article)
+        <div class="pb-10">
             <div class="max-h-96 relative overflow-hidden">
                 <h2 class="text-5xl font-extrabold font-serif dark:invert">{{ Str::title($article->title) }}</h2>
                 <div class="pt-2 dark:invert">{{ $article->created_at->diffForHumans() }}</div>
@@ -15,7 +14,7 @@
                     {!! $article->content !!}
                 </div>
                 <div
-                    class="h-24 absolute bottom-0 w-full dark:bg-gray-800 dark:text-white bg-gradient-to-b from-transparent to-gray-100">
+                    class="h-24 absolute bottom-0 w-full dark:text-white bg-gradient-to-b from-transparent to-gray-100 dark:to-gray-900">
                 </div>
             </div>
             <a href="{{ route('articles.show', $article) }}"
@@ -27,7 +26,6 @@
                           d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
                 </svg>
             </a>
-            </div>
-        @endforeach
-    </div>
+        </div>
+    @endforeach
 </x-app-layout>
