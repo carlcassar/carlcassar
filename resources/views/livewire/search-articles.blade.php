@@ -1,4 +1,4 @@
-<div class="relative {{ $classes }}">
+<div class="relative z-10 {{ $classes }}">
     <label>
         <input type="search"
                wire:model.live="search"
