@@ -1,6 +1,10 @@
 <x-app-layout>
     <h1 class="dark:invert font-serif text-6xl font-bold">{{ Str::title($article->title) }}</h1>
-    <div class="dark:invert">{{ $article->created_at->diffForHumans() }}</div>
+    <div class="dark:invert mt-4">
+        {{ $article->published_at->toFormattedDayDateString() }}
+        &verbar;
+        {{ $article->published_at->diffForHumans() }}
+    </div>
     @if($article->tags)
         <div class="flex mt-3 flex-wrap space-x-2">
             @foreach(Str::of($article->tags)->explode(',') as $tag)

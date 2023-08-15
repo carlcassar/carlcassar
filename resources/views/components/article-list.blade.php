@@ -7,7 +7,7 @@
         <div class="pb-10">
             <div class="max-h-96 relative overflow-hidden">
                 <h2 class="text-5xl font-extrabold font-serif dark:invert">{{ Str::title($article->title) }}</h2>
-                <div class="pt-2 dark:invert">{{ $article->created_at->diffForHumans() }}</div>
+                <div class="pt-2 dark:invert">{{ $article->published_at->diffForHumans() }}</div>
                 <div class="prose dark:prose-invert max-w-none mt-4">
                     {!! $article->content !!}
                 </div>
