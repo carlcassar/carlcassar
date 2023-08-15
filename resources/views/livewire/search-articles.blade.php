@@ -7,7 +7,7 @@
     </label>
 
     @if(count($articles))
-        <x-card class="absolute mt-2 w-full bg-white dark:bg-gray-800 bg-opacity-100 border dark:border-gray-900">
+        <div class="rounded-md absolute mt-2 w-full bg-white dark:bg-gray-800 border dark:border-gray-900 bg-opacity-100">
             <ul class="divide-y divide-gray-100 dark:divide-gray-900">
                 @foreach($articles as $article)
                     <li class="px-4 py-2 hover:bg-gray-200 hover:dark:bg-gray-700">
@@ -22,6 +22,6 @@
                     </li>
                 @endforeach
             </ul>
-        </x-card>
+        </div>
     @endif
 </div>
