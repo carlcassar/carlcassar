@@ -112,6 +112,8 @@ class MarkdownImport extends Command
 
         $converter = new MarkdownConverter($environment);
 
+        $markdown = preg_replace_callback("/\[\[(.+)\]\]/", fn ($capture) => $capture = $this->linkify($capture[1]), $markdown);
+
         $markdown = $converter->convert($markdown);
 
         return collect([
@@ -123,5 +125,12 @@ class MarkdownImport extends Command
     private function getMarkdownFiles(): Collection
     {
         return collect($this->filesystem->files(resource_path('markdown')));
+    }
+
+    public function linkify($title)
+    {
+        $slug = Str::slug($title);
+
+        return "[$title]($slug)";
     }
 }
