@@ -21,7 +21,7 @@
                     <x-application-logo class="w-14 h-14 fill-current text-gray-500" />
                 </a>
                 <a href="{{ route('home') }}"
-                   class="pt-4 text-2xl font-semibold transition-all duration-200 cursor-pointer dark:text-white hover:text-orange-700">
+                   class="pt-4 text-2xl font-semibold transition-all duration-200 cursor-pointer dark:text-white hover:text-orange-500">
                     carlcassar.com
                 </a>
             </div>

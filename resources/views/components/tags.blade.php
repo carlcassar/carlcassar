@@ -1,4 +1,4 @@
-<x-card class="sm:p-8">
+<x-card class="sm:p-4">
     <x-slot name="title">
         Tags
     </x-slot>

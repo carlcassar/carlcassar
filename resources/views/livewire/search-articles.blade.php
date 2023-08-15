@@ -2,7 +2,7 @@
     <label>
         <input type="search"
                wire:model.live="search"
-               class="h-10 rounded w-full border-gray-200 dark:border-gray-800 bg-transparent dark:text-gray-500"
+               class="h-10 rounded w-full bg-gray-200 dark:bg-gray-800 border-0 bg-opacity-25 focus:outline-none focus:ring focus:ring-orange-500 dark:text-gray-500"
                placeholder="Search Articles..."/>
     </label>
 

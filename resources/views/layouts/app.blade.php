@@ -18,18 +18,17 @@
 <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
     @include('layouts.navigation')
 
-    <!-- Page Heading -->
-    @if (isset($header))
-        <header>
-            <div class="max-w-7xl mx-auto pt-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
-    @endif
-
     <!-- Page Content -->
     <div class="max-w-7xl mx-auto px-6 pb-12 lg:px-8 mt-6 md:flex md:space-x-4">
-        <main class="flex-1 lg:pr-20">
+        <main class="flex-1">
+
+            <!-- Page Heading -->
+            @if (isset($header))
+                <header class="mb-4">
+                    {{ $header }}
+                </header>
+            @endif
+
             <livewire:search-articles classes="md:hidden mb-4"/>
 
             {{ $slot }}
