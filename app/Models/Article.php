@@ -32,4 +32,11 @@ class Article extends Model
     {
         $query->where('published_at', '<=', now());
     }
+
+    public function getCasts()
+    {
+        return [
+            'published_at' => 'datetime',
+        ];
+    }
 }

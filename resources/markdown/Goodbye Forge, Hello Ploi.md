@@ -1,5 +1,5 @@
 ---
-title: "Goodbye Forge, Hello Ploi"
+title: Goodbye Forge, Hello Ploi
 description: After many years, I've cancelled my subscription to Laravel Forge in favour of Ploi. Here's why...
 tags:
     - laravel

@@ -71,6 +71,8 @@ class MarkdownImport extends Command
 
         $slug = $frontMatter->get('slug') ?? Str::slug($frontMatter->get('title'));
 
+        dump($slug);
+
         Article::updateOrCreate([
             'slug' => $slug,
         ], [
@@ -80,10 +82,10 @@ class MarkdownImport extends Command
             'content' => $content,
             'image' => $frontMatter->get('image'),
             'tags' => collect($frontMatter->get('tags'))->join(', '),
-            'published_at' => $this->date($frontMatter->get('published')),
-            'deleted_at' => $this->date($frontMatter->get('deleted')),
-            'created_at' => $this->date($frontMatter->get('created'), now()),
-            'updated_at' => $this->date($frontMatter->get('updated'), now()),
+            'published_at' => $this->date($frontMatter->get('published_at')),
+            'deleted_at' => $this->date($frontMatter->get('deleted_at')),
+            'created_at' => $this->date($frontMatter->get('created_at'), now()),
+            'updated_at' => $this->date($frontMatter->get('updated_at'), now()),
         ]);
     }
 
