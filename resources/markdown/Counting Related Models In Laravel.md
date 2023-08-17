@@ -1,5 +1,5 @@
 ---
-title: Better Http Status Codes In Laravel
+title: Counting Related Models In Laravel
 description: This Laravel quick tip will allow you to count model relations whilst ensuring you don't encounter an N+1 problem.
 published_at: 02-01-2022 4:05
 ---

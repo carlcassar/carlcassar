@@ -9,7 +9,7 @@ published_at: 02-01-2022 4:10
 
 Luckily, when it comes to HTTP Status Codes, we can make use of a complete set of constants that will make the meaning of your code self evident.
 
-```
+```php
 return Response::HTTP_OK;
 ```
 
