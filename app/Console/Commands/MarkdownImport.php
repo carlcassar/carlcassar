@@ -12,6 +12,7 @@ use League\CommonMark\Environment\Environment;
 use League\CommonMark\Exception\CommonMarkException;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
+use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\Table\TableExtension;
 use League\CommonMark\MarkdownConverter;
 use Str;
@@ -103,12 +104,18 @@ class MarkdownImport extends Command
      */
     public function convert(string $markdown): Collection
     {
-        $config = [];
+        $config = [
+            'heading_permalink' => [
+                'symbol' => '#',
+                'html_class' => 'no-underline mr-2 text-gray-500',
+            ],
+        ];
 
         $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension());
         $environment->addExtension(new FrontMatterExtension());
         $environment->addExtension(new TableExtension());
+        $environment->addExtension(new HeadingPermalinkExtension());
 
         $converter = new MarkdownConverter($environment);
 

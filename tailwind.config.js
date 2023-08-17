@@ -10,6 +10,10 @@ export default {
         './resources/views/**/*.blade.php',
     ],
 
+    safelist: [
+        'no-underline'
+    ],
+
     theme: {
         extend: {
             fontFamily: {
