@@ -45,6 +45,8 @@
     <link href="{{ asset('/favicons/safari-pinned-tab.svg') }}" rel="mask-icon" type="image/svg" sizes="693x693">
     <link href="{{ asset('/favicons/apple-touch-icon.png') }}" rel="apple-touch-icon" type="image/svg" sizes="180x180">
 
+    <x-feed-links />
+
     <meta property="apple-mobile-web-app-status-bar-style" content="default"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
 

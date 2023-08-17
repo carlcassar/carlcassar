@@ -5,8 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
+use Str;
 
-class Article extends Model
+class Article extends Model implements Feedable
 {
     use HasFactory;
 
@@ -39,5 +42,27 @@ class Article extends Model
         return [
             'published_at' => 'datetime',
         ];
+    }
+
+    public function toFeedItem(): FeedItem
+    {
+        return FeedItem::create([
+            'id' => $this->id,
+            'title' => $this->title,
+            'summary' => $this->description ?? '',
+            'updated' => $this->updated_at,
+            'link' => route('articles.show', $this),
+            'authorName' => 'Carl Cassar',
+            'body' => Str::of($this->content)->markdown(),
+            //            'image' => $this->image,
+        ]);
+    }
+
+    public function getFeedItems()
+    {
+        return static::published()
+            ->orderByDesc('published_at')
+            ->limit(20)
+            ->get();
     }
 }
