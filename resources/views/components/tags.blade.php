@@ -6,7 +6,7 @@
     <ul>
         @foreach($tags as $tag)
             <li>
-                <x-link class="no-underline" href="/{{ $tag }}">{{ $tag }}</x-link>
+                <x-link class="no-underline" href="/articles/?tag={{ $tag }}">{{ $tag }}</x-link>
             </li>
         @endforeach
     </ul>

@@ -14,5 +14,5 @@
         </p>
     </div>
 
-    <x-article-list class="mt-4" :articles="$articles" />
+    <livewire:article-list class="mt-4" />
 </x-app-layout>

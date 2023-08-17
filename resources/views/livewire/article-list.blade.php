@@ -1,8 +1,4 @@
-@props([
-    'articles'
-])
-
-<div {{ $attributes }}>
+<div>
     @foreach($articles as $article)
         <div class="pb-10">
             <x-article :article="$article" class="max-h-96 relative overflow-hidden">
@@ -21,4 +17,6 @@
             </a>
         </div>
     @endforeach
+
+    {{ $articles->links() }}
 </div>

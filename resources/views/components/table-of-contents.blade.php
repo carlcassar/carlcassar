@@ -1,6 +1,6 @@
 @props(['article'])
 
-@if(isset($article) && $article->table_of_contents)
+@if(isset($article) && $article->table_of_contents && request()->routeIs('articles.show'))
     <x-card class="sm:p-4">
         <x-slot name="title">
             Table Of Contents
