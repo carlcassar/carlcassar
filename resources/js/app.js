@@ -14,10 +14,3 @@ import 'prismjs/components/prism-wolfram.min.js';
 
 // Initialize Prism
 Prism.highlightAll();
-
-
-// import Alpine from 'alpinejs';
-
-// window.Alpine = Alpine;
-//
-// Alpine.start();

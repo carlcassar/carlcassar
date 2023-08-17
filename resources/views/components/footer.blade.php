@@ -1,4 +1,4 @@
-<footer class="text-center my-10 md:mt-20 md:mb-32">
+<footer class="text-center py-10 md:pt-20 md:pb-32 dark:invert">
 
     <a href="/privacy-policy" class="nav-link">Privacy Policy</a>
 

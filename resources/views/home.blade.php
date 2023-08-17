@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="border-b-2 border-dashed border-gray-200 py-4 pb-8">
+    <div class="border-b-2 border-dashed border-gray-200 py-4 pb-8 mb-8">
         <h1 class="text-4xl font-bold text-gray-900 dark:text-white font-serif text-justify">
             Hello 👋
         </h1>

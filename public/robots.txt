@@ -1,2 +1,11 @@
 User-agent: *
-Disallow:
+Disallow: /admin/
+
+User-agent: *
+Disallow: /feed/
+
+User-agent: *
+Disallow: /search
+
+User-agent: *
+Allow: /
