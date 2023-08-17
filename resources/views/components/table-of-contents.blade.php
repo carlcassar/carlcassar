@@ -6,8 +6,10 @@
             Table Of Contents
         </x-slot>
 
-        <div class="prose dark:prose-a:text-gray-400">
-            {!! $article->table_of_contents !!}
+        <div class="prose dark:prose-a:text-gray-400 prose-li:my-0">
+            <ul class="list-disc">
+                {!! $article->table_of_contents !!}
+            </ul>
         </div>
     </x-card>
 @endif

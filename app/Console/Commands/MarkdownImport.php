@@ -136,7 +136,7 @@ class MarkdownImport extends Command
         foreach ($ulNodes as $ulNode) {
             $capturedContent = '';
             foreach ($ulNode->childNodes as $childNode) {
-                $capturedContent .= '<ul>'.$ulNode->ownerDocument->saveHTML($childNode).'</ul>';
+                $capturedContent .= $ulNode->ownerDocument->saveHTML($childNode);
             }
             $toc = $capturedContent;
             $ulNode->parentNode->removeChild($ulNode);
