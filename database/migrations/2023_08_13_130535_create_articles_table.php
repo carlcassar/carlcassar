@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique()->default('');
             $table->text('description')->nullable();
+            $table->text('table_of_contents')->nullable();
             $table->text('content')->nullable();
             $table->string('image')->nullable();
             $table->string('tags')->nullable();

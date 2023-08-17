@@ -14,6 +14,7 @@ class Article extends Model
         'title',
         'slug',
         'description',
+        'table_of_contents',
         'content',
         'image',
         'tags',

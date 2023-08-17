@@ -14,8 +14,10 @@ use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
 use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\Table\TableExtension;
+use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
 use League\CommonMark\MarkdownConverter;
 use Str;
+use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Finder\SplFileInfo;
 
 class MarkdownImport extends Command
@@ -69,6 +71,7 @@ class MarkdownImport extends Command
 
         $content = $markdown->get('content');
         $frontMatter = $markdown->get('frontMatter');
+        $tableOfContents = $markdown->get('tableOfContents');
 
         $slug = $frontMatter->get('slug') ?? Str::slug($frontMatter->get('title'));
 
@@ -80,6 +83,7 @@ class MarkdownImport extends Command
             'title' => $frontMatter->get('title'),
             'slug' => $slug,
             'description' => $frontMatter->get('description'),
+            'table_of_contents' => $tableOfContents,
             'content' => $content,
             'image' => $frontMatter->get('image'),
             'tags' => collect($frontMatter->get('tags'))->join(', '),
@@ -116,15 +120,31 @@ class MarkdownImport extends Command
         $environment->addExtension(new FrontMatterExtension());
         $environment->addExtension(new TableExtension());
         $environment->addExtension(new HeadingPermalinkExtension());
+        $environment->addExtension(new TableOfContentsExtension());
 
         $converter = new MarkdownConverter($environment);
 
-        $markdown = preg_replace_callback("/\[\[(.+)\]\]/", fn ($capture) => $capture = $this->linkify($capture[1]), $markdown);
+        $markdown = preg_replace_callback("/\[\[(.+)\]\]/", fn ($capture) => $this->linkify($capture[1]), $markdown);
 
         $markdown = $converter->convert($markdown);
 
+        $toc = '';
+
+        $crawler = new Crawler($markdown->getContent());
+        $ulNodes = $crawler->filter('ul.table-of-contents');
+
+        foreach ($ulNodes as $ulNode) {
+            $capturedContent = '';
+            foreach ($ulNode->childNodes as $childNode) {
+                $capturedContent .= '<ul>'.$ulNode->ownerDocument->saveHTML($childNode).'</ul>';
+            }
+            $toc = $capturedContent;
+            $ulNode->parentNode->removeChild($ulNode);
+        }
+
         return collect([
-            'content' => $markdown->getContent(),
+            'tableOfContents' => $toc,
+            'content' => $crawler->html(),
             'frontMatter' => collect($markdown->getDocument()->data['front_matter']),
         ]);
     }

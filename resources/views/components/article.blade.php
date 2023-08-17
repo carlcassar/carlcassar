@@ -44,4 +44,8 @@
     </x-card>
 
     {{ $slot }}
+
+    <x-slot name="aside">
+        <x-table-of-contents :article="$article"/>
+    </x-slot>
 </div>

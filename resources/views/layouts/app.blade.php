@@ -37,13 +37,13 @@
         <aside class="md:w-64 lg:w-96 mt-4 md:mt-0 space-y-4">
             <livewire:search-articles/>
 
-            <x-recents/>
-            <x-tags/>
-            <x-years/>
-
             @if(isset($aside))
                 {{ $aside }}
             @endif
+
+            <x-recents/>
+            <x-tags/>
+            <x-years/>
         </aside>
     </div>
 </div>
