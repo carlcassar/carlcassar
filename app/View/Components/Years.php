@@ -23,8 +23,10 @@ class Years extends Component
     public function render(): View|Closure|string
     {
         return view('components.years', [
-            'years' => Article::get('created_at')
-                ->map(fn ($article) => $article->created_at)
+            'years' => Article::query()
+                ->published()
+                ->get('published_at')
+                ->map(fn ($article) => $article->published_at)
                 ->filter()
                 ->map(fn ($date) => $date->format('Y'))
                 ->unique(),
