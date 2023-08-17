@@ -6,7 +6,7 @@
             Table Of Contents
         </x-slot>
 
-        <div class="prose">
+        <div class="prose dark:prose-a:text-gray-400">
             {!! $article->table_of_contents !!}
         </div>
     </x-card>

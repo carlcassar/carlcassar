@@ -1,7 +1,7 @@
 ---
 title: Different ways to pass data to a Laravel View
 description: Laravel views allow you to pass data to a view in a number of different ways. In this article, I'll go over four methods and describe the pros and cons for each one. 
-published_at:
+published_at: 10-01-2022 19:21
 ---
 ## 1. Using a magic method
 
