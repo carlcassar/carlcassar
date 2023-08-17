@@ -19,3 +19,4 @@ yarn-error.log
 /.vscode
 /resources/markdown/.obsidian/
 /public/sitemap.xml
+/resources/markdown/.obsidian.vimrc
