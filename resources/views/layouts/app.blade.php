@@ -45,7 +45,9 @@
             <x-tags/>
             <x-years/>
         </aside>
+
     </div>
 </div>
+<x-footer />
 </body>
 </html>
