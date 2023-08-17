@@ -1,3 +1,6 @@
+@import "prism-themes/themes/prism-nord.min.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
