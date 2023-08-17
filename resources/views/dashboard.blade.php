@@ -5,9 +5,8 @@
         </h1>
     </x-slot>
 
-    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="p-6 text-gray-900 dark:text-gray-100">
-            {{ __("You're logged in!") }}
-        </div>
-    </div>
+    <x-card class="p-4">
+        There's not much to see inside here yet, but I'll be adding more features over the next few hours, days and
+        weeks. Stay tuned.
+    </x-card>
 </x-app-layout>
