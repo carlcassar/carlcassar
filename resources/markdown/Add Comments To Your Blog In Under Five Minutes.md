@@ -3,8 +3,6 @@ title: Add Comments To Your Blog In Under Five Minutes
 description: Utterances is a free and open source comment system that uses GitHub issues to track comments on a web page. In this article I'll show you how to get Utterances up and running and share some tips on how to configure it for Nuxt JS.
 published_at: 08-02-2020 7:45
 ---
-## Overview 
-
 While reading a [blog post on web mentions](https://freek.dev/1406-how-to-add-webmentions-to-a-laravel-powered-blog) I
 noticed that the author, [Freek Van der Herten](https://freek.dev/about) was using a comment system that I had never
 seen before. It looked very similar to a GitHub issue, which piqued my interest. After some digging, I found that it was 

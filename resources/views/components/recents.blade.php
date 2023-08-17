@@ -6,8 +6,7 @@
     <ul>
         @foreach($recents as $recent)
             <li>
-                <a class="capitalize text-orange-500 underline"
-                   href="/articles/{{ $recent->slug }}">{{ $recent->title }}</a>
+                <x-link :href="route('articles.show', $recent)" :title="$recent->title" />
             </li>
         @endforeach
     </ul>

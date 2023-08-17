@@ -6,7 +6,7 @@
     <ul>
         @foreach($years as $year)
             <li>
-                <a class="capitalize text-orange-500 underline" href="/{{ $years }}">{{ $year }}</a>
+                <x-link href="/{{$year}}" :title="$year" />
             </li>
         @endforeach
     </ul>

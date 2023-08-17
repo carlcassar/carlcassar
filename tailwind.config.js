@@ -14,7 +14,11 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                body: ['Charter', 'serif'],
             },
+            fontSize: {
+                base: '1.25rem',
+            }
         },
     },
 

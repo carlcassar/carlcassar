@@ -6,7 +6,7 @@
     <ul>
         @foreach($tags as $tag)
             <li>
-                <a class="capitalize text-orange-500 underline" href="/{{ $tag }}">{{ $tag }}</a>
+                <x-link href="/{{ $tag }}" :title="$tag" />
             </li>
         @endforeach
     </ul>
