@@ -36,10 +36,22 @@
         where I post similar content and interact with like-minded people. If this article was helpful to you I'd really
         appreciate it if you would consider buying me a coffee.
 
-        <div class="mt-4">
-            <x-link type="button" href="https://buy.stripe.com/5kA4hXfElbjgaaY000">
-                <span class="pr-2">☕️</span>Leave a small tip
-            </x-link>
+        <div class="flex space-x-4 items-center mt-4">
+            <div>
+                <x-link type="button" href="https://buy.stripe.com/5kA4hXfElbjgaaY000">
+                    <span class="pr-2">☕️</span>Leave a small tip
+                </x-link>
+            </div>
+
+            <div>
+                or
+            </div>
+
+            <div>
+                <x-link type="button" href="https://github.com/sponsors/carlcassar">
+                    <span class="pr-2">Sponsor me on GitHub</span>
+                </x-link>
+            </div>
         </div>
     </x-card>
 
