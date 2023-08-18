@@ -188,7 +188,7 @@ class MarkdownImport extends Command
         }
 
         collect($this->required)->each(function ($required) use ($frontMatter) {
-            if (! $frontMatter->get($required)) {
+            if (! $frontMatter->get($required) || $frontMatter->get($required) == '') {
                 throw new Exception(
                     "Article '{$frontMatter->get('title')}' front-matter property '{$required}' cannot be null."
                 );

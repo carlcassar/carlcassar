@@ -23,10 +23,19 @@ class Tags extends Component
      */
     public function render(): View|Closure|string
     {
-        $tags = Article::get('tags')->map(fn ($article) => $article->tags)->join(', ');
+        $tags = Article::query()
+            ->get('tags')
+            ->map(fn ($article) => $article->tags)
+            ->join(', ');
+
+        $tags = Str::of($tags)
+            ->explode(', ')
+            ->countBy()
+            ->sortDesc()
+            ->take(10);
 
         return view('components.tags', [
-            'tags' => Str::of($tags)->explode(', ')->unique(),
+            'tags' => $tags,
         ]);
     }
 }
