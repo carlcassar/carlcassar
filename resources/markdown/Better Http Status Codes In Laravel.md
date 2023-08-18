@@ -1,7 +1,18 @@
 ---
-title: Better Http Status Codes In Laravel
+title: Better HTTP Status Codes In Laravel
+slug: 
+author: Carl Cassar
 description: This Laravel quick tip will show you how to make your code more readable and expressive by replacing http status code magic numbers with calls to static constants.
-published_at: 02-01-2022 4:10
+tags:
+  - tips
+  - laravel
+  - php
+image: 
+link: https://www.carlcassar.com/articles/better-http-status-codes-in-laravel
+published_at: 2022-01-02 16:10:00
+created_at: 2022-01-02 16:12:54
+updated_at: 2022-01-02 16:21:53
+deleted_at:
 ---
 'Magic numbers' like `200` or `401` can cause a lot of confusion for colleagues or your future self. It's not always immediately obvious what these numbers represent. 
 

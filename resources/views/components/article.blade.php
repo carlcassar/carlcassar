@@ -8,9 +8,9 @@
     </h1>
 
     <div class="dark:invert mt-6">
-        {{ $article->published_at->diffForHumans() }}
+        {{ $article->published_at?->diffForHumans() }}
         <span class="border-l border-gray-400 dark:border-gray-700 mx-2"></span>
-        {{ $article->published_at->toFormattedDayDateString() }}
+        {{ $article->published_at?->toFormattedDayDateString() }}
     </div>
 
     @if($article->tags)

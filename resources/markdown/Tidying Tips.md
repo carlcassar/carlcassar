@@ -1,9 +1,16 @@
 ---
 title: Tidying Tips
+slug: 
+author: Carl Cassar
 description: In a post called The Life Changing Magic of Tidying Up Code, Kent Beck outlines his philosophy on cleaning up code. The article results in a short list of easy-to-follow rules, which I'm sure he would agree are there to be broken.
 tags:
-    - php
-published_at: 10-08-2018 8:19
+  - php
+image: 
+link: https://www.carlcassar.com/articles/tidying-tips
+published_at: 2018-08-10 19:19:00
+created_at: 2018-08-10 19:19:00
+updated_at: 2018-08-10 19:19:00
+deleted_at:
 ---
 In a post called [The Life Changing Magic of Tidying Up Code](https://www.facebook.com/notes/kent-beck/the-life-changing-magic-of-tidying-up-code/1544047022294823/), Kent Beck outlines his philosophy on cleaning up code. The article results in a short list of easy-to-follow rules, which I'm sure he would agree are there to be broken.
 

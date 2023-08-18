@@ -1,7 +1,17 @@
 ---
 title: Prop Destructuring In Vue Js
+slug: 
+author: Carl Cassar
 description: In a couple of recent tweets, Caleb Porzio demonstrated an easy way to pass JavaScript object properties to a child component without declaring a separate prop for each property.
-published_at: 21-08-2018 4:48
+tags:
+  - vue
+  - javascript
+image: 
+link: https://www.carlcassar.com/articles/prop-destructuring-in-vue-js
+published_at: 2018-08-21 15:48:00
+created_at: 2018-08-21 15:48:00
+updated_at: 2021-02-08 19:09:14
+deleted_at:
 ---
 In a couple of recent tweets, [Caleb Porzio](https://twitter.com/calebporzio) demonstrated an easy way to pass Javascript object properties to a child component without declaring a separate prop for each property.
 

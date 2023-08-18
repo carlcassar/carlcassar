@@ -1,8 +1,16 @@
 ---
 title: Testing Values
+slug: 
+author: Carl Cassar
 description: There are many ways to test a value in php, some of which can produce confusing results. What’s more, Laravel also offers a couple of helpers which can help us test php values.
-published_at: 03-08-2018 6:32
-
+tags:
+  - php
+image: 
+link: https://www.carlcassar.com/articles/testing-values
+published_at: 2018-08-03 17:32:00
+created_at: 2018-08-03 17:32:00
+updated_at: 2021-02-08 19:08:47
+deleted_at:
 ---
 There are many ways to test a value in php, some of which can produce confusing results. What’s more, Laravel also offers a couple of helpers which can help us test php values. We’ll go over each method in turn and find out how to avoid some common pitfalls along the way.
 

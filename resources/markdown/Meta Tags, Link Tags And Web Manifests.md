@@ -1,7 +1,16 @@
 ---
 title: Meta Tags, Link Tags And Web Manifests
+slug: 
+author: Carl Cassar
 description: A comprehensive guide to meta, link and other `<head>` tags I use to improve SEO and ensure my sites look great on all platforms.
-published_at: 24-02-2021 12:00
+tags:
+  - html
+image: 
+link: https://www.carlcassar.com/articles/meta-tags-link-tags-and-web-manifests
+published_at: 2021-02-24 12:00:00
+created_at: 2021-02-23 18:51:50
+updated_at: 2021-02-24 14:02:50
+deleted_at:
 ---
 Every time I make a new site, I spend a significant amount of time adding meta and link tags to the layout. I do this to improve SEO but also to control the way the site is rendered in different browsers, share sheets and operating systems. I often find myself looking up details which I have researched in the past. This article will list all the tags I use on this and other sites. I hope it will save you (and future me) a lot of time.
 

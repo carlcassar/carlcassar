@@ -1,7 +1,17 @@
 ---
 title: How To Build The Imagick Php Extension From Source
+slug: 
+author: Carl Cassar
 description: This article describes the process you can follow to build the Imagick PHP extension from source, which can be handy if the version you are after has not been released via PECL.
-published_at: 23-02-2021 6:00
+tags:
+  - terminal
+  - php
+image: 
+link: https://www.carlcassar.com/articles/how-to-build-the-imagick-php-extension-from-source
+published_at: 2021-02-23 06:00:00
+created_at: 2021-02-23 18:19:51
+updated_at: 2022-01-02 15:57:35
+deleted_at:
 ---
 **Update**: This instructions in this article should no longer be necessary as you can once again install imagick via pecl:
 

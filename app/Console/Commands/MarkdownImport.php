@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Article;
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
@@ -16,9 +17,9 @@ use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\Table\TableExtension;
 use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
 use League\CommonMark\MarkdownConverter;
+use League\CommonMark\Output\RenderedContentInterface;
 use Str;
 use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\Finder\SplFileInfo;
 
 class MarkdownImport extends Command
 {
@@ -36,6 +37,36 @@ class MarkdownImport extends Command
      */
     protected $description = 'Import markdown files into the database.';
 
+    /**
+     * A list of fields that must be present in the front-matter.
+     */
+    protected array $properties = [
+        'title',
+        'slug',
+        'author',
+        'description',
+        'tags',
+        'image',
+        'link',
+        'published_at',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    /**
+     *  A list of fields that must not be null.
+     */
+    protected array $required = [
+        'title',
+        'author',
+        'description',
+        'tags',
+        'created_at',
+        'updated_at',
+        'link',
+    ];
+
     private Filesystem $filesystem;
 
     public function __construct()
@@ -52,7 +83,7 @@ class MarkdownImport extends Command
      */
     public function handle(): void
     {
-        $this->getMarkdownFiles()->each(fn ($fileInfo) => $this->updateOrCreateArticle($fileInfo));
+        $this->getMarkdownFiles()->each(fn ($fileInfo) => $this->updateOrCreateArticle($fileInfo->getBasename()));
 
         $this->info('Markdown Imported!');
     }
@@ -60,47 +91,34 @@ class MarkdownImport extends Command
     /**
      * @throws FileNotFoundException
      * @throws CommonMarkException
+     * @throws Exception
      */
-    public function updateOrCreateArticle(SplFileInfo $fileInfo): void
+    public function updateOrCreateArticle(string $file): void
     {
-        $basename = $fileInfo->getBasename();
+        $markdown = $this->getMarkdown($file);
 
-        $markdown = $this->convert(
-            $this->filesystem->get(resource_path("markdown/$basename"))
+        $this->validate(
+            /** @var Collection $frontMatter */
+            $frontMatter = $markdown->get('frontMatter')
         );
 
-        $content = $markdown->get('content');
-        $frontMatter = $markdown->get('frontMatter');
-        $tableOfContents = $markdown->get('tableOfContents');
-
-        $slug = $frontMatter->get('slug') ?? Str::slug($frontMatter->get('title'));
-
-        dump($slug);
+        $this->info('Processing '.$frontMatter->get('title'));
 
         Article::updateOrCreate([
-            'slug' => $slug,
+            'slug' => $frontMatter->get('slug') ?? Str::slug($frontMatter->get('title')),
         ], [
             'title' => $frontMatter->get('title'),
-            'slug' => $slug,
+            'slug' => $frontMatter->get('slug') ?? Str::slug($frontMatter->get('title')),
             'description' => $frontMatter->get('description'),
-            'table_of_contents' => $tableOfContents,
-            'content' => $content,
+            'table_of_contents' => $markdown->get('tableOfContents'),
+            'content' => $markdown->get('content'),
             'image' => $frontMatter->get('image'),
             'tags' => collect($frontMatter->get('tags'))->join(', '),
-            'published_at' => $this->date($frontMatter->get('published_at')),
-            'deleted_at' => $this->date($frontMatter->get('deleted_at')),
-            'created_at' => $this->date($frontMatter->get('created_at'), now()),
-            'updated_at' => $this->date($frontMatter->get('updated_at'), now()),
+            'published_at' => Carbon::parse($frontMatter->get('published_at')),
+            'deleted_at' => Carbon::parse($frontMatter->get('deleted_at')),
+            'created_at' => Carbon::parse($frontMatter->get('created_at')),
+            'updated_at' => Carbon::parse($frontMatter->get('updated_at')),
         ]);
-    }
-
-    public function date($from, $fallback = null)
-    {
-        if (empty($from)) {
-            return $fallback;
-        }
-
-        return Carbon::createFromFormat('d-m-Y H:i', $from);
     }
 
     /**
@@ -108,14 +126,15 @@ class MarkdownImport extends Command
      */
     public function convert(string $markdown): Collection
     {
-        $config = [
+        $markdown = $this->convertWikilinks($markdown);
+
+        $environment = new Environment([
             'heading_permalink' => [
                 'symbol' => '#',
                 'html_class' => 'no-underline mr-2 text-gray-500',
             ],
-        ];
+        ]);
 
-        $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension());
         $environment->addExtension(new FrontMatterExtension());
         $environment->addExtension(new TableExtension());
@@ -124,27 +143,13 @@ class MarkdownImport extends Command
 
         $converter = new MarkdownConverter($environment);
 
-        $markdown = preg_replace_callback("/\[\[(.+)\]\]/", fn ($capture) => $this->linkify($capture[1]), $markdown);
-
         $markdown = $converter->convert($markdown);
 
-        $toc = '';
-
-        $crawler = new Crawler($markdown->getContent());
-        $ulNodes = $crawler->filter('ul.table-of-contents');
-
-        foreach ($ulNodes as $ulNode) {
-            $capturedContent = '';
-            foreach ($ulNode->childNodes as $childNode) {
-                $capturedContent .= $ulNode->ownerDocument->saveHTML($childNode);
-            }
-            $toc = $capturedContent;
-            $ulNode->parentNode->removeChild($ulNode);
-        }
+        [$table_of_contents, $content] = $this->extractTableOfContents($markdown);
 
         return collect([
-            'tableOfContents' => $toc,
-            'content' => $crawler->html(),
+            'content' => $content,
+            'tableOfContents' => $table_of_contents,
             'frontMatter' => collect($markdown->getDocument()->data['front_matter']),
         ]);
     }
@@ -159,5 +164,75 @@ class MarkdownImport extends Command
         $slug = Str::slug($title);
 
         return "[$title]($slug)";
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function validate($frontMatter): void
+    {
+        collect($this->properties)->each(function ($property) use ($frontMatter) {
+            if (! $frontMatter->has($property)) {
+                throw new Exception(
+                    "Article '{$frontMatter->get('title')}' is missing required front-matter property '{$property}'."
+                );
+            }
+        });
+
+        if ($frontMatter->keys()->count() > count($this->properties)) {
+            throw new Exception("'{$frontMatter->get('title')}' has more properties than it should.");
+        }
+
+        if ($frontMatter->keys()->toArray() !== $this->properties) {
+            throw new Exception("'{$frontMatter->get('title')}' properties are out of order.");
+        }
+
+        collect($this->required)->each(function ($required) use ($frontMatter) {
+            if (! $frontMatter->get($required)) {
+                throw new Exception(
+                    "Article '{$frontMatter->get('title')}' front-matter property '{$required}' cannot be null."
+                );
+            }
+        });
+    }
+
+    /**
+     * @throws CommonMarkException
+     * @throws FileNotFoundException
+     */
+    private function getMarkdown(string $name): Collection
+    {
+        return $this->convert(
+            $this->filesystem->get(resource_path("markdown/$name"))
+        );
+    }
+
+    /**
+     * @return array|string|string[]|null
+     */
+    private function convertWikilinks(string $markdown): string|array|null
+    {
+        return preg_replace_callback("/\[\[(.+)\]\]/", fn ($capture) => $this->linkify($capture[1]), $markdown);
+    }
+
+    private function extractTableOfContents(RenderedContentInterface $markdown): array
+    {
+        $table_of_contents = '';
+
+        $crawler = new Crawler($markdown->getContent());
+        $ulNodes = $crawler->filter('ul.table-of-contents');
+
+        foreach ($ulNodes as $ulNode) {
+            $capturedContent = '';
+            foreach ($ulNode->childNodes as $childNode) {
+                $capturedContent .= $ulNode->ownerDocument->saveHTML($childNode);
+            }
+            $table_of_contents = $capturedContent;
+            $ulNode->parentNode->removeChild($ulNode);
+        }
+
+        $content = $crawler->html();
+
+        return [$table_of_contents, $content];
     }
 }

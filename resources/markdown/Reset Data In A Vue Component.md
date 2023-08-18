@@ -1,7 +1,17 @@
 ---
 title: Reset Data In A Vue Component
+slug: 
+author: Carl Cassar
 description: Although it’s easy to initialise a vue component with some data, it’s not immediately obvious how we might go about resetting this data to its original state once it has been modified. In this post, we take a look at two easy options.
-published_at: 01-01-2019 7:12
+tags:
+  - vue
+  - javascript
+image: 
+link: https://www.carlcassar.com/articles/reset-data-in-a-vue-component
+published_at: 2019-01-01 19:12:00
+created_at: 2019-01-01 19:12:00
+updated_at: 2022-01-10 18:17:04
+deleted_at:
 ---
 [Data](https://vuejs.org/v2/api/#data) is declared on a vue component using a function that returns the initial data object. Vue will recursively convert the properties of the data object to getters and setters to make it ‘reactive’. It is often useful to be able to reset this data to its original state (the way it was when the component was initialised). It might not be immediately obvious how to do this, so we’ll take a look at two good options.
 

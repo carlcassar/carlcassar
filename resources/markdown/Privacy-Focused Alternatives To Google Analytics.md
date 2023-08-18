@@ -1,10 +1,17 @@
 ---
 title: Privacy-Focused Alternatives To Google Analytics
+slug: 
+author: Carl Cassar
 description: An in-depth review of five privacy-focused, cookie free alternatives to Google Analytics. Get rid of your cookie banner by using Matomo, Fathom, Simple Analytics, Plausible or Cloudflare.
 tags:
-    - tools
-    - analytics
-published_at: 06-10-2020 8:23
+  - analytics
+  - tools
+image: 
+link: https://www.carlcassar.com/articles/privacy-focused-alternatives-to-google-analytics
+published_at: 2020-10-06 19:23:00
+created_at: 2020-10-06 19:23:00
+updated_at: 2021-02-22 15:36:38
+deleted_at:
 ---
 
 I recently wrote an article on how to 

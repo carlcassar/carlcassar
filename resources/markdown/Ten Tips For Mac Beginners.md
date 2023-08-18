@@ -1,7 +1,18 @@
 ---
 title: Ten Tips For Mac Beginners
+slug: 
+author: Carl Cassar
 description: Apple makes some of the most intuitive software around, but if you're coming from another platform, your first Mac experience can be quite confusing. In this article I'll go through some tips and tricks I wish I'd known when I first started using a Mac way back in 2004.
-published_at: 08-01-2022 5:01
+tags:
+  - tools
+  - apple
+  - tips
+image: 
+link: https://www.carlcassar.com/articles/ten-tips-for-mac-beginners
+published_at: 2022-01-08 17:01:00
+created_at: 2022-01-08 15:36:52
+updated_at: 2022-01-08 17:02:37
+deleted_at:
 ---
 My sister recently bought herself a new MacBook Air. Getting a new laptop is always exciting, but nothing beats the experience of opening your first Mac. Since she's coming over from Windows, I thought it would be useful for me to write down a few tips and tricks she (and you) might find useful for getting started on a Mac.
 

@@ -1,7 +1,18 @@
 ---
 title: Reset Your Laravel App In Seconds
+slug: 
+author: Carl Cassar
 description: In his recent talk about Laravel Nova at Laracon US, Taylor Otwell used a nice little shortcut to reset his demo app during the presentation.
-published_at: 06-08-2018 7:35
+tags:
+  - terminal
+  - laravel
+  - php
+image: 
+link: https://www.carlcassar.com/articles/reset-your-laravel-app-in-seconds
+published_at: 2018-08-06 18:35:00
+created_at: 2018-08-06 18:35:00
+updated_at: 2018-08-06 18:35:00
+deleted_at:
 ---
 In his recent talk about Laravel Nova at Laracon US, Taylor Otwell used a nice little shortcut to reset his demo app during the presentation. To reset an app in our local environment, we need to do three things:
 

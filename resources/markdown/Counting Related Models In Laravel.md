@@ -1,7 +1,18 @@
 ---
 title: Counting Related Models In Laravel
+slug: 
+author: Carl Cassar
 description: This Laravel quick tip will allow you to count model relations whilst ensuring you don't encounter an N+1 problem.
-published_at: 02-01-2022 4:05
+tags:
+  - tips
+  - laravel
+  - php
+image: 
+link: https://www.carlcassar.com/articles/counting-related-models-in-laravel
+published_at: 2022-01-02 16:05:00
+created_at: 2022-01-02 16:01:16
+updated_at: 2022-01-02 16:19:47
+deleted_at:
 ---
 Very often when retrieving a model in Laravel, it is useful to load a count of related models at the same time. For example, when loading a blog post, you might want to display the number of comments left on that post.
 

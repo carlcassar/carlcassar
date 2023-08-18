@@ -1,11 +1,20 @@
 ---
 title: Goodbye Forge, Hello Ploi
+slug: 
+author: Carl Cassar
 description: After many years, I've cancelled my subscription to Laravel Forge in favour of Ploi. Here's why...
 tags:
-    - laravel
-    - tools
-published_at: 06-05-2021 1:00
+  - laravel
+  - php
+  - tips
+image: 
+link: https://www.carlcassar.com/articles/goodbye-forge-hello-ploi
+published_at: 2021-05-06 12:00:00
+created_at: 2021-05-06 12:03:49
+updated_at: 2021-05-06 12:15:20
+deleted_at:
 ---
+This is a test of this weird thing that is happening with my articles. Why on earth is this weird thing happening?
 
 When it first launched, Laravel Forge was the easiest and cheapest way to deploy a Laravel application onto a custom server. Recently, after repeatedly being presented with upgrade banners for new features, I decided to investigate the alternatives before committing to a higher fee. Happily, I stumbled upon [Ploi](https://ploi.io/register?referrer=Q0CPw1eA85vsBxHgTf0G).
 
@@ -19,7 +28,7 @@ First, instead of being hidden in the settings, these additional features are pr
 
 Second, a lot has changed in the few years since Laravel Forge was launched. It is now much easier to deploy sites directly to cloud providers such as AWS and Digital Ocean. Furthermore, there are a number of competitors that offer the same feature set and more for a fraction of the price.
 
-After a quick comparison of the alternatives, I stumbled upon Ploi. It makes a great first impression and gets better and better from there. First, its fresh design makes for a welcome break from Forge's simplistic user interface which despite being improved over the years has started to feel a bit tired. Its features are well organised, searchable and accessable and it's help pages are useful and comprehensive. Next, its pricing is cheaper than Forge on every tier and offers all Forge features for less than half the price. It is intuitive and easy to use and guides you to make full use of the featurews available to you. Even better, there is no mention of upgrading unless you are looking to do so.
+After a quick comparison of the alternatives, I stumbled upon Ploi. It makes a great first impression and gets better and better from there. First, its fresh design makes for a welcome break from Forge's simplistic user interface which despite being improved over the years has started to feel a bit tired. Its features are well organised, searchable and accessible and it's help pages are useful and comprehensive. Next, its pricing is cheaper than Forge on every tier and offers all Forge features for less than half the price. It is intuitive and easy to use and guides you to make full use of the featurews available to you. Even better, there is no mention of upgrading unless you are looking to do so.
 
 Finally, when you are ready to pay a little bit more, you gain access to a rich array of features which are simply not available on Laravel Forge, such as:
 
