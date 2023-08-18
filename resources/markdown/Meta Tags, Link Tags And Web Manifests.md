@@ -19,7 +19,7 @@ Every time I make a new site, I spend a significant amount of time adding meta a
 - **Meta** tags represent metadata that cannot be represented by other HTML meta-related elements such as `<title>`, `<script>`, or `<link>`.
 - **Link** tags define relationships between the current document and external resources.
 
-All the tags described in this article should go in the `<head>` tag of your site. Depending on your setup, it is probably best to have a sensible default in your layout file, that can be overriden with more specific content on dedicated pages of your site. In this way, static pages like your home page will have content related to your site as a whole, whereas specific pages for articles, recipies etc will have more relevant content.
+All the tags described in this article should go in the `<head>` tag of your site. Depending on your setup, it is probably best to have a sensible default in your layout file, that can be overwriten with more specific content on dedicated pages of your site. In this way, static pages like your home page will have content related to your site as a whole, whereas specific pages for articles, recipes etc will have more relevant content.
 
 ## Title
 
