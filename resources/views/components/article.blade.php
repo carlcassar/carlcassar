@@ -3,7 +3,7 @@
 ])
 
 <div {{ $attributes }} >
-    <h1 class="dark:invert text-5xl font-extrabold leading-tight">
+    <h1 class="dark:invert text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
         {{ Str::title($article->title) }}
     </h1>
 
