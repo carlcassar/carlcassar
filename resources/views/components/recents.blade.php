@@ -1,4 +1,4 @@
-<x-card class="sm:p-4">
+<x-card class="p-4">
     <x-slot name="title">
         Recent Articles
     </x-slot>
