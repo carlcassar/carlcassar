@@ -114,11 +114,20 @@ class MarkdownImport extends Command
             'content' => $markdown->get('content'),
             'image' => $frontMatter->get('image'),
             'tags' => collect($frontMatter->get('tags'))->join(', '),
-            'published_at' => Carbon::parse($frontMatter->get('published_at')),
-            'deleted_at' => Carbon::parse($frontMatter->get('deleted_at')),
-            'created_at' => Carbon::parse($frontMatter->get('created_at')),
-            'updated_at' => Carbon::parse($frontMatter->get('updated_at')),
+            'published_at' => $this->dateTime($frontMatter->get('published_at')),
+            'deleted_at' => $this->dateTime($frontMatter->get('deleted_at')),
+            'created_at' => $this->dateTime($frontMatter->get('created_at')),
+            'updated_at' => $this->dateTime($frontMatter->get('updated_at')),
         ]);
+    }
+
+    public function dateTime($from): ?Carbon
+    {
+        if (! $from) {
+            return null;
+        }
+
+        return Carbon::parse($from);
     }
 
     /**
