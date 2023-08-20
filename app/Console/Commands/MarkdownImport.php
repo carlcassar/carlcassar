@@ -171,29 +171,10 @@ class MarkdownImport extends Command
      */
     private function validate($frontMatter): void
     {
-        collect($this->properties)->each(function ($property) use ($frontMatter) {
-            if (! $frontMatter->has($property)) {
-                throw new Exception(
-                    "Article '{$frontMatter->get('title')}' is missing required front-matter property '{$property}'."
-                );
-            }
-        });
-
-        if ($frontMatter->keys()->count() > count($this->properties)) {
-            throw new Exception("'{$frontMatter->get('title')}' has more properties than it should.");
-        }
-
-        if ($frontMatter->keys()->toArray() !== $this->properties) {
-            throw new Exception("'{$frontMatter->get('title')}' properties are out of order.");
-        }
-
-        collect($this->required)->each(function ($required) use ($frontMatter) {
-            if (! $frontMatter->get($required) || $frontMatter->get($required) == '') {
-                throw new Exception(
-                    "Article '{$frontMatter->get('title')}' front-matter property '{$required}' cannot be null."
-                );
-            }
-        });
+        $this->ensureFrontMatterContainsAllProperties($frontMatter);
+        $this->ensureFrontMatterHasTheCorrectNumberOfProperties($frontMatter);
+        $this->ensureFrontMatterPropertiesAreInTheCorrectOrder($frontMatter);
+        $this->ensureRequiredPropertiesAreFilled($frontMatter);
     }
 
     /**
@@ -234,5 +215,53 @@ class MarkdownImport extends Command
         $content = $crawler->html();
 
         return [$table_of_contents, $content];
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function ensureFrontMatterContainsAllProperties($frontMatter): void
+    {
+        collect($this->properties)->each(function ($property) use ($frontMatter) {
+            if (! $frontMatter->has($property)) {
+                throw new Exception(
+                    "Article '{$frontMatter->get('title')}' is missing required front-matter property '{$property}'."
+                );
+            }
+        });
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function ensureFrontMatterHasTheCorrectNumberOfProperties($frontMatter): void
+    {
+        if ($frontMatter->keys()->count() > count($this->properties)) {
+            throw new Exception("'{$frontMatter->get('title')}' has more properties than it should.");
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function ensureFrontMatterPropertiesAreInTheCorrectOrder($frontMatter): void
+    {
+        if ($frontMatter->keys()->toArray() !== $this->properties) {
+            throw new Exception("'{$frontMatter->get('title')}' properties are out of order.");
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function ensureRequiredPropertiesAreFilled($frontMatter): void
+    {
+        collect($this->required)->each(function ($required) use ($frontMatter) {
+            if (! $frontMatter->get($required) || $frontMatter->get($required) == '') {
+                throw new Exception(
+                    "Article '{$frontMatter->get('title')}' front-matter property '{$required}' cannot be null."
+                );
+            }
+        });
     }
 }
