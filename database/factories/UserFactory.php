@@ -37,11 +37,12 @@ class UserFactory extends Factory
         ]);
     }
 
-    public function tester(): static
+    public function me(): static
     {
         return $this->state(fn (array $attributes) => [
             'name' => 'Carl Cassar',
             'email' => 'carl@carlcassar.com',
+            'is_admin' => true,
         ]);
     }
 
