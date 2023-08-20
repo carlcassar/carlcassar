@@ -30,6 +30,7 @@ class ArticleList extends Component
                 ->when($this->year, function (Builder $query) {
                     $query->whereYear('published_at', $this->year);
                 })
+                ->orderByDesc('published_at')
                 ->paginate(5),
         ]);
     }
