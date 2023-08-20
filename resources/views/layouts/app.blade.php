@@ -37,6 +37,7 @@
     <meta name="twitter:site" content="@carlcassar"/>
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:creator" content="@carlcassar"/>
+    <meta name="twitter:image" content="/icon.png" />
 
     <link href="{{ asset('/site.webmanifest') }}" rel="manifest">
     <link href="{{ asset('/favicons/favicon.ico') }}" rel="icon" type="image/x-icon">
