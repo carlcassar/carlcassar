@@ -47,6 +47,7 @@
 
     <x-feed-links />
 
+    <meta name="theme-color" content="#FFFFFF"/>
     <meta property="apple-mobile-web-app-status-bar-style" content="default"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
 
