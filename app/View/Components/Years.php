@@ -29,7 +29,8 @@ class Years extends Component
                 ->map(fn ($article) => $article->published_at)
                 ->filter()
                 ->map(fn ($date) => $date->format('Y'))
-                ->unique(),
+                ->unique()
+                ->sort(),
         ]);
     }
 }
