@@ -44,4 +44,13 @@ class UserFactory extends Factory
             'email' => 'carl@carlcassar.com',
         ]);
     }
+
+    public function admin(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'is_admin' => true,
+            ];
+        });
+    }
 }

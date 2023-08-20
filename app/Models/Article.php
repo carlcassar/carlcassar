@@ -65,4 +65,9 @@ class Article extends Model implements Feedable
             ->limit(20)
             ->get();
     }
+
+    public function isPublished(): bool
+    {
+        return $this->published_at <= now();
+    }
 }
