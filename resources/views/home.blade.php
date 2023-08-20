@@ -6,9 +6,9 @@
 
         <p class="mt-4 text-gray-500 dark:text-gray-400 leading-relaxed">
             I'm @carlcassar on
-            <a class="underline text-orange-500" href="https://x.com/carlcassar">X</a>,
-            <a class="underline text-orange-500" href="https://instagram.com/carlcassar">Instagram</a> and
-            <a class="underline text-orange-500" href="https://github.com/carlcassar">Github</a>.
+            <x-link href="https://x.com/carlcassar">X</x-link>,
+            <x-link href="https://instagram.com/carlcassar">Instagram</x-link> and
+            <x-link href="https://github.com/carlcassar">Github</x-link>.
             I make websites and apps. Stick around if you're interested in PHP, Laravel, Javascript, Aws and a whole
             host of other interesting topics.
         </p>

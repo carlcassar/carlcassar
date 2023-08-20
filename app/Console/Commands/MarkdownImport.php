@@ -141,6 +141,7 @@ class MarkdownImport extends Command
             'heading_permalink' => [
                 'symbol' => '#',
                 'html_class' => 'no-underline mr-2 text-gray-500',
+                'aria_hidden' => false,
             ],
         ]);
 
