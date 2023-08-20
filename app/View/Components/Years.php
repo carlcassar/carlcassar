@@ -30,7 +30,7 @@ class Years extends Component
                 ->filter()
                 ->map(fn ($date) => $date->format('Y'))
                 ->unique()
-                ->sort(),
+                ->sortDesc(),
         ]);
     }
 }
