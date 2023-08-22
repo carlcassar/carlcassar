@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Console\Commands\Support\WikilinksDelimiterProcessor;
 use App\Models\Article;
 use Exception;
 use Illuminate\Console\Command;
@@ -135,13 +136,12 @@ class MarkdownImport extends Command
      */
     public function convert(string $markdown): Collection
     {
-        $markdown = $this->convertWikilinks($markdown);
-
         $environment = new Environment([
             'heading_permalink' => [
                 'symbol' => '#',
                 'html_class' => 'no-underline mr-2 text-gray-500',
                 'aria_hidden' => false,
+                'id_prefix' => '',
             ],
         ]);
 
@@ -150,6 +150,8 @@ class MarkdownImport extends Command
         $environment->addExtension(new TableExtension());
         $environment->addExtension(new HeadingPermalinkExtension());
         $environment->addExtension(new TableOfContentsExtension());
+
+        $environment->addDelimiterProcessor(new WikilinksDelimiterProcessor());
 
         $converter = new MarkdownConverter($environment);
 
@@ -167,13 +169,6 @@ class MarkdownImport extends Command
     private function getMarkdownFiles(): Collection
     {
         return collect($this->filesystem->files(resource_path('markdown')));
-    }
-
-    public function linkify($title)
-    {
-        $slug = Str::slug($title);
-
-        return "[$title]($slug)";
     }
 
     /**
@@ -196,14 +191,6 @@ class MarkdownImport extends Command
         return $this->convert(
             $this->filesystem->get(resource_path("markdown/$name"))
         );
-    }
-
-    /**
-     * @return array|string|string[]|null
-     */
-    private function convertWikilinks(string $markdown): string|array|null
-    {
-        return preg_replace_callback("/\[\[(.+)\]\]/", fn ($capture) => $this->linkify($capture[1]), $markdown);
     }
 
     private function extractTableOfContents(RenderedContentInterface $markdown): array
