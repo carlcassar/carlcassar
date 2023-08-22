@@ -1,13 +1,13 @@
 @props([
     'title',
     'description',
-    'keywords'
+    'keywords',
+    'published_at'
 ])
 
 @php
     $description = $description ?? "I'm Carl Cassar - a software developer and computer science professional. This is my personal blog about Laravel, PHP, Javascript, DevOps, Computation and more";
     $title = "Carl Cassar" . (isset($title) ? ' - ' . $title : '');
-    $published_at = $published_at ?? ''
 @endphp
 
     <!DOCTYPE html>
@@ -37,7 +37,7 @@
     <meta name="twitter:site" content="@carlcassar"/>
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:creator" content="@carlcassar"/>
-    <meta name="twitter:image" content="/icon.png" />
+    <meta name="twitter:image" content="/icon.png"/>
 
     <link href="{{ asset('/site.webmanifest') }}" rel="manifest">
     <link href="{{ asset('/favicons/favicon.ico') }}" rel="icon" type="image/x-icon">
@@ -46,7 +46,7 @@
     <link href="{{ asset('/favicons/safari-pinned-tab.svg') }}" rel="mask-icon" type="image/svg" sizes="693x693">
     <link href="{{ asset('/favicons/apple-touch-icon.png') }}" rel="apple-touch-icon" type="image/svg" sizes="180x180">
 
-    <x-feed-links />
+    <x-feed-links/>
 
     <meta name="theme-color" content="#FFFFFF"/>
     <meta property="apple-mobile-web-app-status-bar-style" content="default"/>
@@ -66,16 +66,16 @@
     @if(request()->routeIs('articles.show'))
         <script type="application/ld+json">
             {
-              "@context": "http://schema.org",
-              "@type": "Article",
-              "headline": {{ $description }}
-            "author": {
-              "@type": "Person",
-              "name": "Carl Cassar"
-            },
-            "datePublished": {{ $published_at }}
-            "keywords": {{ $keywords }}
-            "description": {{ $description }}
+                "@context": "http://schema.org",
+                "@type": "Article",
+                "headline": "{{ $title }}"
+                "author": {
+                    "@type": "Person",
+                    "name": "Carl Cassar"
+                },
+                "datePublished": {{ $published_at }}
+                "keywords": {{ $keywords }}
+                "description": {{ $description }}
             }
         </script>
     @endif
