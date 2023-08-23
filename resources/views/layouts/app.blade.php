@@ -68,14 +68,14 @@
             {
                 "@context": "http://schema.org",
                 "@type": "Article",
-                "headline": "{{ $title }}"
+                "headline": "{{ $title }}",
                 "author": {
                     "@type": "Person",
                     "name": "Carl Cassar"
                 },
-                "datePublished": {{ $published_at }}
-                "keywords": {{ $keywords }}
-                "description": {{ $description }}
+                "datePublished": "{{ $published_at }}",
+                "keywords": "{{ $keywords }}",
+                "description": "{{ $description }}"
             }
         </script>
     @endif
