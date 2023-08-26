@@ -8,7 +8,7 @@ tags:
   - php
   - markdown
 image: 
-link: http://www.carlcassar.com/articles/extracting-wikilinks-for-your-markdown-laravel-blog#what-is-a-wikilink
+link: https://www.carlcassar.com/articles/extracting-wikilinks-for-your-markdown-laravel-blog#what-is-a-wikilink
 published_at: 2023-08-22 23:24:42
 created_at: 2023-07-16 21:00:00
 updated_at: 2023-08-22 23:24:42
