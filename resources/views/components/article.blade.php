@@ -1,11 +1,18 @@
 @props([
-    'article'
+    'article',
+    'list' => false
 ])
 
 <div {{ $attributes }} >
+    @if($list)
+    <h2 class="dark:invert text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
+        {{ Str::title($article->title) }}
+    </h2>
+    @else
     <h1 class="dark:invert text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
         {{ Str::title($article->title) }}
     </h1>
+    @endif
 
     <div class="dark:invert mt-6">
         {{ $article->published_at?->diffForHumans() }}
@@ -14,11 +21,11 @@
     </div>
 
     @if($article->tags)
-        <div class="flex mt-4 flex-wrap space-x-2">
-            @foreach(Str::of($article->tags)->explode(',') as $tag)
-                <x-tag-link :tag="$tag" />
-            @endforeach
-        </div>
+    <div class="flex mt-4 flex-wrap space-x-2">
+        @foreach(Str::of($article->tags)->explode(',') as $tag)
+        <x-tag-link :tag="$tag"/>
+        @endforeach
+    </div>
     @endif
 
     <div

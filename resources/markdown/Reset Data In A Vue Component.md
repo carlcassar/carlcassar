@@ -2,7 +2,7 @@
 title: Reset Data In A Vue Component
 slug: 
 author: Carl Cassar
-description: Although it’s easy to initialise a vue component with some data, it’s not immediately obvious how we might go about resetting this data to its original state once it has been modified. In this post, we take a look at two easy options.
+description: In this article I'll show you two easy strategies to reset data in a Vue JS component to its original state once it has been modified.
 tags:
   - vue
   - javascript

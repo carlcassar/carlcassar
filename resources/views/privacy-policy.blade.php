@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Privacy Policy">
     <x-slot name="header">
         <h1 class="font-extrabold text-3xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Privacy Policy') }}

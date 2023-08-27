@@ -1,3 +1,13 @@
+@props([
+    'title',
+    '$description'
+])
+
+@php
+    $description = $description ?? "I'm Carl Cassar - a software developer and computer science professional. This is my personal blog about Laravel, PHP, Javascript, DevOps, Computation and more";
+    $title = "Carl Cassar" . (isset($title) ? ' - ' . $title : '');
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -5,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ $title }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

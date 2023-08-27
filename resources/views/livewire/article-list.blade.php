@@ -1,7 +1,7 @@
 <div>
     @foreach($articles as $article)
         <div class="pb-10">
-            <x-article :article="$article" class="max-h-96 relative overflow-hidden">
+            <x-article :article="$article" :list="true" class="max-h-96 relative overflow-hidden">
                 <div
                     class="h-24 absolute bottom-0 w-full dark:text-white bg-gradient-to-b from-transparent to-white dark:to-gray-900">
                 </div>

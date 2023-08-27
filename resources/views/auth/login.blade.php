@@ -1,6 +1,10 @@
-<x-guest-layout>
+<x-guest-layout
+    title="Login"
+    description="Login in to access more content, save articles and contribute to the conversation.">
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
+
+    <h1 class="text-xl font-semibold mb-8">Login</h1>
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
