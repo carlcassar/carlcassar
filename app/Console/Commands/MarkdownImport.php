@@ -114,7 +114,7 @@ class MarkdownImport extends Command
             'table_of_contents' => $markdown->get('tableOfContents'),
             'content' => $markdown->get('content'),
             'image' => $frontMatter->get('image'),
-            'tags' => collect($frontMatter->get('tags'))->join(', '),
+            'tags' => collect($frontMatter->get('tags')),
             'published_at' => $this->dateTime($frontMatter->get('published_at')),
             'deleted_at' => $this->dateTime($frontMatter->get('deleted_at')),
             'created_at' => $this->dateTime($frontMatter->get('created_at')),
