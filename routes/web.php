@@ -35,6 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/tags/{tag}', function ($tag) {
+    return redirect()->route('articles.index', ['tag' => $tag]);
+});
+
 require __DIR__.'/auth.php';
 
 Route::feeds();
