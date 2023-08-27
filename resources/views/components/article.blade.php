@@ -16,10 +16,7 @@
     @if($article->tags)
         <div class="flex mt-4 flex-wrap space-x-2">
             @foreach(Str::of($article->tags)->explode(',') as $tag)
-                <div
-                    class="capitalize px-3 py-1 text-xs tracking-wide rounded-md border border-black dark:border-gray-800 text-gray-800 dark:text-gray-200">
-                    {{ $tag }}
-                </div>
+                <x-tag-link :tag="$tag" />
             @endforeach
         </div>
     @endif
