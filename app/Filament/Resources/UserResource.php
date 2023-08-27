@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use function Pest\Laravel\actingAs;
 
 class UserResource extends Resource
 {
@@ -28,10 +29,8 @@ class UserResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\DateTimePicker::make('email_verified_at'),
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->maxLength(255),
                 Forms\Components\Toggle::make('is_admin')
+                    ->columnSpanFull()
                     ->required(),
             ]);
     }
