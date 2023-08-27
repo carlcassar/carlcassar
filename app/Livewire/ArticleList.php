@@ -4,21 +4,20 @@ namespace App\Livewire;
 
 use App\Models\Article;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\Url;
 use Livewire\Component;
-use Livewire\Features\SupportQueryString\Url;
 use Livewire\WithPagination;
-use Str;
 
 class ArticleList extends Component
 {
     use WithPagination;
 
     #[Url]
-    public $tag = '';
+    public string $tag = '';
 
 
     #[Url]
-    public $year = '';
+    public string $year = '';
 
     public function render()
     {

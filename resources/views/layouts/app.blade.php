@@ -80,6 +80,8 @@
         </script>
     @endif
 
+    @livewireStyles
+
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-white dark:bg-gray-900">
@@ -116,5 +118,6 @@
     </div>
     <x-footer/>
 </div>
+@livewireScripts
 </body>
 </html>
