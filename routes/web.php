@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/tags', TagController::class);
+Route::get('/tags', TagController::class)->name('tags');
 
 Route::get('/tags/{tag}', function ($tag) {
     return redirect()->route('articles.index', ['tag' => $tag]);
