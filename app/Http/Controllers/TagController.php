@@ -16,10 +16,7 @@ class TagController extends Controller
         $tags = Article::query()
             ->get('tags')
             ->map(fn ($article) => $article->tags)
-            ->join(', ');
-
-        $tags = Str::of($tags)
-            ->explode(', ')
+            ->flatten()
             ->unique()
             ->sortDesc();
 

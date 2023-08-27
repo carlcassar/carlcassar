@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -43,8 +44,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->isAdmin();
+    }
+
     public function isAdmin(): bool
     {
-        return $this->is_admin === true;
+        return (bool) $this->is_admin;
     }
 }

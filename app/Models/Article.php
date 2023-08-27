@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\Tags;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -41,6 +42,7 @@ class Article extends Model implements Feedable
     {
         return [
             'published_at' => 'datetime',
+            'tags' => Tags::class,
         ];
     }
 

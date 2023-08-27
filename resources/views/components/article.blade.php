@@ -22,7 +22,7 @@
 
     @if($article->tags)
     <div class="flex mt-4 flex-wrap space-x-2">
-        @foreach(Str::of($article->tags)->explode(',') as $tag)
+        @foreach($article->tags as $tag)
         <x-tag-link :tag="$tag"/>
         @endforeach
     </div>
