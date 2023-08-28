@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\UserResource\RelationManagers\NotificationsRelationManager;
 use App\Models\User;
 use App\Notifications\Welcome;
 use Filament\Forms;
@@ -70,9 +71,9 @@ class UserResource extends Resource
                     Tables\Actions\BulkAction::make('Resend Welcome Email')
                         ->icon('heroicon-o-envelope')
                         ->requiresConfirmation()
-                        ->action(function (Collection $records) {
-                            $records->each(function ($record) {
-                                $record->notify(new Welcome());
+                        ->action(function (Collection $users) {
+                            $users->each(function (User $user) {
+                                $user->notify(new Welcome());
                             });
                         }),
                     Tables\Actions\BulkAction::make('Verify Email')
@@ -91,7 +92,7 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            NotificationsRelationManager::class,
         ];
     }
 

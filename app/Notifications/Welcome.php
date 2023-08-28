@@ -3,10 +3,11 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class Welcome extends Notification
+class Welcome extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -25,7 +26,7 @@ class Welcome extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -39,14 +40,12 @@ class Welcome extends Notification
     }
 
     /**
-     * Get the array representation of the notification.
-     *
-     * @return array<string, mixed>
+     * Get the mail representation of the notification.
      */
-    public function toArray(object $notifiable): array
+    public function toDatabase(object $notifiable): array
     {
         return [
-            //
+            'sent_at' => now(),
         ];
     }
 }
