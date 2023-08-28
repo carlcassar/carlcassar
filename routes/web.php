@@ -8,7 +8,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
 use App\Models\User;
 use App\Notifications\Welcome;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/logout', AuthenticatedSessionController::class . '@destroy');
+Route::get('/logout', AuthenticatedSessionController::class.'@destroy');
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('privacy-policy', PrivacyPolicyController::class);
