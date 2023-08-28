@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
+use App\Notifications\Welcome;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -66,6 +67,14 @@ class UserResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\BulkAction::make('Resend Welcome Email')
+                        ->icon('heroicon-o-envelope')
+                        ->requiresConfirmation()
+                        ->action(function (Collection $records) {
+                            $records->each(function ($record) {
+                                $record->notify(new Welcome());
+                            });
+                        }),
                     Tables\Actions\BulkAction::make('Verify Email')
                         ->icon('heroicon-o-check-circle')
                         ->requiresConfirmation()
