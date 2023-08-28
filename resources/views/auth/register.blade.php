@@ -2,7 +2,7 @@
     title="Sign Up"
     description="Sign up to access more content, save articles and contribute to the conversation.">
 
-    <h1 class="text-xl font-semibold mb-8">Register</h1>
+    <h1 class="text-xl font-semibold mb-8 dark:text-white">Register</h1>
 
     <form method="POST" action="{{ route('register') }}">
         @csrf
