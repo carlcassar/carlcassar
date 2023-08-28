@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
 use App\Models\User;
-use App\Notifications\Welcome;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,36 +20,53 @@ use App\Notifications\Welcome;
 |
 */
 
-Route::get('/logout', AuthenticatedSessionController::class.'@destroy');
+/*
+|--------------------------------------------------------------------------
+| Guest (Unauthenticated)
+|--------------------------------------------------------------------------
+*/
 
+// RSS
+Route::feeds();
+
+// Authentication
+require __DIR__.'/auth.php';
+
+// Home
 Route::get('/', HomeController::class)->name('home');
+
+// Privacy Policy
 Route::get('privacy-policy', PrivacyPolicyController::class);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Articles
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
 
-Route::resource('articles', ArticleController::class)->only([
-    'index',
-    'show',
-]);
+// Tags
+Route::get('/tags', TagController::class)->name('tags');
+Route::get('/tags/{tag}', fn ($tag) => redirect()->route('articles.index', compact('tag')));
 
+/*
+|--------------------------------------------------------------------------
+| User (Authenticated)
+|--------------------------------------------------------------------------
+*/
+
+// Authorised
 Route::middleware('auth')->group(function () {
+
+    // Logout
+    Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
+
+    // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/tags', TagController::class)->name('tags');
+// Authorised and Verified
+Route::middleware(['auth', 'verified'])->group(function () {
 
-Route::get('/tags/{tag}', function ($tag) {
-    return redirect()->route('articles.index', ['tag' => $tag]);
+    // Dashboard
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
 });
-
-Route::get('mail-test', function () {
-    User::first()->notify(new Welcome);
-});
-
-require __DIR__.'/auth.php';
-
-Route::feeds();
