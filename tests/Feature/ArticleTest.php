@@ -1,18 +1,22 @@
 <?php
 
+use App\Livewire\ArticleList;
 use App\Models\Article;
+use Symfony\Component\HttpFoundation\Response;
+
 use function Pest\Laravel\delete;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
-use Symfony\Component\HttpFoundation\Response;
 use function Pest\Laravel\put;
 
 test('there is an articles page that shows a list of articles', function () {
     $articles = Article::factory()->count(3)->create();
 
-    $response = $this->get(route('articles.index'));
+    $response = get(route('articles.index'));
 
-    $response->assertStatus(200);
+    $response->assertStatus(Response::HTTP_OK);
+
+    $response->assertSeeLivewire(ArticleList::class);
 
     $articles->each(function ($article) use ($response) {
         $response->assertSee($article->title);
@@ -24,7 +28,7 @@ test('only published articles are visible on the articles page', function () {
     $publishedArticle = Article::factory(['published_at' => now()->subYear()])->create();
     $unpublishedArticle = Article::factory(['published_at' => null])->create();
 
-    $response = $this->get(route('articles.index'));
+    $response = get(route('articles.index'));
 
     $response->assertSee($publishedArticle->title);
     $response->assertDontSee($unpublishedArticle->title);
@@ -33,7 +37,7 @@ test('only published articles are visible on the articles page', function () {
 test('there is an article page that displays the article', function () {
     $article = Article::factory()->create();
 
-    $response = $this->get(route('articles.show', $article));
+    $response = get(route('articles.show', $article));
 
     $response->assertStatus(200);
 

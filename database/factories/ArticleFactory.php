@@ -28,4 +28,13 @@ class ArticleFactory extends Factory
             'published_at' => now()->subWeek(),
         ];
     }
+
+    public function published(): static
+    {
+        return $this->state(function () {
+            return [
+                'published_at' => now(),
+            ];
+        });
+    }
 }
