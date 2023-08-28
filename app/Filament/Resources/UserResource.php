@@ -67,7 +67,6 @@ class UserResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
                     Tables\Actions\BulkAction::make('Resend Welcome Email')
                         ->icon('heroicon-o-envelope')
                         ->requiresConfirmation()
@@ -76,13 +75,16 @@ class UserResource extends Resource
                                 $user->notify(new Welcome());
                             });
                         }),
-                    Tables\Actions\BulkAction::make('Verify Email')
-                        ->icon('heroicon-o-check-circle')
-                        ->requiresConfirmation()
-                        ->action(function (Collection $records) {
-                            User::whereIn('id', $records->pluck('id'))->update(['email_verified_at' => now()]);
-                        }),
-                ]),
+                ])
+                    ->label('Emails')
+                    ->icon('heroicon-o-envelope'),
+                Tables\Actions\BulkAction::make('Verify Email')
+                    ->icon('heroicon-o-check-circle')
+                    ->requiresConfirmation()
+                    ->action(function (Collection $records) {
+                        User::whereIn('id', $records->pluck('id'))->update(['email_verified_at' => now()]);
+                    }),
+                Tables\Actions\DeleteBulkAction::make(),
             ])
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
