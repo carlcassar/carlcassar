@@ -16,7 +16,7 @@
                                 {{ $article->title }}
                             </div>
                             <div class="text-gray-500">
-                                {{ Str::title($article->tags) }}
+                                {{ Str::title($article->tags->implode(', ')) }}
                             </div>
                         </a>
                     </li>
