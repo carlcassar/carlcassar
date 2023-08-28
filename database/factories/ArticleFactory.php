@@ -24,7 +24,7 @@ class ArticleFactory extends Factory
             'slug' => Str::slug($title),
             'description' => $this->faker->sentences(1, true),
             'content' => $this->faker->paragraphs(3, true),
-            'tags' => Arr::join($this->faker->words(3), ', '),
+            'tags' => collect(Arr::join($this->faker->words(3), ', ')),
             'published_at' => now()->subWeek(),
         ];
     }

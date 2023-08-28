@@ -5,7 +5,7 @@ use function Pest\Laravel\get;
 
 test('sidebar tags work as expected', function () {
     $article = Article::factory([
-        'tags' => 'laravel',
+        'tags' => collect('laravel'),
     ])->create();
 
     get('/')
