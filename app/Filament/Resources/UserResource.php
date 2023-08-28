@@ -9,7 +9,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use function Pest\Laravel\actingAs;
+use Illuminate\Support\Collection;
 
 class UserResource extends Resource
 {
@@ -66,6 +66,12 @@ class UserResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\BulkAction::make('Verify Email')
+                        ->icon('heroicon-o-check-circle')
+                        ->requiresConfirmation()
+                        ->action(function (Collection $records) {
+                            User::whereIn('id', $records->pluck('id'))->update(['email_verified_at' => now()]);
+                        }),
                 ]),
             ])
             ->emptyStateActions([
