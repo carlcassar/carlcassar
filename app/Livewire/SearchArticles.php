@@ -10,6 +10,7 @@ use Livewire\Component;
 class SearchArticles extends Component
 {
     public string $search = '';
+
     public string $classes = '';
 
     public function render()

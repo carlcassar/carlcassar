@@ -38,7 +38,7 @@ class Article extends Model implements Feedable
         $query->where('published_at', '<=', now());
     }
 
-    public function getCasts()
+    public function getCasts(): array
     {
         return [
             'published_at' => 'datetime',
@@ -60,7 +60,7 @@ class Article extends Model implements Feedable
         ]);
     }
 
-    public function getFeedItems()
+    public function getFeedItems(): array
     {
         return static::published()
             ->orderByDesc('published_at')

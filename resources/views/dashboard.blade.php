@@ -5,6 +5,12 @@
         </h1>
     </x-slot>
 
+    <x-slot name="aside">
+        <x-recents/>
+        <x-tags/>
+        <x-years/>
+    </x-slot>
+
     <x-card class="p-4">
         <p>
             There's not much to see inside here yet, but I'll be adding more features over the next few hours, days and

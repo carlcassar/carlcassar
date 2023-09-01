@@ -1,21 +1,9 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
-
+<x-settings-layout title="Profile">
     <div class="space-y-4">
-        <x-card class="p-8">
-            @include('profile.partials.update-profile-information-form')
-        </x-card>
+        @include('profile.partials.update-profile-information-form')
 
-        <x-card class="p-8">
-            @include('profile.partials.update-password-form')
-        </x-card>
+        @include('profile.partials.update-password-form')
 
-        <x-card class="p-8">
-            @include('profile.partials.delete-user-form')
-        </x-card>
+        @include('profile.partials.delete-user-form')
     </div>
-</x-app-layout>
+</x-settings-layout>

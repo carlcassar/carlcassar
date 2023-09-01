@@ -23,6 +23,9 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
+        'settings',
+        'settings->notifications->announcements',
+        'settings->notifications->new_article_published',
         'email_verified_at',
     ];
 
@@ -44,6 +47,7 @@ class User extends Authenticatable implements FilamentUser
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'settings' => 'json',
     ];
 
     public function canAccessPanel(Panel $panel): bool
@@ -54,5 +58,10 @@ class User extends Authenticatable implements FilamentUser
     public function isAdmin(): bool
     {
         return (bool) $this->is_admin;
+    }
+
+    public function settings(): Settings
+    {
+        return new Settings($this);
     }
 }

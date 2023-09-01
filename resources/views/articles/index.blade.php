@@ -32,5 +32,11 @@
         </h1>
     </x-slot>
 
+    <x-slot name="aside">
+        <x-recents/>
+        <x-tags/>
+        <x-years/>
+    </x-slot>
+
     <livewire:article-list class="mt-4"/>
 </x-app-layout>

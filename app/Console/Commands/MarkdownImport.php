@@ -89,6 +89,11 @@ class MarkdownImport extends Command
         $this->info('Markdown Imported!');
     }
 
+    private function getMarkdownFiles(): Collection
+    {
+        return collect($this->filesystem->files(resource_path('markdown')));
+    }
+
     /**
      * @throws FileNotFoundException
      * @throws CommonMarkException
@@ -122,13 +127,15 @@ class MarkdownImport extends Command
         ]);
     }
 
-    public function dateTime($from): ?Carbon
+    /**
+     * @throws CommonMarkException
+     * @throws FileNotFoundException
+     */
+    private function getMarkdown(string $name): Collection
     {
-        if (! $from) {
-            return null;
-        }
-
-        return Carbon::parse($from);
+        return $this->convert(
+            $this->filesystem->get(resource_path("markdown/$name"))
+        );
     }
 
     /**
@@ -167,33 +174,6 @@ class MarkdownImport extends Command
         ]);
     }
 
-    private function getMarkdownFiles(): Collection
-    {
-        return collect($this->filesystem->files(resource_path('markdown')));
-    }
-
-    /**
-     * @throws Exception
-     */
-    private function validate($frontMatter): void
-    {
-        $this->ensureFrontMatterContainsAllProperties($frontMatter);
-        $this->ensureFrontMatterHasTheCorrectNumberOfProperties($frontMatter);
-        $this->ensureFrontMatterPropertiesAreInTheCorrectOrder($frontMatter);
-        $this->ensureRequiredPropertiesAreFilled($frontMatter);
-    }
-
-    /**
-     * @throws CommonMarkException
-     * @throws FileNotFoundException
-     */
-    private function getMarkdown(string $name): Collection
-    {
-        return $this->convert(
-            $this->filesystem->get(resource_path("markdown/$name"))
-        );
-    }
-
     private function extractTableOfContents(RenderedContentInterface $markdown): array
     {
         $table_of_contents = '';
@@ -218,12 +198,23 @@ class MarkdownImport extends Command
     /**
      * @throws Exception
      */
+    private function validate($frontMatter): void
+    {
+        $this->ensureFrontMatterContainsAllProperties($frontMatter);
+        $this->ensureFrontMatterHasTheCorrectNumberOfProperties($frontMatter);
+        $this->ensureFrontMatterPropertiesAreInTheCorrectOrder($frontMatter);
+        $this->ensureRequiredPropertiesAreFilled($frontMatter);
+    }
+
+    /**
+     * @throws Exception
+     */
     private function ensureFrontMatterContainsAllProperties($frontMatter): void
     {
         collect($this->properties)->each(function ($property) use ($frontMatter) {
             if (! $frontMatter->has($property)) {
                 throw new Exception(
-                    "Article '{$frontMatter->get('title')}' is missing required front-matter property '{$property}'."
+                    "Article '{$frontMatter->get('title')}' is missing required front-matter property '$property'."
                 );
             }
         });
@@ -257,9 +248,18 @@ class MarkdownImport extends Command
         collect($this->required)->each(function ($required) use ($frontMatter) {
             if (! $frontMatter->get($required) || $frontMatter->get($required) == '') {
                 throw new Exception(
-                    "Article '{$frontMatter->get('title')}' front-matter property '{$required}' cannot be null."
+                    "Article '{$frontMatter->get('title')}' front-matter property '$required' cannot be null."
                 );
             }
         });
+    }
+
+    public function dateTime($from): ?Carbon
+    {
+        if (! $from) {
+            return null;
+        }
+
+        return Carbon::parse($from);
     }
 }

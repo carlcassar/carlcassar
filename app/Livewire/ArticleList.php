@@ -15,7 +15,6 @@ class ArticleList extends Component
     #[Url]
     public string $tag = '';
 
-
     #[Url]
     public string $year = '';
 

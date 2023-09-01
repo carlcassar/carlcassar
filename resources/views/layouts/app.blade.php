@@ -2,7 +2,8 @@
     'title',
     'description',
     'keywords',
-    'published_at'
+    'published_at',
+    'widgets'
 ])
 
 @php
@@ -82,6 +83,10 @@
 
     @livewireStyles
 
+    @if(auth()->hasUser())
+        @filamentStyles
+    @endif
+
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-white dark:bg-gray-900">
@@ -98,7 +103,13 @@
                 </header>
             @endif
 
-            <livewire:search-articles classes="md:hidden mb-4"/>
+            <div class="md:hidden mb-4">
+                <livewire:search-articles classes="md:hidden mb-4"/>
+
+                @if(isset($before))
+                    {{ $before }}
+                @endif
+            </div>
 
             {{ $slot }}
         </main>
@@ -109,15 +120,16 @@
             @if(isset($aside))
                 {{ $aside }}
             @endif
-
-            <x-recents/>
-            <x-tags/>
-            <x-years/>
         </aside>
 
     </div>
     <x-footer/>
 </div>
 @livewireScripts
+
+@if(auth()->hasUser())
+    @filamentScripts()
+@endif
+
 </body>
 </html>
