@@ -24,7 +24,7 @@ class User extends Authenticatable implements FilamentUser
         'email',
         'password',
         'settings',
-        'settings->notifications->announcements',
+        'settings->notifications->{NotificationSettings::announcements}',
         'settings->notifications->new_article_published',
         'email_verified_at',
     ];
@@ -49,6 +49,14 @@ class User extends Authenticatable implements FilamentUser
         'password' => 'hashed',
         'settings' => 'json',
     ];
+
+    /**
+     * @return string[]
+     */
+    public function getFillable(): array
+    {
+        return array_merge($this->fillable, NotificationSettings::defaultNotificationSettings()->keys()->toArray());
+    }
 
     public function canAccessPanel(Panel $panel): bool
     {

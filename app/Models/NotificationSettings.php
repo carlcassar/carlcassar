@@ -8,6 +8,8 @@ class NotificationSettings
 {
     public const NEW_ARTICLE_PUBLISHED = 'new_article_published';
 
+    public const ANNOUNCEMENTS = 'announcements';
+
     public function __construct(protected Settings $settings)
     {
     }
@@ -41,16 +43,21 @@ class NotificationSettings
 
     public function areAllOn(): bool
     {
-        return collect($this->all())->every(fn ($notification) => $notification == true);
+        return self::defaultNotificationSettings()
+            ->merge($this->all())
+            ->every(fn ($notification) => $notification == true);
+    }
+
+    public static function defaultNotificationSettings(): Collection
+    {
+        return collect([
+            self::NEW_ARTICLE_PUBLISHED => false,
+            self::ANNOUNCEMENTS => false,
+        ]);
     }
 
     public function all(): Collection
     {
         return collect($this->settings->get('notifications'));
-    }
-
-    public function each(callable $callback)
-    {
-        return $this->all()->each($callback);
     }
 }

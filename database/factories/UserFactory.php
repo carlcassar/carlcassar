@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\NotificationSettings;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -24,11 +25,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'settings' => [
-                'notifications' => [
-                    'new_article_published' => true,
-                ],
-            ],
+            'settings' => [],
         ];
     }
 
@@ -56,6 +53,28 @@ class UserFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'is_admin' => true,
+            ];
+        });
+    }
+
+    public function withNotificationSettings(array $notifications): static
+    {
+        return $this->state(function (array $attributes) use ($notifications) {
+            return [
+                'settings' => [
+                    'notifications' => $notifications,
+                ],
+            ];
+        });
+    }
+
+    public function withDefaultNotificationSettings(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'settings' => [
+                    'notifications' => NotificationSettings::defaultNotificationSettings(),
+                ],
             ];
         });
     }

@@ -1,97 +1,153 @@
 <?php
 
+use App\Models\NotificationSettings;
 use App\Models\User;
 
-beforeEach(function () {
-    $this->user = User::factory()->create();
+it('can get the value of a notification setting', function () {
+    $notificationSettings = User::factory()->withNotificationSettings([
+        NotificationSettings::NEW_ARTICLE_PUBLISHED => true,
+        NotificationSettings::ANNOUNCEMENTS => false,
+    ])->create()->settings()->notifications();
+
+    expect($notificationSettings->get(NotificationSettings::NEW_ARTICLE_PUBLISHED))
+        ->toBeTrue()
+        ->and($notificationSettings->get(NotificationSettings::ANNOUNCEMENTS))
+        ->toBeFalse();
 });
 
-it('can get the value of a notification setting', function () {
-    expect($this->user->settings()->notifications()->get('new_article_published'))
-        ->toBe(true)
-        ->and($this->user->settings()->notifications()->get('announcements'))
+it('returns false for the value of a notification setting the user has not set', function () {
+    $notificationSettings = User::factory()->withNotificationSettings([])->create()->settings()->notifications();
+
+    expect($notificationSettings->get('some-random-notification'))->toBeFalse();
+});
+
+it('can set a notification setting', function () {
+    $notificationSettings = User::factory()->withNotificationSettings([])->create()->settings()->notifications();
+
+    $notificationSettings->set(NotificationSettings::ANNOUNCEMENTS, true);
+
+    expect($notificationSettings->all()->toArray())->toBe([
+        NotificationSettings::ANNOUNCEMENTS => true,
+    ]);
+});
+
+it('can toggle a notification setting', function () {
+    $notificationSettings = User::factory()->withNotificationSettings([
+        NotificationSettings::NEW_ARTICLE_PUBLISHED => true,
+        NotificationSettings::ANNOUNCEMENTS => false,
+    ])->create()->settings()->notifications();
+
+    $notificationSettings->toggle(NotificationSettings::NEW_ARTICLE_PUBLISHED);
+    $notificationSettings->toggle(NotificationSettings::ANNOUNCEMENTS);
+
+    expect($notificationSettings->all()->toArray())->toBe([
+        NotificationSettings::NEW_ARTICLE_PUBLISHED => false,
+        NotificationSettings::ANNOUNCEMENTS => true,
+    ]);
+
+    $notificationSettings->toggle(NotificationSettings::NEW_ARTICLE_PUBLISHED);
+    $notificationSettings->toggle(NotificationSettings::ANNOUNCEMENTS);
+
+    expect($notificationSettings->all()->toArray())->toBe([
+        NotificationSettings::NEW_ARTICLE_PUBLISHED => true,
+        NotificationSettings::ANNOUNCEMENTS => false,
+    ]);
+});
+
+it('can turn off a notification setting', function () {
+    $notificationSettings = User::factory()->withNotificationSettings([
+        NotificationSettings::NEW_ARTICLE_PUBLISHED => true,
+    ])->create()->settings()->notifications();
+
+    $notificationSettings->turnOff(NotificationSettings::NEW_ARTICLE_PUBLISHED);
+
+    expect($notificationSettings->get(NotificationSettings::NEW_ARTICLE_PUBLISHED))->toBeFalse();
+});
+
+it('can turn on a notification setting', function () {
+    $notificationSettings = User::factory()->withNotificationSettings([
+        NotificationSettings::NEW_ARTICLE_PUBLISHED => false,
+    ])->create()->settings()->notifications();
+
+    $notificationSettings->turnOn(NotificationSettings::NEW_ARTICLE_PUBLISHED);
+
+    expect($notificationSettings->get(NotificationSettings::NEW_ARTICLE_PUBLISHED))->toBeTrue();
+});
+
+it('can get all notification settings', function () {
+    $notificationSettings = User::factory()->withNotificationSettings([
+        NotificationSettings::NEW_ARTICLE_PUBLISHED => true,
+    ])->create()->settings()->notifications();
+
+    expect($notificationSettings->all()->toArray())->toBe([
+        NotificationSettings::NEW_ARTICLE_PUBLISHED => true,
+    ]);
+});
+
+it('can tell if the notifications are all on when the user has not chosen a preference', function () {
+    $notificationSettings = User::factory()->create()->settings()->notifications();
+
+    expect($notificationSettings->areAllOn())->toBeFalse();
+});
+
+it('can tell if the notifications are all on when the user has chosen to turn them all off', function () {
+    $notificationSettings = User::factory()->withNotificationSettings([
+        NotificationSettings::NEW_ARTICLE_PUBLISHED => false,
+        NotificationSettings::ANNOUNCEMENTS => false,
+    ])->create()->settings()->notifications();
+
+    expect($notificationSettings->areAllOn())->toBeFalse();
+});
+
+it('can tell if the notifications are all on when the user has set a preference for all of them and some are off',
+    function () {
+        $notificationSettings = User::factory()->withNotificationSettings([
+            NotificationSettings::NEW_ARTICLE_PUBLISHED => false,
+            NotificationSettings::ANNOUNCEMENTS => true,
+        ])->create()->settings()->notifications();
+
+        expect($notificationSettings->areAllOn())->toBeFalse();
+    });
+
+it('can tell if the notifications are all on when the user has chosen to turn them all on', function () {
+    $notificationSettings = User::factory()->withNotificationSettings([
+        NotificationSettings::NEW_ARTICLE_PUBLISHED => true,
+        NotificationSettings::ANNOUNCEMENTS => true,
+    ])->create()->settings()->notifications();
+
+    expect($notificationSettings->areAllOn())->toBeTrue();
+});
+
+it('can tell if the notifications are all on when the user has only chosen to turn one off', function () {
+    $notificationSettings = User::factory()->withNotificationSettings([
+        NotificationSettings::NEW_ARTICLE_PUBLISHED => false,
+    ])->create()->settings()->notifications();
+
+    expect($notificationSettings->areAllOn())->toBeFalse();
+});
+
+it('can tell if the notifications are all on when the user has only chosen to turn one on', function () {
+    $notificationSettings = User::factory()->withNotificationSettings([
+        NotificationSettings::NEW_ARTICLE_PUBLISHED => true,
+    ])->create()->settings()->notifications();
+
+    expect($notificationSettings->areAllOn())->toBeFalse();
+});
+
+it('can handle the case where the user has no notification settings', function () {
+    $notificationSettings = User::factory()->create()->settings()->notifications();
+
+    expect($notificationSettings->all()->count())
+        ->toBe(0)
+        ->and($notificationSettings->get('some_random_notification'))
+        ->toBe(false)
+        ->and($notificationSettings->areAllOn())
         ->toBe(false);
 });
 
-it('can be passed a notification setting to set', function () {
-    $this->user->settings()->notifications()->set('announcements', true);
-
-    expect($this->user->settings()->get())->toBe([
-        'notifications' => [
-            'new_article_published' => true,
-            'announcements' => true,
-        ],
-    ]);
-});
-
-it('can be passed a notification to toggle', function () {
-    $this->user->settings()->notifications()->toggle('new_article_published');
-    $this->user->settings()->notifications()->toggle('announcements');
-
-    expect($this->user->settings()->get())->toBe([
-        'notifications' => [
-            'new_article_published' => false,
-            'announcements' => true,
-        ],
-    ]);
-
-    $this->user->settings()->notifications()->toggle('new_article_published');
-    $this->user->settings()->notifications()->toggle('announcements');
-
-    expect($this->user->settings()->notifications()->all()->toArray())->toBe([
-        'new_article_published' => true,
-        'announcements' => false,
-    ]);
-});
-
-it('can turn off a notification', function () {
-    $this->user->settings()->notifications()->turnOff('new_article_published');
-
-    expect($this->user->settings()->notifications()->get('new_article_published'))->toBe(false);
-});
-
-it('can turn on a notification', function () {
-    $this->user->settings()->notifications()->turnOn('announcements');
-
-    expect($this->user->settings()->notifications()->get('announcements'))->toBe(true);
-});
-
-it('can get all notifications', function () {
-    expect($this->user->settings()->notifications()->all()->toArray())->toBe([
-        'new_article_published' => true,
-    ]);
-});
-
-it('can tell if all notifications are on', function () {
-    $this->user->settings()->notifications()->toggle('announcements');
-
-    expect($this->user->settings()->notifications()->all()->toArray())
-        ->toBe([
-            'new_article_published' => true,
-            'announcements' => true,
-        ])
-        ->and($this->user->settings()->notifications()->areAllOn())
-        ->toBeTrue();
-
-    $this->user->settings()->notifications()->toggle('announcements');
-
-    expect($this->user->settings()->notifications()->all()->toArray())
-        ->toBe([
-            'new_article_published' => true,
-            'announcements' => false,
-        ])
-        ->and($this->user->settings()->notifications()->areAllOn())
-        ->toBeFalse;
-});
-
-it('can loop over all notifications', function () {
-    $notifications = [];
-
-    $this->user->settings()->notifications()->each(function ($value, $name) use (&$notifications) {
-        $notifications[$name] = $value;
-    });
-
-    expect($notifications)->toBe([
-        'new_article_published' => true,
+it('can list default notification settings', function () {
+    expect(NotificationSettings::defaultNotificationSettings()->toArray())->toBe([
+        NotificationSettings::NEW_ARTICLE_PUBLISHED => false,
+        NotificationSettings::ANNOUNCEMENTS => false,
     ]);
 });

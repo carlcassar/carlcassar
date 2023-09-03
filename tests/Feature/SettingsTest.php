@@ -1,44 +1,48 @@
 <?php
 
+use App\Models\NotificationSettings;
 use App\Models\User;
 
-beforeEach(function () {
-    $this->user = User::factory()->create();
-});
-
 it('can get all user settings', function () {
-    $settings = $this->user->settings()->all();
+    $settings = User::factory()->withDefaultNotificationSettings()->create()->settings()->all();
 
     expect($settings)->toEqual([
-        'notifications' => [
-            'new_article_published' => true,
-        ],
+        'notifications' => NotificationSettings::defaultNotificationSettings()->toArray(),
     ]);
 });
 
 it('can get a setting using dot notation', function () {
-    $settings = $this->user->settings()->get('notifications.new_article_published');
+    $settings = User::factory()
+        ->withNotificationSettings([
+            'some_notification' => true,
+        ])
+        ->create()
+        ->settings()
+        ->get('notifications.some_notification');
 
     expect($settings)->toEqual(true);
 });
 
 it('can be passed an array to set all settings', function () {
-    $this->user->settings()->set($settings = [
+    $settings = User::factory()->create()->settings();
+
+    $settings->set($expected = [
         'notifications' => [
             'announcements' => true,
         ],
     ]);
 
-    expect($this->user->settings)->toBe($settings);
+    expect($settings->all())->toBe($expected);
 });
 
 it('can be passed a key and value to set a particular setting', function () {
-    $this->user->settings()->set('notifications.announcements', true);
+    $settings = User::factory()->withDefaultNotificationSettings()->create()->settings();
 
-    expect($this->user->settings()->get())->toBe([
-        'notifications' => [
-            'new_article_published' => true,
-            'announcements' => true,
-        ],
+    $settings->set('notifications.some_notification', true);
+
+    expect($settings->get())->toBe([
+        'notifications' => NotificationSettings::defaultNotificationSettings()->merge([
+            'some_notification' => true,
+        ])->toArray(),
     ]);
 });

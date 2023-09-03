@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\NotificationSettings;
+use App\Models\NotificationSettings as Notification;
 use App\Models\User;
 use Filament\Forms\Components\Toggle;
 use Livewire\Livewire;
@@ -30,94 +31,75 @@ it('has a form', function () {
         ->assertFormExists();
 });
 
-it('shows a toggle for each notification', function () {
-    $this->user->settings()->set('notifications', [
-        'first_notification' => true,
-        'second_notification' => false,
-    ]);
-
-    Livewire::actingAs($this->user)
+it('shows a toggle for each notification setting', function () {
+    $livewire = Livewire::actingAs($this->user)
         ->test(NotificationSettings::class)
-        ->assertFormFieldExists('all_notifications')
-        ->assertFormFieldExists('settings.notifications.first_notification')
-        ->assertFormFieldExists('settings.notifications.second_notification');
+        ->assertFormFieldExists('all_notifications');
+
+    App\Models\NotificationSettings::defaultNotificationSettings()->each(function ($value, $key) use ($livewire) {
+        $livewire
+            ->assertFormFieldExists("settings.notifications.$key", function (Toggle $toggle) use ($value) {
+                return $toggle->isEnabled() && $toggle->isLive() && $toggle->getState() == $value;
+            })
+            ->assertSet('data', function ($data) use ($key) {
+                return $data['settings']['notifications'][$key] == false;
+            });
+    });
 });
 
 it('allows the user to toggle a notification', function () {
-    $this->user->settings()->set('notifications', [
-        'first_notification' => true,
-        'second_notification' => true,
-    ]);
-
-    expect($this->user->settings()->notifications()->areAllOn())->toBe(true);
+    expect($this->user->settings()->notifications()->areAllOn())->toBe(false);
 
     Livewire::actingAs($this->user)
         ->test(NotificationSettings::class)
-        ->assertSet('data', function ($data) {
-            return $data['all_notifications'] == true && $data['settings']['notifications'] == [
-                'first_notification' => true,
-                'second_notification' => true,
-            ];
-        })
-        ->assertFormFieldExists('settings.notifications.first_notification', function (Toggle $toggle): bool {
-            return $toggle->isEnabled() && $toggle->isLive() && $toggle->getState() == true;
-        })
-        ->assertFormFieldExists('settings.notifications.second_notification', function (Toggle $toggle): bool {
-            return $toggle->isEnabled() && $toggle->isLive() && $toggle->getState() == true;
-        })
         ->fillForm([
-            'settings.notifications.first_notification' => false,
+            'settings.notifications.'.Notification::ANNOUNCEMENTS => true,
         ])
         ->assertFormFieldExists('all_notifications', function (Toggle $toggle): bool {
             return $toggle->getState() == false;
         })
-        ->assertFormFieldExists('settings.notifications.first_notification', function (Toggle $toggle): bool {
-            return $toggle->getState() == false;
-        })
-        ->assertFormFieldExists('settings.notifications.second_notification', function (Toggle $toggle): bool {
+        ->assertFormFieldExists('settings.notifications.'.Notification::ANNOUNCEMENTS, function (Toggle $toggle): bool {
             return $toggle->getState() == true;
         })
+        ->assertFormFieldExists('settings.notifications.'.Notification::NEW_ARTICLE_PUBLISHED,
+            function (Toggle $toggle): bool {
+                return $toggle->getState() == false;
+            })
         ->assertSet('data', function ($data) {
-            return $data['all_notifications'] == false && $data['settings']['notifications'] == [
-                'first_notification' => false,
-                'second_notification' => true,
-            ];
+            return $data['all_notifications'] == false && $data['settings']['notifications'][Notification::ANNOUNCEMENTS] == true;
         });
 
-    expect($this->user->fresh()->settings()->notifications()->get('first_notification'))->toBe(false);
+    $this->user->refresh();
+
+    expect($this->user->settings()->notifications()->get(Notification::ANNOUNCEMENTS))
+        ->toBeTrue()
+        ->and($this->user->settings()->notifications()->get(Notification::NEW_ARTICLE_PUBLISHED))
+        ->toBeFalse();
 });
 
 it('allows the user to toggle all notifications', function () {
-    $this->user->settings()->set('notifications', [
-        'first_notification' => true,
-        'second_notification' => true,
-    ]);
-
-    expect($this->user->settings()->notifications()->areAllOn())->toBe(true);
+    expect($this->user->settings()->notifications()->areAllOn())->toBe(false);
 
     Livewire::actingAs($this->user)
         ->test(NotificationSettings::class)
         ->assertSet('data', function ($data) {
-            return $data['all_notifications'] == true && $data['settings']['notifications'] == [
-                'first_notification' => true,
-                'second_notification' => true,
-            ];
+            return $data['all_notifications'] == false && $data['settings']['notifications'] == Notification::defaultNotificationSettings()->toArray();
         })
         ->assertFormFieldExists('all_notifications', function (Toggle $toggle): bool {
-            return $toggle->isEnabled() && $toggle->isLive() && $toggle->getState() == true;
+            return $toggle->isEnabled() && $toggle->isLive() && $toggle->getState() == false;
         })
         ->fillForm([
-            'all_notifications' => false,
+            'all_notifications' => true,
         ])
         ->assertFormFieldExists('all_notifications', function (Toggle $toggle): bool {
-            return $toggle->getState() == false;
+            return $toggle->getState() == true;
         })
         ->assertSet('data', function ($data) {
-            return $data['all_notifications'] == false && $data['settings']['notifications'] == [
-                'first_notification' => false,
-                'second_notification' => false,
-            ];
+            return $data['all_notifications'] == true &&
+                $data['settings']['notifications'] == Notification::defaultNotificationSettings()
+                    ->map(fn () => true)
+                    ->toArray();
         });
 
-    expect($this->user->fresh()->settings()->notifications()->areAllOn())->toBe(false);
+    expect($this->user->fresh()->settings()->notifications()->areAllOn())->toBe(true);
 });
