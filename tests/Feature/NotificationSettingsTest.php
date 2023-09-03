@@ -38,7 +38,7 @@ it('can be passed a notification to toggle', function () {
     $this->user->settings()->notifications()->toggle('new_article_published');
     $this->user->settings()->notifications()->toggle('announcements');
 
-    expect($this->user->settings()->notifications()->all())->toBe([
+    expect($this->user->settings()->notifications()->all()->toArray())->toBe([
         'new_article_published' => true,
         'announcements' => false,
     ]);
@@ -57,7 +57,7 @@ it('can turn on a notification', function () {
 });
 
 it('can get all notifications', function () {
-    expect($this->user->settings()->notifications()->all())->toBe([
+    expect($this->user->settings()->notifications()->all()->toArray())->toBe([
         'new_article_published' => true,
     ]);
 });
@@ -65,7 +65,7 @@ it('can get all notifications', function () {
 it('can tell if all notifications are on', function () {
     $this->user->settings()->notifications()->toggle('announcements');
 
-    expect($this->user->settings()->notifications()->all())
+    expect($this->user->settings()->notifications()->all()->toArray())
         ->toBe([
             'new_article_published' => true,
             'announcements' => true,
@@ -75,11 +75,23 @@ it('can tell if all notifications are on', function () {
 
     $this->user->settings()->notifications()->toggle('announcements');
 
-    expect($this->user->settings()->notifications()->all())
+    expect($this->user->settings()->notifications()->all()->toArray())
         ->toBe([
             'new_article_published' => true,
             'announcements' => false,
         ])
         ->and($this->user->settings()->notifications()->areAllOn())
         ->toBeFalse;
+});
+
+it('can loop over all notifications', function () {
+    $notifications = [];
+
+    $this->user->settings()->notifications()->each(function ($value, $name) use (&$notifications) {
+        $notifications[$name] = $value;
+    });
+
+    expect($notifications)->toBe([
+        'new_article_published' => true,
+    ]);
 });

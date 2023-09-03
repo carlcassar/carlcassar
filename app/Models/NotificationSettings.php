@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Collection;
+
 class NotificationSettings
 {
     public const NEW_ARTICLE_PUBLISHED = 'new_article_published';
@@ -42,8 +44,13 @@ class NotificationSettings
         return collect($this->all())->every(fn ($notification) => $notification == true);
     }
 
-    public function all()
+    public function all(): Collection
     {
-        return $this->settings->get('notifications');
+        return collect($this->settings->get('notifications'));
+    }
+
+    public function each(callable $callback)
+    {
+        return $this->all()->each($callback);
     }
 }

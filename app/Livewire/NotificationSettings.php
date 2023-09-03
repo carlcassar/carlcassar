@@ -11,6 +11,7 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Livewire\Component;
+use Str;
 
 class NotificationSettings extends Component implements HasForms
 {
@@ -23,6 +24,7 @@ class NotificationSettings extends Component implements HasForms
     public function mount(): void
     {
         $this->user = auth()->user();
+
         $this->form->fill(
             array_merge($this->user->toArray(),
                 ['all_notifications' => $this->user->settings()->notifications()->areAllOn()])
@@ -43,47 +45,45 @@ class NotificationSettings extends Component implements HasForms
                             ->onIcon('heroicon-o-check')
                             ->onColor('success')
                             ->live()
-                            ->afterStateUpdated(function (Set $set, ?string $state) {
-                                $set('settings.notifications.new_article_published', $state);
-                                $set('settings.notifications.announcements', $state);
-
-                                $this->user->settings()->notifications()->set('new_article_published', $state);
-                                $this->user->settings()->notifications()->set('announcements', $state);
-                            })
+                            ->afterStateUpdated(fn (Set $set, ?bool $state) => $this->setAllNotifications($set, $state))
                             ->rules('boolean'),
                     ]),
                 Section::make('Specifics')
                     ->description('Fine tune the notifications you\'d like to receive.')
-                    ->schema([
-                        Toggle::make('settings.notifications.new_article_published')
-                            ->label('New Article Published')
-                            ->onIcon('heroicon-o-check')
-                            ->onColor('success')
-                            ->live()
-                            ->afterStateUpdated(function (Set $set, ?string $state, ?string $old) {
-                                $this->user->update([
-                                    'settings->notifications->new_article_published' => $state,
-                                ]);
-                                $set('all_notifications', $this->user->settings()->notifications()->areAllOn());
-                            })
-                            ->rules('boolean'),
-
-                        Toggle::make('settings.notifications.announcements')
-                            ->label('Announcements')
-                            ->onIcon('heroicon-o-check')
-                            ->onColor('success')
-                            ->live()
-                            ->afterStateUpdated(function (Set $set, ?string $state, ?string $old) {
-                                $this->user->update([
-                                    'settings->notifications->announcements' => $state,
-                                ]);
-                                $set('all_notifications', $this->user->settings()->notifications()->areAllOn());
-                            })
-                            ->rules('boolean'),
-                    ]),
+                    ->schema($this->notificationFields()),
             ])
             ->statePath('data')
             ->model(auth()->user());
+    }
+
+    public function setAllNotifications(Set $set, ?bool $state): void
+    {
+        $this->user->settings()->notifications()->each(function ($value, $name) use (
+            $set,
+            $state
+        ) {
+            $this->setNotification($name, $set, $state);
+        });
+    }
+
+    public function setNotification($name, Set $set, ?bool $state): void
+    {
+        $set("settings.notifications.$name", $state);
+        $this->user->settings()->notifications()->set($name, $state);
+        $set('all_notifications', $this->user->settings()->notifications()->areAllOn());
+    }
+
+    private function notificationFields()
+    {
+        return $this->user->settings()->notifications()->all()->map(function ($value, $name) {
+            return Toggle::make("settings.notifications.$name")
+                ->label(Str::of($name)->replace('_', ' ')->title())
+                ->onIcon('heroicon-o-check')
+                ->onColor('success')
+                ->live()
+                ->afterStateUpdated(fn (Set $set, ?string $state) => $this->setNotification($name, $set, $state))
+                ->rules('boolean');
+        })->toArray();
     }
 
     public function state(string $key)
