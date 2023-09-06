@@ -38,7 +38,6 @@ class NotificationSettings extends Component implements HasForms
                 Section::make('General')
                     ->description('Enable / Disable all notifications.')
                     ->compact()
-                    ->collapsible()
                     ->schema([
                         Toggle::make('all_notifications')
                             ->label('All Notifications')
@@ -49,6 +48,7 @@ class NotificationSettings extends Component implements HasForms
                             ->rules('boolean'),
                     ]),
                 Section::make('Specifics')
+                    ->compact()
                     ->description('Fine tune the notifications you\'d like to receive.')
                     ->schema($this->notificationFields()),
             ])
