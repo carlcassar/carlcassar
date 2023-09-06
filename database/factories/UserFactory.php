@@ -45,6 +45,9 @@ class UserFactory extends Factory
             'name' => 'Carl Cassar',
             'email' => 'carl@carlcassar.com',
             'is_admin' => true,
+            'settings' => [
+                'notifications' => NotificationSettings::defaultNotificationSettings(),
+            ],
         ]);
     }
 

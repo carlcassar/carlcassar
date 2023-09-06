@@ -74,6 +74,16 @@ it('can turn on a notification setting', function () {
     expect($notificationSettings->get(NotificationSettings::NEW_ARTICLE_PUBLISHED))->toBeTrue();
 });
 
+it('can tell if a notification setting is on', function () {
+    $notificationSettings = User::factory()->withNotificationSettings([
+        NotificationSettings::NEW_ARTICLE_PUBLISHED => false,
+        NotificationSettings::ANNOUNCEMENTS => true,
+    ])->create()->settings()->notifications();
+
+    expect($notificationSettings->isOn(NotificationSettings::NEW_ARTICLE_PUBLISHED))->toBeFalse()
+        ->and($notificationSettings->isOn(NotificationSettings::ANNOUNCEMENTS))->toBeTrue();
+});
+
 it('can get all notification settings', function () {
     $notificationSettings = User::factory()->withNotificationSettings([
         NotificationSettings::NEW_ARTICLE_PUBLISHED => true,
@@ -110,10 +120,7 @@ it('can tell if the notifications are all on when the user has set a preference 
     });
 
 it('can tell if the notifications are all on when the user has chosen to turn them all on', function () {
-    $notificationSettings = User::factory()->withNotificationSettings([
-        NotificationSettings::NEW_ARTICLE_PUBLISHED => true,
-        NotificationSettings::ANNOUNCEMENTS => true,
-    ])->create()->settings()->notifications();
+    $notificationSettings = User::factory()->withDefaultNotificationSettings()->create()->settings()->notifications();
 
     expect($notificationSettings->areAllOn())->toBeTrue();
 });
@@ -147,7 +154,8 @@ it('can handle the case where the user has no notification settings', function (
 
 it('can list default notification settings', function () {
     expect(NotificationSettings::defaultNotificationSettings()->toArray())->toBe([
-        NotificationSettings::NEW_ARTICLE_PUBLISHED => false,
-        NotificationSettings::ANNOUNCEMENTS => false,
+        NotificationSettings::ACCOUNT_NOTIFICATIONS => true,
+        NotificationSettings::NEW_ARTICLE_PUBLISHED => true,
+        NotificationSettings::ANNOUNCEMENTS => true,
     ]);
 });

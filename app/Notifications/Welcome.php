@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\NotificationSettings;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -26,7 +27,9 @@ class Welcome extends Notification implements ShouldQueue
      */
     public function via(object $notifiable): array
     {
-        return ['mail', 'database'];
+        return $notifiable->settings()->notifications()->isOn(NotificationSettings::ACCOUNT_NOTIFICATIONS)
+            ? ['mail', 'database']
+            : ['database'];
     }
 
     /**

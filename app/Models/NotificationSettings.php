@@ -6,6 +6,8 @@ use Illuminate\Support\Collection;
 
 class NotificationSettings
 {
+    public const ACCOUNT_NOTIFICATIONS = 'account_related_notifications';
+
     public const NEW_ARTICLE_PUBLISHED = 'new_article_published';
 
     public const ANNOUNCEMENTS = 'announcements';
@@ -41,9 +43,15 @@ class NotificationSettings
         $this->set($notification, true);
     }
 
+    public function isOn(string $notification): bool
+    {
+        return $this->get($notification) == true;
+    }
+
     public function areAllOn(): bool
     {
         return self::defaultNotificationSettings()
+            ->map(fn () => false)
             ->merge($this->all())
             ->every(fn ($notification) => $notification == true);
     }
@@ -51,8 +59,9 @@ class NotificationSettings
     public static function defaultNotificationSettings(): Collection
     {
         return collect([
-            self::NEW_ARTICLE_PUBLISHED => false,
-            self::ANNOUNCEMENTS => false,
+            self::ACCOUNT_NOTIFICATIONS => true,
+            self::NEW_ARTICLE_PUBLISHED => true,
+            self::ANNOUNCEMENTS => true,
         ]);
     }
 
