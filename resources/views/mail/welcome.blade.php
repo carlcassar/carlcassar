@@ -7,6 +7,6 @@ I hope that you'll continue to find my content useful and informative. As always
 X/Twitter if you have any questions or feedback.
 
 <x-mail::button url="https://www.x.com/carlcassar">
-    Get in Touch
+    𝕏 Get in Touch
 </x-mail::button>
 </x-mail::message>
