@@ -16,7 +16,7 @@
                     </a>
 
                     @if(auth()->user() && auth()->user()->isAdmin())
-                        <x-nav-link href="admin">
+                        <x-nav-link href="/admin">
                             {{ __('Admin') }}
                         </x-nav-link>
                     @endif
