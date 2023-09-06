@@ -70,20 +70,20 @@ Route::get('/tags/{tag}', fn ($tag) => redirect()->route('articles.index', compa
 
 // Authorised
 Route::middleware('auth')->group(function () {
-
     // Logout
     Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
+});
+
+// Authorised and Verified
+Route::middleware(['auth', 'verified'])->group(function () {
 
     // Profile
     Route::get('settings/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('settings/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('settings/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // Notifications
     Route::get('/settings/notifications', NotificationSettings::class)->name('settings.notifications');
-});
-
-// Authorised and Verified
-Route::middleware(['auth', 'verified'])->group(function () {
 
     // Dashboard
     Route::get('/dashboard', DashboardController::class)->name('dashboard');

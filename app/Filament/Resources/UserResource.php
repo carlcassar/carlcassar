@@ -31,11 +31,11 @@ class UserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
-                Forms\Components\Toggle::make('is_admin')
-                    ->columnSpanFull()
-                    ->required(),
+                Forms\Components\DateTimePicker::make('email_verified_at')
+                    ->native(false)
+                    ->nullable(),
                 KeyValue::make('settings.notifications')
+                    ->columnSpanFull()
                     ->keyLabel('Notification Key')
                     ->valueLabel('Is On?')
                     ->addable(false)
@@ -51,10 +51,12 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->dateTime()
+                Tables\Columns\IconColumn::make('email_verified_at')
+                    ->label('Email Verified')
+                    ->boolean()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_admin')
+                    ->label('Admin')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -79,6 +81,14 @@ class UserResource extends Resource
                         ->action(function (Collection $users) {
                             $users->each(function (User $user) {
                                 $user->notify(new Welcome());
+                            });
+                        }),
+                    Tables\Actions\BulkAction::make('Resend Verification Email')
+                        ->icon('heroicon-o-envelope')
+                        ->requiresConfirmation()
+                        ->action(function (Collection $users) {
+                            $users->each(function (User $user) {
+                                $user->sendEmailVerificationNotification();
                             });
                         }),
                 ])
