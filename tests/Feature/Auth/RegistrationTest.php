@@ -2,6 +2,7 @@
 
 use App\Models\NotificationSettings;
 use App\Models\User;
+use App\Notifications\NewUserRegistered;
 use App\Notifications\Welcome;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -77,6 +78,7 @@ test('a user is sent a welcome notification when they register', function () {
         'notifications' => 'on',
     ]);
 
+    Notification::assertCount(2);
     Notification::assertSentTo($user = User::first(), Welcome::class,
         function (Welcome $notification, $channels) use ($user) {
             $mailable = $notification->toMail($user);
@@ -84,4 +86,25 @@ test('a user is sent a welcome notification when they register', function () {
             return $channels == ['mail', 'database'] &&
                 $mailable->subject = 'Welcome';
         });
+});
+
+test('admins are sent a notification when a new user registers', function () {
+    Notification::fake();
+
+    $admin = User::factory()->me()->create();
+
+    $this->post('/register', [
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'password' => 'password',
+        'password_confirmation' => 'password',
+        'notifications' => 'on',
+    ]);
+
+    Notification::assertCount(3);
+    Notification::assertSentTo($admin, NewUserRegistered::class);
+
+    $registeredUser = User::firstWhere('email', '=', 'test@example.com');
+
+    Notification::assertNotSentTo($registeredUser, NewUserRegistered::class);
 });
