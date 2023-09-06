@@ -89,8 +89,8 @@
         <p>
             Cookies are small text files that are placed on your computer by websites that you visit. They are widely
             used in order to make websites work, or work more efficiently, as well as to provide information to the
-            owners of the site. Cookies will only be used on this site to keep track of your session information once
-            you have registered. Cookies are not used for analytics.
+            owners of the site. Cookies will only be used on this site to keep track of your session information.
+            Cookies are not used for analytics.
         </p>
 
         <h2 id="information-collection-use-and-sharing">Information Collection, Use, and Sharing</h2>
