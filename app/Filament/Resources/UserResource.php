@@ -72,6 +72,16 @@ class UserResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('Sign In As User')
+                    ->disabled(! auth()->user()->isAdmin())
+                    ->icon('heroicon-o-arrow-right-on-rectangle')
+                    ->requiresConfirmation()
+                    ->iconButton()
+                    ->action(function (User $user) {
+                        auth()->login($user);
+
+                        return redirect()->route('home');
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
