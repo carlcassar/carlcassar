@@ -8,6 +8,7 @@ use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
 use App\Livewire\NotificationSettings;
+use Illuminate\Notifications\Messages\MailMessage;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,21 @@ use App\Livewire\NotificationSettings;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+/*
+|--------------------------------------------------------------------------
+| Testing (Local-only)
+|--------------------------------------------------------------------------
+*/
+
+if (app()->environment('local')) {
+    Route::get('/mail/welcome', function () {
+        return (new MailMessage)
+            ->subject('Welcome to carlcassar.com!')
+            ->markdown('mail.welcome', ['name' => 'Carl Cassar'])
+            ->render();
+    });
+}
 
 /*
 |--------------------------------------------------------------------------
