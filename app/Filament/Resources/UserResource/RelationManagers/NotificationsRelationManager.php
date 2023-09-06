@@ -6,6 +6,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Table;
 
 class NotificationsRelationManager extends RelationManager
@@ -16,12 +17,13 @@ class NotificationsRelationManager extends RelationManager
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('id')
+                    ->required(),
                 Forms\Components\TextInput::make('type')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('type')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\KeyValue::make('data')
+                    ->required(),
             ]);
     }
 
@@ -30,7 +32,7 @@ class NotificationsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('type')
             ->columns([
-                Tables\Columns\TextColumn::make('type'),
+                Tables\Columns\TextColumn::make('id'),
                 Tables\Columns\TextColumn::make('type'),
             ])
             ->filters([
@@ -40,7 +42,7 @@ class NotificationsRelationManager extends RelationManager
                 //
             ])
             ->actions([
-                //
+                EditAction::make(),
             ])
             ->bulkActions([
                 //

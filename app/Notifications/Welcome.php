@@ -49,6 +49,7 @@ class Welcome extends Notification implements ShouldQueue
     {
         return [
             'sent_at' => now(),
+            'channels' => $this->via($notifiable),
         ];
     }
 }
