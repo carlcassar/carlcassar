@@ -57,6 +57,7 @@ class ArticleResource extends Resource
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('published_at')
+                    ->label('Published')
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('deleted_at')
@@ -85,7 +86,8 @@ class ArticleResource extends Resource
             ])
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
-            ]);
+            ])
+            ->defaultSort('published_at', 'desc');
     }
 
     public static function getRelations(): array
