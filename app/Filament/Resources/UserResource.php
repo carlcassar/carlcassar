@@ -7,6 +7,7 @@ use App\Filament\Resources\UserResource\RelationManagers\NotificationsRelationMa
 use App\Models\User;
 use App\Notifications\Welcome;
 use Filament\Forms;
+use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -34,6 +35,11 @@ class UserResource extends Resource
                 Forms\Components\Toggle::make('is_admin')
                     ->columnSpanFull()
                     ->required(),
+                KeyValue::make('settings.notifications')
+                    ->keyLabel('Notification Key')
+                    ->valueLabel('Is On?')
+                    ->addable(false)
+                    ->disabled(),
             ]);
     }
 
