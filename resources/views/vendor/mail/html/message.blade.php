@@ -1,23 +1,7 @@
 <x-mail::layout>
 {{-- Header --}}
 <x-slot:header>
-<x-mail::header :url="config('app.url')">
-    <div>
-        <a href="{{ route('home') }}" alt="Go Home" aria-label="Go Home">
-            <x-application-logo style="
-                width: 30px;
-                height: 30px;
-                border-radius: 3px;
-                vertical-align: middle
-            "/>
-        </a>
-
-        <a href="{{ route('home') }}"
-           class="ml-4 mr-2 pb-1 inline-flex items-center text-2xl font-semibold transition-all duration-200 cursor-pointer dark:text-white hover:text-orange-500">
-            carlcassar.com
-        </a>
-    </div>
-</x-mail::header>
+<x-mail::header></x-mail::header>
 </x-slot:header>
 
 {{-- Body --}}
@@ -36,6 +20,7 @@
 <x-slot:footer>
 <x-mail::footer>
 © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
+    <x-link :href="route('settings.notifications')">Manage Notification Settings</x-link>
 </x-mail::footer>
 </x-slot:footer>
 </x-mail::layout>

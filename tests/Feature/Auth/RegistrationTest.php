@@ -74,6 +74,7 @@ test('a user is sent a welcome notification when they register', function () {
         'email' => 'test@example.com',
         'password' => 'password',
         'password_confirmation' => 'password',
+        'notifications' => 'on',
     ]);
 
     Notification::assertSentTo($user = User::first(), Welcome::class,

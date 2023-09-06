@@ -39,7 +39,7 @@ class Welcome extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('Welcome to carlcassar.com!')
-            ->markdown('mail.user-registered', ['name' => $notifiable->name]);
+            ->markdown('mail.welcome', ['name' => $notifiable->name]);
     }
 
     /**

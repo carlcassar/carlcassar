@@ -37,7 +37,7 @@ class UserRegistered extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.user-registered',
+            markdown: 'mail.welcome',
             with: [
                 'name' => $this->name,
             ],
