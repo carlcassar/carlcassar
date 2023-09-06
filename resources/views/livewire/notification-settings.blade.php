@@ -6,10 +6,6 @@
 
         <form wire:submit="create" class="mt-6 space-y-6">
             {{ $this->form }}
-
-            {{--            <x-primary-button class="mt-4" type="submit">--}}
-            {{--                Save--}}
-            {{--            </x-primary-button>--}}
         </form>
     </section>
 
