@@ -40,6 +40,21 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->sidebarFullyCollapsibleOnDesktop()
             ->navigationItems([
+                NavigationItem::make('Home')
+                    ->url('/')
+                    ->icon('heroicon-o-home')
+                    ->group('Locations'),
+
+                NavigationItem::make('Dashboard')
+                    ->url('/dashboard')
+                    ->icon('heroicon-o-chart-bar-square')
+                    ->group('Locations'),
+
+                NavigationItem::make('Articles')
+                    ->url('/articles')
+                    ->icon('heroicon-o-queue-list')
+                    ->group('Locations'),
+
                 NavigationItem::make('Horizon')
                     ->url('/horizon', shouldOpenInNewTab: true)
                     ->icon('heroicon-o-wrench')
