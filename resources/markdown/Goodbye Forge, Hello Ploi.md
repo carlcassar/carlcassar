@@ -14,8 +14,6 @@ created_at: 2021-05-06 12:03:49
 updated_at: 2021-05-06 12:15:20
 deleted_at:
 ---
-This is a test of this weird thing that is happening with my articles. Why on earth is this weird thing happening?
-
 When it first launched, Laravel Forge was the easiest and cheapest way to deploy a Laravel application onto a custom server. Recently, after repeatedly being presented with upgrade banners for new features, I decided to investigate the alternatives before committing to a higher fee. Happily, I stumbled upon [Ploi](https://ploi.io/register?referrer=Q0CPw1eA85vsBxHgTf0G).
 
 At first I was skeptical that anyone could compete with the Laravel Core team who manage the established and stable product that is Laravel Forge, but over a few short hours I was increasingly convinced that Ploi was not only a suitable  alternative, but hands down the better offering. Here's what finally changed my mind, made me switch all my sites and end my Forge subscription.
