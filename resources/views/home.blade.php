@@ -1,8 +1,8 @@
 <x-app-layout title="A Full-Stack Software Development Blog">
     <x-slot name="aside">
-        <x-recents/>
-        <x-tags/>
-        <x-years/>
+        <x-recents />
+        <x-tags />
+        <x-years />
     </x-slot>
 
     <h1 class="border-b-2 border-dashed border-gray-200 py-4 pb-8 mb-8">
@@ -23,5 +23,5 @@
         </p>
     </h1>
 
-    <livewire:article-list class="mt-4"/>
+    <livewire:article-list class="mt-4" />
 </x-app-layout>

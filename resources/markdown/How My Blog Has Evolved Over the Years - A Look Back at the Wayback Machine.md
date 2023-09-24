@@ -1,12 +1,12 @@
 ---
 title: "How My Blog Has Evolved Over the Years: A Look Back at the Wayback Machine"
-slug: 
+slug:
 author: Carl Cassar
 description: Today I launched a new version of this blog. It got me thinking that I've been at this for a long time and have updated the design and functionality many times. I thought it would be fun to take a look at how this site has changed over time by using the Wayback Machine at archive.org
 tags:
   - blogging
   - meta
-image: 
+image:
 link: https://carlcassar.com/articles/how-my-blog-has-evolved-over-the-years-a-look-back-at-the-wayback-machine
 published_at: 2023-08-20 16:00:13
 created_at: 2023-08-20 13:32:19
@@ -39,7 +39,7 @@ It's 2010. I've been on Twitter for a few months. I know the basics, but learnin
 ![2011 carlcassar.com](https://media.carlcassar.com/how-my-blog-has-evolved-over-the-years-a-look-back-at-the-wayback-machine/carlcassar.com-2011-12-25.png)
 *Christmas Day 2011.*
 
-Well, what a difference a year makes. Before you shoot it down, remember how much the internet has changed in the last twelve years. Fun, patterned backgrounds were all the rage back then. We still hadn't moved into the minimalist era we now inhabit. Websites were bold and colourful and the only rule was **not to make things blink and scroll around**. 
+Well, what a difference a year makes. Before you shoot it down, remember how much the internet has changed in the last twelve years. Fun, patterned backgrounds were all the rage back then. We still hadn't moved into the minimalist era we now inhabit. Websites were bold and colourful and the only rule was **not to make things blink and scroll around**.
 
 I'm quite proud that the 2011 version includes a few features that must have taken a lot to learn and implement back then:
 
@@ -115,7 +115,7 @@ Lockdown gave me plenty of time to think and work on my site amongst other thing
 
 Still, after a couple of redesigns on the backend, I ended up with a very functional site that allowed me to write articles quickly. I added a way to leave comments using [Utterances](https://www.carlcassar.com/articles/add-comments-to-your-blog-in-under-five-minutes) and functionality to search articles on the site.
 
-Over the last two years, I've been busy with another kind of development. I've taken on a large restoration project on a house I bought during Covid. I kept up my software development throughout, experimenting with technologies that were completely new to me such as Swift, SwiftUI and Wolfram Language. I often felt the urge to share and write about things I've learned, but I had painted myself into a bit of a corner. My setup was too complicated and I had added a lot of unnecessary friction between writing and posting a new article. Recently, **I decided to do something about it** and have carved out the time to make the umpteenth revision to this site. 
+Over the last two years, I've been busy with another kind of development. I've taken on a large restoration project on a house I bought during Covid. I kept up my software development throughout, experimenting with technologies that were completely new to me such as Swift, SwiftUI and Wolfram Language. I often felt the urge to share and write about things I've learned, but I had painted myself into a bit of a corner. My setup was too complicated and I had added a lot of unnecessary friction between writing and posting a new article. Recently, **I decided to do something about it** and have carved out the time to make the umpteenth revision to this site.
 
 This time round, I'm practicing a new skill. **Deliverability**. All too often, as software developers who enjoy our craft, we find ourselves tinkering in the depths of some system or other convinced that we are doing good work. While we all know that this can be fun, we also know we would never get away with it at work and if I want this blog to be as helpful to as many people as possible then I need to focus on making it easy to create and post articles on a whim, whilst the ideas and lessons are still fresh in my mind.
 
