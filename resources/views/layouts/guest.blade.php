@@ -23,6 +23,10 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        @if(app()->environment('production'))
+            @turnstileScripts()
+        @endif
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col items-center pt-20 bg-gray-100 dark:bg-gray-900">

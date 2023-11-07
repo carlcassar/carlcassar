@@ -7,6 +7,11 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
+        @if(app()->environment('production'))
+        <x-turnstile />
+        <x-input-error :messages="$errors->get('cf-turnstile-response')" class="my-2"/>
+        @endif
+
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')"/>
