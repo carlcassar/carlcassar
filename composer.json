@@ -20,9 +20,9 @@
         "livewire/livewire": "^3.0",
         "ryangjchandler/laravel-cloudflare-turnstile": "^1.0",
         "spatie/laravel-feed": "^4.3",
-        "spatie/laravel-sitemap": "^6.3",
-        "symfony/dom-crawler": "^6.3",
-        "symfony/yaml": "^6.3"
+        "spatie/laravel-sitemap": "^7.2.0",
+        "symfony/yaml": "^6.3",
+        "cassarco/lark": "dev-main"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.9",
@@ -77,6 +77,22 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../lark",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../league-commonmark-wikilinks",
+            "options": {
+                "symlink": true
+            }
+        }
+    ]
 }
