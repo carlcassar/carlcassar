@@ -7,9 +7,9 @@
         </x-slot>
 
         <div class="prose dark:prose-a:text-gray-400 prose-li:my-0">
-            <ul class="list-disc">
+            <div class="list-disc">
                 {!! $article->table_of_contents !!}
-            </ul>
+            </div>
         </div>
     </x-card>
 @endif
