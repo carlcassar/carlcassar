@@ -22,7 +22,7 @@
         "spatie/laravel-feed": "^4.3",
         "spatie/laravel-sitemap": "^7.2.0",
         "symfony/yaml": "^6.3",
-        "cassarco/lark": "dev-main"
+        "cassarco/markdown-tools": "dev-main"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.9",
@@ -82,14 +82,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "../lark",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../league-commonmark-wikilinks",
+            "url": "../markdown-tools",
             "options": {
                 "symlink": true
             }
