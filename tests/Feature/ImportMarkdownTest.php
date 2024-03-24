@@ -3,6 +3,8 @@
 use Illuminate\Support\Carbon;
 
 it('says that the markdown has been imported', function () {
+    $this->assertDatabaseCount('articles', 0);
+
     $this->artisan('markdown-tools:process')->expectsOutput('Your schemes have all been processed successfully.');
 
     $this->assertDatabaseHas('articles', [
