@@ -6,7 +6,7 @@
             Table Of Contents
         </x-slot>
 
-        <div class="prose dark:prose-a:text-gray-400 prose-li:my-0">
+        <div class="prose dark:prose-a:text-gray-400 prose-ul:mt-0 prose-li:my-0">
             <div class="list-disc">
                 {!! $article->table_of_contents !!}
             </div>
