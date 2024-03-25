@@ -1,9 +1,9 @@
 <div>
     @foreach($articles as $article)
-        <div class="pb-10" wire:key="{{ $article->slug }}">
+        <x-card class="p-4 sm:p-6 md:p-10 mb-10" wire:key="{{ $article->slug }}">
             <x-article :article="$article" :list="true" class="max-h-96 relative overflow-hidden">
                 <div
-                    class="h-24 absolute bottom-0 w-full dark:text-white bg-gradient-to-b from-transparent to-white dark:to-gray-900">
+                    class="h-48 absolute bottom-0 w-full dark:text-white bg-gradient-to-b from-transparent to-zinc-50 dark:to-gray-900">
                 </div>
             </x-article>
             <a href="{{ route('articles.show', $article) }}"
@@ -15,7 +15,7 @@
                           d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
                 </svg>
             </a>
-        </div>
+        </x-card>
     @endforeach
 
     {{ $articles->links() }}

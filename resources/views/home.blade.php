@@ -5,12 +5,12 @@
         <x-years />
     </x-slot>
 
-    <h1 class="border-b-2 border-dashed border-gray-200 py-4 pb-8 mb-8">
-        <p class="text-4xl font-bold text-gray-900 dark:text-white font-serif text-justify">
+    <h1 class="py-4">
+        <p class="text-5xl font-bold text-gray-900 dark:text-white text-justify">
             Hello 👋
         </p>
 
-        <p class="mt-4 text-gray-500 dark:text-gray-400 leading-relaxed">
+        <p class="mt-4 text-xl text-gray-500 dark:text-gray-400 leading-relaxed">
             I'm @carlcassar on
             <x-link href="https://x.com/carlcassar">X</x-link>
             ,
@@ -18,7 +18,7 @@
             and
             <x-link href="https://github.com/carlcassar">Github</x-link>
             .
-            I make websites and apps. Stick around if you're interested in PHP, Laravel, Javascript, Aws and a whole
+            I make websites and apps. Stick around if you're interested in PHP, Laravel, Javascript, AWS and a whole
             host of other interesting topics.
         </p>
     </h1>
