@@ -22,7 +22,7 @@
         "spatie/laravel-feed": "^4.3",
         "spatie/laravel-sitemap": "^7.2.0",
         "symfony/yaml": "^6.3",
-        "cassarco/markdown-tools": "dev-main"
+        "cassarco/markdown-tools": "^1.0.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.9",
@@ -77,15 +77,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../markdown-tools",
-            "options": {
-                "symlink": true
-            }
-        }
-    ]
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }

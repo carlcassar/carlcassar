@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a233b1d036cb0bfd07fe2c434042de19",
+    "content-hash": "d40d00afdd0d3e0fff61752583c51106",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -497,16 +497,16 @@
         },
         {
             "name": "cassarco/league-commonmark-wikilinks",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cassarco/league-commonmark-wikilinks.git",
-                "reference": "f6c658da4a67587c958d58872c7f14e3c6fc25e5"
+                "reference": "d4816833b3757e5a64ac3e2f3394ed2bc0b3f9d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cassarco/league-commonmark-wikilinks/zipball/f6c658da4a67587c958d58872c7f14e3c6fc25e5",
-                "reference": "f6c658da4a67587c958d58872c7f14e3c6fc25e5",
+                "url": "https://api.github.com/repos/cassarco/league-commonmark-wikilinks/zipball/d4816833b3757e5a64ac3e2f3394ed2bc0b3f9d8",
+                "reference": "d4816833b3757e5a64ac3e2f3394ed2bc0b3f9d8",
                 "shasum": ""
             },
             "require": {
@@ -545,7 +545,7 @@
             ],
             "support": {
                 "issues": "https://github.com/cassarco/league-commonmark-wikilinks/issues",
-                "source": "https://github.com/cassarco/league-commonmark-wikilinks/tree/v1.0.1"
+                "source": "https://github.com/cassarco/league-commonmark-wikilinks/tree/v1.0.2"
             },
             "funding": [
                 {
@@ -553,18 +553,24 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-24T22:58:32+00:00"
+            "time": "2024-03-24T23:42:32+00:00"
         },
         {
             "name": "cassarco/markdown-tools",
-            "version": "dev-main",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cassarco/markdown-tools.git",
+                "reference": "c86abc858840e59f2f46c247212e1deee294cb5b"
+            },
             "dist": {
-                "type": "path",
-                "url": "../markdown-tools",
-                "reference": "012007057e809ee1a1820d35ef6f61c6dbaedf2c"
+                "type": "zip",
+                "url": "https://api.github.com/repos/cassarco/markdown-tools/zipball/c86abc858840e59f2f46c247212e1deee294cb5b",
+                "reference": "c86abc858840e59f2f46c247212e1deee294cb5b",
+                "shasum": ""
             },
             "require": {
-                "cassarco/league-commonmark-wikilinks": "^1.0.1",
+                "cassarco/league-commonmark-wikilinks": "^1.0.2",
                 "php": "^8.3",
                 "spatie/laravel-package-tools": "^1.14.0",
                 "symfony/dom-crawler": "^7.0"
@@ -598,44 +604,7 @@
                     "Cassarco\\MarkdownTools\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Cassarco\\MarkdownTools\\Tests\\": "tests/",
-                    "Workbench\\App\\": "workbench/app/"
-                }
-            },
-            "scripts": {
-                "post-autoload-dump": [
-                    "@composer run prepare"
-                ],
-                "clear": [
-                    "@php vendor/bin/testbench package:purge-markdown-tools --ansi"
-                ],
-                "prepare": [
-                    "@php vendor/bin/testbench package:discover --ansi"
-                ],
-                "build": [
-                    "@composer run prepare",
-                    "@php vendor/bin/testbench workbench:build --ansi"
-                ],
-                "start": [
-                    "Composer\\Config::disableProcessTimeout",
-                    "@composer run build",
-                    "@php vendor/bin/testbench serve"
-                ],
-                "analyse": [
-                    "vendor/bin/phpstan analyse"
-                ],
-                "test": [
-                    "vendor/bin/pest"
-                ],
-                "test-coverage": [
-                    "vendor/bin/pest --coverage"
-                ],
-                "format": [
-                    "vendor/bin/pint"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -654,10 +623,11 @@
                 "markdown",
                 "markdown-tools"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/cassarco/markdown-tools/issues",
+                "source": "https://github.com/cassarco/markdown-tools/tree/v1.0.0"
+            },
+            "time": "2024-03-24T23:58:48+00:00"
         },
         {
             "name": "danharrin/date-format-converter",
@@ -12166,10 +12136,8 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
-    "stability-flags": {
-        "cassarco/markdown-tools": 20
-    },
+    "minimum-stability": "stable",
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
