@@ -10,28 +10,38 @@
                 {{ Str::title($article->title) }}
             </h2>
         </a>
+
+        @if($article->tags)
+            <div class="flex mt-6 flex-wrap space-x-2">
+                @foreach($article->tags as $tag)
+                    <x-tag-link :tag="$tag" />
+                @endforeach
+            </div>
+        @endif
     @else
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
+        <h1 class="dark:invert text-3xl md:text-5xl font-extrabold leading-tight">
             {{ Str::title($article->title) }}
         </h1>
-    @endif
 
-    <div class="mt-6">
-        {{ $article->published_at?->diffForHumans() }}
-        <span class="border-l border-gray-400 dark:border-gray-700 mx-2"></span>
-        {{ $article->published_at?->toFormattedDayDateString() }}
-    </div>
+        <div class="lg:flex lg:space-x-4 lg:items-end">
+            @if($article->tags)
+                <div class="flex mt-4 flex-wrap space-x-2">
+                    @foreach($article->tags as $tag)
+                        <x-tag-link :tag="$tag" />
+                    @endforeach
+                </div>
+            @endif
 
-    @if($article->tags)
-        <div class="flex mt-4 flex-wrap space-x-2">
-            @foreach($article->tags as $tag)
-                <x-tag-link :tag="$tag" />
-            @endforeach
+            <div class="dark:invert mt-6">
+                {{ $article->published_at?->diffForHumans() }}
+                <span class="border-l border-gray-400 dark:border-gray-700 mx-2"></span>
+                {{ $article->published_at?->toFormattedDayDateString() }}
+            </div>
         </div>
     @endif
 
     <div
-        class="pt-6 prose max-w-none dark:prose-invert font-body text-base leading-normal tracking-wide text-black dark:text-white prose-headings:font-sans prose-headings:leading-tight prose-headings:font-extrabold">
+        class="pt-6 prose prose-orange max-w-none dark:prose-invert font-body md:text-base leading-normal tracking-wide text-black dark:text-white prose-headings:font-sans prose-headings:leading-tight prose-headings:font-extrabold">
         {!! $list ? $article->previewContent() : $article->content !!}
     </div>
 
