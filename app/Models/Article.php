@@ -74,14 +74,13 @@ class Article extends Model implements Feedable
         return $this->published_at <= now();
     }
 
-    public function teaserContent(): string
+    public function previewContent(): string
     {
         $html = collect();
         $nodes = (new Crawler($this->content))->children()->first()->children();
         $times = min(2, $nodes->count() - 1);
 
-        return collect()
-            ->times($times)
+        return collect(range(0, $times))
             ->flatMap(function (int $number) use ($html, $nodes) {
                 return $html->push($nodes->eq($number)->html());
             })->join('<br><br>');

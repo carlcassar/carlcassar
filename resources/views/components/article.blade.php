@@ -32,7 +32,7 @@
 
     <div
         class="pt-6 prose max-w-none dark:prose-invert font-body text-base leading-normal tracking-wide text-black dark:text-white prose-headings:font-sans prose-headings:leading-tight prose-headings:font-extrabold">
-        {!! $list ? $article->teaserContent() : $article->content !!}
+        {!! $list ? $article->previewContent() : $article->content !!}
     </div>
 
     <x-card class="mt-10 p-4 border dark:text-gray-900">
