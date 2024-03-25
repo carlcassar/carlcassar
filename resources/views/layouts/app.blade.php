@@ -88,22 +88,29 @@
     <div class="min-h-screen bg-gray-white dark:bg-gray-900">
         @include('layouts.navigation')
 
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 mt-6">
+            @if(isset($hero))
+                <section class="mb-4">
+                    {{ $hero }}
+                </section>
+            @endif
+        </div>
+
         <!-- Page Content -->
         <div class="max-w-7xl mx-auto px-6 pb-12 lg:px-8 mt-6 md:flex md:space-x-4">
             <main class="md:w-2/3">
-
                 <!-- Page Heading -->
                 @if (isset($header))
-                    <header class="mb-4">
-                        {{ $header }}
-                    </header>
+                <header class="mb-4">
+                    {{ $header }}
+                </header>
                 @endif
 
                 <div class="md:hidden mb-4">
                     <livewire:search-articles classes="md:hidden mb-4" />
 
                     @if (isset($before))
-                        {{ $before }}
+                    {{ $before }}
                     @endif
                 </div>
 
@@ -114,7 +121,7 @@
                 <livewire:search-articles />
 
                 @if (isset($aside))
-                    {{ $aside }}
+                {{ $aside }}
                 @endif
             </aside>
 
