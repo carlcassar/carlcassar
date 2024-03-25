@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Str;
+use Symfony\Component\DomCrawler\Crawler;
 
 class Article extends Model implements Feedable
 {
@@ -71,5 +72,18 @@ class Article extends Model implements Feedable
     public function isPublished(): bool
     {
         return $this->published_at <= now();
+    }
+
+    public function teaserContent(): string
+    {
+        $html = collect();
+        $nodes = (new Crawler($this->content))->children()->first()->children();
+        $times = min(2, $nodes->count() - 1);
+
+        return collect()
+            ->times($times)
+            ->flatMap(function (int $number) use ($html, $nodes) {
+                return $html->push($nodes->eq($number)->html());
+            })->join('<br><br>');
     }
 }
