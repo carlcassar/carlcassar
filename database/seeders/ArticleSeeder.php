@@ -12,6 +12,6 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
-        Artisan::call('app:markdown-import');
+        Artisan::call('markdown-tools:process');
     }
 }
