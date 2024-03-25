@@ -6,17 +6,17 @@
 <div {{ $attributes }} >
     @if($list)
         <a href="{{ route('articles.show', $article) }}">
-            <h2 class="dark:invert text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
                 {{ Str::title($article->title) }}
             </h2>
         </a>
     @else
-        <h1 class="dark:invert text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
             {{ Str::title($article->title) }}
         </h1>
     @endif
 
-    <div class="dark:invert mt-6">
+    <div class="mt-6">
         {{ $article->published_at?->diffForHumans() }}
         <span class="border-l border-gray-400 dark:border-gray-700 mx-2"></span>
         {{ $article->published_at?->toFormattedDayDateString() }}
