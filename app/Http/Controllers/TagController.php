@@ -3,22 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
+    public function index()
     {
         $tags = Article::query()
             ->get('tags')
-            ->map(fn ($article) => $article->tags)
+            ->map(fn (Article $article) => $article->tags)
             ->flatten()
             ->unique()
             ->sortDesc();
 
         return view('tags.index', compact('tags'));
+    }
+
+    public function show(string $tag)
+    {
+        $articles = Article::published()
+            ->where('tags', 'LIKE', '%'.$tag.'%')
+            ->orderByDesc('published_at')
+            ->paginate(5);
+
+        return view('tags.show', [
+            'articles' => $articles,
+        ]);
     }
 }

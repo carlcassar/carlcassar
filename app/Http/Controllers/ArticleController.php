@@ -12,12 +12,13 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return view('articles.index');
+        $articles = Article::published()
+            ->orderByDesc('published_at')
+            ->paginate(5);
+
+        return view('articles.index', compact('articles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //

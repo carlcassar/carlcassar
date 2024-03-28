@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\YearController;
 use App\Livewire\NotificationSettings;
 use Illuminate\Notifications\Messages\MailMessage;
 
@@ -59,8 +60,11 @@ Route::get('/articles', [ArticleController::class, 'index'])->name('articles.ind
 Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
 
 // Tags
-Route::get('/tags', TagController::class)->name('tags');
-Route::get('/tags/{tag}', fn ($tag) => redirect()->route('articles.index', compact('tag')));
+Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
+Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tags.show');
+
+// Years
+Route::get('/years/{year}', [YearController::class, 'show'])->name('years.show');
 
 /*
 |--------------------------------------------------------------------------

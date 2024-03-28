@@ -5,10 +5,15 @@
         </h1>
     </x-slot>
 
-    <div class="grid grid-cols-8 gap-2">
+    <div class="grid grid-cols-4 gap-2">
         @foreach($tags as $tag)
-            <x-tag-link :tag="$tag"/>
+            <x-tag-link class="py-5" :tag="$tag"/>
         @endforeach
     </div>
+
+    <x-slot name="aside">
+        <x-recents/>
+        <x-years/>
+    </x-slot>
 
 </x-app-layout>

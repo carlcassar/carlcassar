@@ -25,5 +25,5 @@
         <x-years />
     </x-slot>
 
-    <livewire:article-list class="mt-4" />
+    <x-article-list :articles="$articles" class="mt-4" />
 </x-app-layout>

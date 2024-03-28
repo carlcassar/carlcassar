@@ -4,7 +4,6 @@
     :keywords="$article->tags"
     :published_at="$article->published_at?->toDateString()"
 >
-
     <x-slot name="aside">
         <x-table-of-contents :article="$article"/>
         <x-tags/>

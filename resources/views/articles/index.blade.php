@@ -1,34 +1,34 @@
 @php
-    $tag = Str::ucfirst(request()->query('tag'));
-    $year = Str::ucfirst(request()->query('year'));
-
+//    $tag = Str::ucfirst(request()->query('tag'));
+//    $year = Str::ucfirst(request()->query('year'));
+//
     $title = 'Articles';
-
-    if($tag) {
-        $title .= ' - '.$tag;
-    }
-
-    if($year) {
-        $title .= ' - '.$year;
-    }
+//
+//    if($tag) {
+//        $title .= ' - '.$tag;
+//    }
+//
+//    if($year) {
+//        $title .= ' - '.$year;
+//    }
 @endphp
 
 <x-app-layout title="{{$title}}">
     <x-slot name="header">
         <h1 class="font-extrabold text-3xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Articles') }}
-            @if($tag)
-                <span class="text-sm uppercase text-gray-600 dark:text-gray-500">
-                with the tag
-                <span class="text-black dark:text-gray-300">{{ $tag }}</span>
-            </span>
-            @endif
-            @if($year)
-                <span class="text-sm uppercase text-gray-600 dark:text-gray-500">
-                in the year
-                <span class="text-black dark:text-gray-300">{{ $year }}</span>
-            </span>
-            @endif
+{{--            @if($tag)--}}
+{{--                <span class="text-sm uppercase text-gray-600 dark:text-gray-500">--}}
+{{--                with the tag--}}
+{{--                <span class="text-black dark:text-gray-300">{{ $tag }}</span>--}}
+{{--            </span>--}}
+{{--            @endif--}}
+{{--            @if($year)--}}
+{{--                <span class="text-sm uppercase text-gray-600 dark:text-gray-500">--}}
+{{--                in the year--}}
+{{--                <span class="text-black dark:text-gray-300">{{ $year }}</span>--}}
+{{--            </span>--}}
+{{--            @endif--}}
         </h1>
     </x-slot>
 
@@ -38,5 +38,5 @@
         <x-years/>
     </x-slot>
 
-    <livewire:article-list class="mt-4"/>
+    <x-article-list :articles="$articles" />
 </x-app-layout>
