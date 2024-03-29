@@ -20,6 +20,7 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
+            'uuid' => $this->faker->uuid,
             'title' => $title = $this->faker->words(4, true),
             'slug' => Str::slug($title),
             'description' => $this->faker->sentences(1, true),
