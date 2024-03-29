@@ -2,7 +2,11 @@
     title="Sign Up"
     description="Sign up to gain access to more content, save your favourite articles and contribute to the conversation in our growing community.">
 
-    <h1 class="text-xl font-semibold mb-8 dark:text-white">Register</h1>
+    <h1 class="text-xl font-semibold mb-2 dark:text-white">Register</h1>
+
+    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+        Gain access to more content, save your favourite articles and contribute to the conversation in our growing community.
+    </div>
 
     <form method="POST" action="{{ route('register') }}">
         @csrf
