@@ -1,6 +1,7 @@
 <x-guest-layout
     title="Login"
-    description="Login in to access more content, save articles and contribute to the conversation.">
+    description="Login to gain access to more content, save your favourite articles and contribute to the conversation in our growing community.">
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 

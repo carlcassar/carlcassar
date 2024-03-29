@@ -1,6 +1,6 @@
 <x-guest-layout
     title="Sign Up"
-    description="Sign up to access more content, save articles and contribute to the conversation.">
+    description="Sign up to gain access to more content, save your favourite articles and contribute to the conversation in our growing community.">
 
     <h1 class="text-xl font-semibold mb-8 dark:text-white">Register</h1>
 
