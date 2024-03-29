@@ -4,6 +4,7 @@ use App\Models\Article;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+
 use function Laravel\Prompts\info;
 
 return new class extends Migration
@@ -12,15 +13,20 @@ return new class extends Migration
     {
         if (Schema::hasColumn('articles', 'uuid')) {
             info('Articles are using UUIDs for identification.');
+
             return;
         }
 
-        Article::truncate();
+        if (! app()->environment('testing')) {
+            Article::truncate();
+        }
 
         Schema::table('articles', function (Blueprint $table) {
             $table->uuid()->after('id')->unique();
         });
 
-        Artisan::call('markdown-tools:process');
+        if (! app()->environment('testing')) {
+            Artisan::call('markdown-tools:process');
+        }
     }
 };
