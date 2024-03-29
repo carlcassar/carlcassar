@@ -1,5 +1,6 @@
 ---
-title: "How My Blog Has Evolved Over the Years: A Look Back at the Wayback Machine"
+uuid: 514adf4b-f1db-43b8-9d23-94f889c1cbab
+title: "Evolution of My Blog: A Wayback Machine Retrospective"
 slug:
 author: Carl Cassar
 description: Today I launched a new version of this blog. It got me thinking that I've been at this for a long time and have updated the design and functionality many times. I thought it would be fun to take a look at how this site has changed over time by using the Wayback Machine at archive.org

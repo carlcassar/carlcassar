@@ -1,4 +1,5 @@
 ---
+uuid: db11584a-246a-4455-bb55-42fd1b335d28
 title: Reset Data In A Vue Component
 slug: 
 author: Carl Cassar

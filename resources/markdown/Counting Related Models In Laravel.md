@@ -1,4 +1,5 @@
 ---
+uuid: 77d8c622-037e-4804-9ecc-9c9837a1c404
 title: Counting Related Models In Laravel
 slug: 
 author: Carl Cassar

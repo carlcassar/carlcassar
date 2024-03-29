@@ -4,7 +4,6 @@ use App\Models\Article;
 use Cassarco\MarkdownTools\MarkdownFile;
 use Illuminate\Support\Carbon;
 use Symfony\Component\Yaml\Yaml;
-
 use function Laravel\Prompts\info;
 
 return [
@@ -29,6 +28,7 @@ return [
 
             // Specify the validation rules for front-matter properties.
             'rules' => [
+                'uuid' => 'required|uuid',
                 'title' => 'required|string|min:3',
                 'description' => 'required|string', //|min:110|max:160',
                 'link' => 'required|url',
@@ -47,8 +47,9 @@ return [
             //  - toc
             'handler' => function (MarkdownFile $file) {
                 Article::updateOrCreate([
-                    'slug' => $file->frontMatter()['slug'] ?? Str::slug($file->frontMatter()['title']),
+                    'uuid' => $file->frontMatter()['uuid'],
                 ], [
+                    'uuid' => $file->frontMatter()['uuid'],
                     'title' => $file->frontMatter()['title'],
                     'slug' => $file->frontMatter()['slug'] ?? Str::slug($file->frontMatter()['title']),
                     'description' => $file->frontMatter()['description'],

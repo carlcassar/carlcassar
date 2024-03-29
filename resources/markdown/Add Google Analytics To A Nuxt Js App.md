@@ -1,4 +1,5 @@
 ---
+uuid: ff490f5f-7f67-4b78-907f-ece87d50a934
 title: Add Google Analytics To A Nuxt Js App
 slug: 
 author: Carl Cassar

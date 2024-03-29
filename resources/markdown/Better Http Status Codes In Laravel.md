@@ -1,4 +1,5 @@
 ---
+uuid: 01afcad1-15b7-4159-8677-d925d7ff59e0
 title: Better HTTP Status Codes In Laravel
 slug: 
 author: Carl Cassar

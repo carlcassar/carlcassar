@@ -16,6 +16,7 @@ class Article extends Model implements Feedable
     use HasFactory;
 
     protected $fillable = [
+        'uuid',
         'title',
         'slug',
         'description',

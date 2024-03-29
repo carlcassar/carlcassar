@@ -1,4 +1,5 @@
 ---
+uuid: 258939a6-06ac-4482-9e78-e23242a31b61
 title: Goodbye Forge, Hello Ploi
 slug: 
 author: Carl Cassar

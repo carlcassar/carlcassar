@@ -1,4 +1,5 @@
 ---
+uuid: 1a7da52a-37f1-4e8e-8bc0-57f53b18d5dd
 title: Meta Tags, Link Tags And Web Manifests
 slug: 
 author: Carl Cassar

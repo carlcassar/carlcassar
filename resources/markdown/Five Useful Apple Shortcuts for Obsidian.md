@@ -1,4 +1,5 @@
 ---
+uuid: 5a68ee02-2bd7-4454-a109-5bbfcd715faa
 title: Five Useful Apple Shortcuts for Obsidian
 slug: 
 author: Carl Cassar

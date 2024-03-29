@@ -1,4 +1,5 @@
 ---
+uuid: ca6f6e1f-849a-457f-b6a5-28972577ee1c
 title: How To Build The Imagick Php Extension From Source
 slug: 
 author: Carl Cassar

@@ -1,4 +1,5 @@
 ---
+uuid: b0bc612f-28f6-4f94-acf4-ec1ec16900ca
 title: Privacy-Focused Alternatives To Google Analytics
 slug: 
 author: Carl Cassar

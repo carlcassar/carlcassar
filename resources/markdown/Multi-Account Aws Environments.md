@@ -1,4 +1,5 @@
 ---
+uuid: 0362a22e-afa9-40cd-95ba-fec580b6949e
 title: Multi-Account Aws Environments
 slug: 
 author: Carl Cassar

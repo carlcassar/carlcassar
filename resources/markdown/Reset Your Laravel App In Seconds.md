@@ -1,4 +1,5 @@
 ---
+uuid: be93bf31-a87b-4ede-bbf5-ae18c9e75146
 title: Reset Your Laravel App In Seconds
 slug: 
 author: Carl Cassar
