@@ -3,7 +3,7 @@
         <x-card class="p-4 sm:p-6 md:p-10 mb-4" wire:key="{{ $article->slug }}">
             <x-article :article="$article" :list="true" class="max-h-72 relative overflow-hidden">
                 <div
-                    class="h-48 absolute bottom-0 w-full dark:text-white bg-gradient-to-b from-transparent to-zinc-50 dark:to-gray-800">
+                    class="h-36 absolute bottom-0 w-full dark:text-white bg-gradient-to-b from-transparent to-zinc-50 dark:to-gray-800">
                 </div>
             </x-article>
             <a href="{{ route('articles.show', $article) }}"
