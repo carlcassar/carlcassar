@@ -6,6 +6,7 @@ use App\Casts\Tags;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Str;
@@ -62,7 +63,7 @@ class Article extends Model implements Feedable
         ]);
     }
 
-    public function getFeedItems(): array
+    public function getFeedItems(): Collection
     {
         return static::published()
             ->orderByDesc('published_at')
