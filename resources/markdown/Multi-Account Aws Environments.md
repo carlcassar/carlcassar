@@ -3,7 +3,7 @@ uuid: 0362a22e-afa9-40cd-95ba-fec580b6949e
 title: Multi-Account Aws Environments
 slug: 
 author: Carl Cassar
-description: AWS recommends that you set up multiple accounts when your environment becomes more complex. This article outlines the benefits of multi-account environments and shows you how to get started.
+description: Review the benefits of multi-account environments on AWS. learn how to get started with an organisation and quickly add accounts. 
 tags:
   - aws
 image: 

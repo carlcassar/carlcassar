@@ -3,7 +3,7 @@ uuid: ca6f6e1f-849a-457f-b6a5-28972577ee1c
 title: How To Build The Imagick Php Extension From Source
 slug: 
 author: Carl Cassar
-description: This article describes the process you can follow to build the Imagick PHP extension from source, which can be handy if the version you are after has not been released via PECL.
+description: Build the Imagick PHP extension from source, handy if the version you are after has not been released via PECL.
 tags:
   - terminal
   - php

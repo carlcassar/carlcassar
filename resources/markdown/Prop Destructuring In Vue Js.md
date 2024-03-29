@@ -3,7 +3,7 @@ uuid: 5accd75b-146d-4d61-89f1-aa37232f9765
 title: Prop Destructuring In Vue Js
 slug: 
 author: Carl Cassar
-description: In a couple of recent tweets, Caleb Porzio demonstrated an easy way to pass JavaScript object properties to a child component without declaring a separate prop for each property.
+description: Caleb Porzio demonstrates an easy way to pass JavaScript object properties to a child component without declaring a separate prop for each property.
 tags:
   - vue
   - javascript

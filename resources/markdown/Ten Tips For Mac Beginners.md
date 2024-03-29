@@ -3,7 +3,7 @@ uuid: 77d8c622-037e-4804-9ecc-9c9837a1c404
 title: Ten Tips For Mac Beginners
 slug: 
 author: Carl Cassar
-description: Apple makes some of the most intuitive software around, but if you're coming from another platform, your first Mac experience can be quite confusing. In this article I'll go through some tips and tricks I wish I'd known when I first started using a Mac way back in 2004.
+description: Ten useful tips and tricks for Mac beginners to aid your transition to a Mac, based on 20 years of experience.
 tags:
   - tools
   - apple

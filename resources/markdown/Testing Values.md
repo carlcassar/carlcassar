@@ -3,7 +3,7 @@ uuid: 77d8c622-037e-4804-9ecc-9c9837a1c404
 title: Testing Values
 slug: 
 author: Carl Cassar
-description: There are many ways to test a value in php, some of which can produce confusing results. What’s more, Laravel also offers a couple of helpers which can help us test php values.
+description: Explore efficient methods for value testing in PHP & Laravel, doing away with confusion. Unravel best practices for clear, precise results.
 tags:
   - php
 image: 

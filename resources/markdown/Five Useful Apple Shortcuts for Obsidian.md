@@ -3,7 +3,7 @@ uuid: 5a68ee02-2bd7-4454-a109-5bbfcd715faa
 title: Five Useful Apple Shortcuts for Obsidian
 slug: 
 author: Carl Cassar
-description: Obsidian is a note-taking powerhouse. Unfortunately, no app can offer every feature. One thing missing from Obsidian for iOS is the ability to add widgets to the home screen. In this article I'll show you how to get that functionality back with Apple Shortcuts.
+description: One thing missing from Obsidian for iOS is the ability to add widgets to the home screen. Let me show you how to add Obsidian Widgets with Apple Shortcuts.
 tags:
   - apple
   - shortcuts

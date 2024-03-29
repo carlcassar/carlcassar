@@ -3,7 +3,7 @@ uuid: 258939a6-06ac-4482-9e78-e23242a31b61
 title: Goodbye Forge, Hello Ploi
 slug: 
 author: Carl Cassar
-description: After many years, I've cancelled my subscription to Laravel Forge in favour of Ploi. Here's why...
+description: After many years, I've cancelled my subscription to Laravel Forge in favour of Ploi, a feature rich dev-ops platform. Here's why...
 tags:
   - laravel
   - php

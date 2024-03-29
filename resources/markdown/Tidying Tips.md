@@ -3,7 +3,7 @@ uuid: 77d8c622-037e-4804-9ecc-9c9837a1c404
 title: Tidying Tips
 slug: 
 author: Carl Cassar
-description: In a post called The Life Changing Magic of Tidying Up Code, Kent Beck outlines his philosophy on cleaning up code. The article results in a short list of easy-to-follow rules, which I'm sure he would agree are there to be broken.
+description: Kent Beck’s ‘The Life Changing Magic of Tidying Up Code’ outlines a revolutionary code-cleanup philosophy, presenting easy, flexible rules for immaculate coding
 tags:
   - php
 image: 

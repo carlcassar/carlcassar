@@ -3,7 +3,7 @@ uuid: fe8c93f1-41bf-4c72-a54b-df596cbd5af4
 title: Extracting Wikilinks for your Markdown Laravel Blog
 slug: 
 author: Carl Cassar
-description: Wikilinks offer a convenient way to link to other pages in a blog, PKM or other wiki-like knowledge base. Let me show you how to make use of them in a Laravel Markdown-Powered Blog.
+description: Wikilinks offer a convenient way to link to other pages in a blogs and PKMs. Let me show you how to make use of them in a Laravel Markdown-Powered Blog.
 tags:
   - laravel
   - php

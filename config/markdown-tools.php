@@ -30,7 +30,7 @@ return [
             'rules' => [
                 'uuid' => 'required|uuid',
                 'title' => 'required|string|min:3',
-                'description' => 'required|string', //|min:110|max:160',
+                'description' => 'required|string|min:110|max:160',
                 'link' => 'required|url',
                 'tags' => 'required|array',
                 'published_at' => 'required|date',

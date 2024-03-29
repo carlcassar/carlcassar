@@ -3,7 +3,7 @@ uuid: 24b72bbf-2c8f-439f-b861-e9cf2f628b40
 title: Add Comments To Your Blog In Under Five Minutes
 slug: 
 author: Carl Cassar
-description: Utterances is a free and open source comment system that uses GitHub issues to track comments on a web page. In this article I'll show you how to get Utterances up and running and share some tips on how to configure it for Nuxt JS.
+description: Get up and running with Utterances, a free and open source comment system. I'll share some tips on how to configure Utterances in Nuxt JS.
 tags:
   - github
   - javascript
