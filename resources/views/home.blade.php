@@ -6,15 +6,24 @@
             </p>
 
             <p class="mt-4 text-lg md:text-2xl text-gray-500 dark:text-gray-400 leading-relaxed">
-                I'm @carlcassar on
+                I'm <span class="text-black dark:text-white">@carlcassar</span> on
                 <x-link href="https://x.com/carlcassar">X</x-link>
                 ,
                 <x-link href="https://instagram.com/carlcassar">Instagram</x-link>
                 and
                 <x-link href="https://github.com/carlcassar">Github</x-link>
                 .
-                I make websites and apps. Stick around if you're interested in PHP, Laravel, Javascript, AWS and a whole
-                host of other interesting topics.
+                I've been making websites and apps
+                <x-link :href="route('articles.show','evolution-of-my-blog-a-wayback-machine-retrospective')">
+                    for well over ten years
+                </x-link>.
+                This is my blog, where I write about
+                <x-link :href="route('tags.show', 'php')">PHP</x-link>,
+                <x-link :href="route('tags.show', 'laravel')">Laravel</x-link>,
+                <x-link :href="route('tags.show', 'javascript')">Javascript</x-link>,
+                <x-link :href="route('tags.show', 'aws')">AWS</x-link>,
+                and other
+                <x-link :href="route('tags.index')">interesting topics</x-link>.
             </p>
         </h1>
     </x-slot>
