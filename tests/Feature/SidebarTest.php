@@ -1,20 +1,19 @@
 <?php
 
 use App\Models\Article;
-
 use function Pest\Laravel\get;
 
 test('sidebar tags work as expected', function () {
     $article = Article::factory([
         'tags' => collect('laravel'),
-    ])->create();
+    ])->published()->create();
 
     get('/')
         ->assertStatus(200)
         ->assertSee('laravel')
-        ->assertDontSee('php');
+        ->assertDontSee('some-other-tag');
 
-    get('articles/?tag=laravel')
+    get('tags/laravel')
         ->assertStatus(200)
         ->assertSee($article->title);
 });
