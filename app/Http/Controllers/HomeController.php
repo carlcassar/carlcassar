@@ -10,8 +10,10 @@ class HomeController extends Controller
 {
     public function __invoke(): View|Factory
     {
-        return view('home', [
-            'articles' => Article::published()->paginate(5),
-        ]);
+        $articles = Article::published()
+            ->orderByDesc('published_at')
+            ->paginate(5);
+
+        return view('home', compact('articles'));
     }
 }
