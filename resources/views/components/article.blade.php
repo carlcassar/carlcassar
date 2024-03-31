@@ -7,7 +7,7 @@
     @if($list)
         <a href="{{ route('articles.show', $article) }}">
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
-                {{ Str::title($article->title) }}
+                {{ $article->title }}
             </h2>
         </a>
 
@@ -28,7 +28,7 @@
                 </div>
 
                 <h1 class="dark:invert text-3xl md:text-5xl font-extrabold leading-tight lg:text-center">
-                    {{ Str::title($article->title) }}
+                    {{ $article->title }}
                 </h1>
 
                     @if($article->tags)
