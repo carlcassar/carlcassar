@@ -11,7 +11,7 @@ image:
 link: https://www.carlcassar.com/articles/how-to-check-and-upgrade-xz-on-mac-os
 published_at: 2024-03-31 17:00:00
 created_at: 2024-03-31 16:27:32
-updated_at: 2024-03-31 17:17:32
+updated_at: 2024-04-03 17:51:41
 deleted_at:
 ---
 As you probably already know, [a backdoor has been found in XZ Utils](https://arstechnica.com/security/2024/03/backdoor-found-in-widely-used-linux-utility-breaks-encrypted-ssh-connections/), a compression tool that is used for lossless compression in command line utilities. If you're looking to understand more about this vulnerability, you can find [an excellent explanation on Reddit](https://www.reddit.com/r/explainlikeimfive/comments/1brf749/eli5_the_recently_discovered_xz_backdoor/).
@@ -34,17 +34,35 @@ which xz
 
 ![Check whether you have XZ installed](https://media.carlcassar.com/how-to-check-and-upgrade-xz-on-mac-os/xz-V.png)
 
-## How to see which version is installed
+## The right way to see which version is installed
 
-You can use this command to display the XZ version currently installed on your system.
+Use the following command to check which version of XZ you are running on your machine.
+
+```bash
+brew list xz
+```
+
+![The right way to check which version of XZ you have installed](https://media.carlcassar.com/how-to-check-and-upgrade-xz-on-mac-os/brew-list-xz.png)
+
+Please, don't use `xz -V` as it has been [rightly pointed out](https://x.com/jbroome/status/1775548992610242957?s=20) that this would make use of the potentially vulnerable software itself.
+
+## The wrong way to see which version is installed
+
+Don't use this method.
+
+The wrong way to check the XZ version currently installed on your system is to use the following command:
 
 ```bash
 xz -V
 ```
 
-![Check which XZ version you have installed](https://media.carlcassar.com/how-to-check-and-upgrade-xz-on-mac-os/which-xz.png)
+![The wrong way to check which XZ version you have installed](https://media.carlcassar.com/how-to-check-and-upgrade-xz-on-mac-os/which-xz.png)
 
 As you can see, the version `5.6.1` installed on my machine is in fact one of the versions no longer considered trustworthy.
+
+[@jbroome](https://x.com/jbroome) correctly pointed out that there is a [[#The right way to see which version is installed|safer way]] to check the installed version without using the potentially vulnerable software to do so:
+
+> Please use brew info to check the version of xz.  Actually running the potentially back-door'd software to check the version seems like a bad idea.
 
 ## How to remove the affected XZ version using Homebrew
 
