@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 
 class ArticlesChart extends ChartWidget
 {
-    protected static ?string $heading = 'Articles';
+//    protected static ?string $heading = 'Articles';
 
     protected function getData(): array
     {

@@ -6,10 +6,14 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers\NotificationsRelationManager;
 use App\Models\User;
 use App\Notifications\Welcome;
+use Filament\Actions\Action;
+use Filament\Actions\BulkAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\EditAction;
 use Filament\Forms;
 use Filament\Forms\Components\KeyValue;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Collection;
@@ -18,11 +22,11 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static string|null|\BackedEnum $navigationIcon = 'heroicon-o-user';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
@@ -70,9 +74,9 @@ class UserResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\Action::make('Sign In As User')
+            ->recordActions([
+                EditAction::make(),
+                Action::make('Sign In As User')
                     ->disabled(! auth()->user()->isAdmin())
                     ->icon('heroicon-o-arrow-right-on-rectangle')
                     ->requiresConfirmation()
@@ -83,9 +87,9 @@ class UserResource extends Resource
                         return redirect()->route('home');
                     }),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\BulkAction::make('Resend Welcome Email')
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    BulkAction::make('Resend Welcome Email')
                         ->icon('heroicon-o-envelope')
                         ->requiresConfirmation()
                         ->action(function (Collection $users) {
@@ -93,7 +97,7 @@ class UserResource extends Resource
                                 $user->notify(new Welcome);
                             });
                         }),
-                    Tables\Actions\BulkAction::make('Resend Verification Email')
+                    BulkAction::make('Resend Verification Email')
                         ->icon('heroicon-o-envelope')
                         ->requiresConfirmation()
                         ->action(function (Collection $users) {
@@ -104,17 +108,17 @@ class UserResource extends Resource
                 ])
                     ->label('Emails')
                     ->icon('heroicon-o-envelope'),
-                Tables\Actions\BulkAction::make('Verify Email')
+                BulkAction::make('Verify Email')
                     ->icon('heroicon-o-check-circle')
                     ->requiresConfirmation()
                     ->action(function (Collection $records) {
                         User::whereIn('id', $records->pluck('id'))->update(['email_verified_at' => now()]);
                     }),
-                Tables\Actions\DeleteBulkAction::make(),
-            ])
-            ->emptyStateActions([
-                Tables\Actions\CreateAction::make(),
+//                DeleteBulkAction::make(),
             ]);
+//            ->emptyStateActions([
+//                Tables\Actions\CreateAction::make(),
+//            ]);
     }
 
     public static function getRelations(): array

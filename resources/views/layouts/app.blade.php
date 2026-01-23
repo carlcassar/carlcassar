@@ -20,11 +20,11 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    @livewireStyles
+{{--    @livewireStyles--}}
 
-    @if (auth()->hasUser())
-        @filamentStyles
-    @endif
+{{--    @if (auth()->hasUser())--}}
+{{--        @filamentStyles--}}
+{{--    @endif--}}
 
 </head>
 
@@ -72,11 +72,12 @@
     </div>
     <x-footer />
 </div>
-@livewireScripts
 
-@if (auth()->hasUser())
-    @filamentScripts()
-@endif
+{{--@livewireScriptConfig--}}
+
+{{--@if (auth()->hasUser())--}}
+{{--    @filamentScripts()--}}
+{{--@endif--}}
 
 </body>
 

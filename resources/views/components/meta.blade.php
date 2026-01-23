@@ -55,7 +55,7 @@
 @if (request()->routeIs('articles.show'))
     <script type="application/ld+json">
         {
-            "@context": "https://schema.org",
+            "@@context": "https://schema.org",
             "@type": "Article",
             "headline": "{!! $title !!}",
                 "author": {

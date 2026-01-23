@@ -2,20 +2,20 @@
 
 namespace App\Filament\Resources\UserResource\RelationManagers;
 
+use Filament\Actions\EditAction;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Schemas\Schema;
 use Filament\Tables;
-use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Table;
 
 class NotificationsRelationManager extends RelationManager
 {
     protected static string $relationship = 'notifications';
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 Forms\Components\TextInput::make('id')
                     ->required(),
@@ -41,10 +41,10 @@ class NotificationsRelationManager extends RelationManager
             ->headerActions([
                 //
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 //
             ])
             ->emptyStateActions([
