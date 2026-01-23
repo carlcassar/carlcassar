@@ -2,6 +2,7 @@
 
 use App\Models\Article;
 use Symfony\Component\HttpFoundation\Response;
+
 use function Pest\Laravel\get;
 
 test('each year has its own page where articles for that year are listed', function () {

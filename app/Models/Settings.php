@@ -6,16 +6,14 @@ use Arr;
 
 class Settings
 {
-    public function __construct(protected User $user, protected ?string $key = null)
-    {
-    }
+    public function __construct(protected User $user, protected ?string $key = null) {}
 
     public function all()
     {
         return $this->user->getAttribute('settings');
     }
 
-    public function get(string $key = null)
+    public function get(?string $key = null)
     {
         return Arr::get($this->user->getAttribute('settings'), $key);
     }

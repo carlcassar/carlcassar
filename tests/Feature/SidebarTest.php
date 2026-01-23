@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Article;
+
 use function Pest\Laravel\get;
 
 test('sidebar tags work as expected', function () {

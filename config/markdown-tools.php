@@ -4,6 +4,7 @@ use App\Models\Article;
 use Cassarco\MarkdownTools\MarkdownFile;
 use Illuminate\Support\Carbon;
 use Symfony\Component\Yaml\Yaml;
+
 use function Laravel\Prompts\info;
 
 return [

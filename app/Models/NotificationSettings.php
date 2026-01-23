@@ -12,9 +12,7 @@ class NotificationSettings
 
     public const ANNOUNCEMENTS = 'announcements';
 
-    public function __construct(protected Settings $settings)
-    {
-    }
+    public function __construct(protected Settings $settings) {}
 
     public function toggle(string $notification): void
     {

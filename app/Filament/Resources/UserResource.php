@@ -90,7 +90,7 @@ class UserResource extends Resource
                         ->requiresConfirmation()
                         ->action(function (Collection $users) {
                             $users->each(function (User $user) {
-                                $user->notify(new Welcome());
+                                $user->notify(new Welcome);
                             });
                         }),
                     Tables\Actions\BulkAction::make('Resend Verification Email')
