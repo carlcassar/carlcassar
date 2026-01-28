@@ -111,7 +111,7 @@
             @if(Auth::guest())
                 <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
                     <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')">
-                        {{ __('Register') }}
+                        {{ __('Sign Up') }}
                     </x-responsive-nav-link>
 
                     <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
@@ -130,8 +130,8 @@
                 </div>
 
                 <div class="mt-3 space-y-1">
-                    <x-responsive-nav-link :href="route('profile.edit')">
-                        {{ __('Profile') }}
+                    <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                        {{ __('Settings') }}
                     </x-responsive-nav-link>
 
                     <!-- Authentication -->
