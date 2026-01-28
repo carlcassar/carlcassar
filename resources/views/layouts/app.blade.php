@@ -28,8 +28,8 @@
 
 </head>
 
-<body class="font-sans antialiased">
-<div class="min-h-screen bg-gray-white dark:bg-gray-900">
+<body class="font-sans antialiased bg-gray-white dark:bg-gray-900">
+<div class="min-h-screen">
     @include('layouts.navigation')
 
     <div class="max-w-7xl mx-auto px-6 lg:px-8 mt-6">
