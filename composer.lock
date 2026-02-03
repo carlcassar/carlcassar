@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d22d0291e76687f5200b1c52e81c5b8",
+    "content-hash": "1b22ed9de571712772135470610448ae",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -564,11 +564,17 @@
         },
         {
             "name": "cassarco/markdown-tools",
-            "version": "dev-main",
-            "dist": {
-                "type": "path",
-                "url": "../markdown-tools",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cassarco/markdown-tools.git",
                 "reference": "f16355aeb3e6eb667523fcce57a6dd335d275161"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cassarco/markdown-tools/zipball/f16355aeb3e6eb667523fcce57a6dd335d275161",
+                "reference": "f16355aeb3e6eb667523fcce57a6dd335d275161",
+                "shasum": ""
             },
             "require": {
                 "cassarco/league-commonmark-wikilinks": "^1.0.2",
@@ -591,16 +597,16 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-main": "2.x-dev"
-                },
                 "laravel": {
-                    "providers": [
-                        "Cassarco\\MarkdownTools\\MarkdownToolsServiceProvider"
-                    ],
                     "aliases": {
                         "MarkdownTools": "Cassarco\\MarkdownTools\\Facades\\MarkdownTools"
-                    }
+                    },
+                    "providers": [
+                        "Cassarco\\MarkdownTools\\MarkdownToolsServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-main": "2.x-dev"
                 }
             },
             "autoload": {
@@ -608,44 +614,7 @@
                     "Cassarco\\MarkdownTools\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Cassarco\\MarkdownTools\\Tests\\": "tests/",
-                    "Workbench\\App\\": "workbench/app/"
-                }
-            },
-            "scripts": {
-                "post-autoload-dump": [
-                    "@composer run prepare"
-                ],
-                "clear": [
-                    "@php vendor/bin/testbench package:purge-markdown-tools --ansi"
-                ],
-                "prepare": [
-                    "@php vendor/bin/testbench package:discover --ansi"
-                ],
-                "build": [
-                    "@composer run prepare",
-                    "@php vendor/bin/testbench workbench:build --ansi"
-                ],
-                "start": [
-                    "Composer\\Config::disableProcessTimeout",
-                    "@composer run build",
-                    "@php vendor/bin/testbench serve"
-                ],
-                "analyse": [
-                    "vendor/bin/phpstan analyse"
-                ],
-                "test": [
-                    "vendor/bin/pest"
-                ],
-                "test-coverage": [
-                    "vendor/bin/pest --coverage"
-                ],
-                "format": [
-                    "vendor/bin/pint"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -664,9 +633,11 @@
                 "markdown",
                 "markdown-tools"
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/cassarco/markdown-tools/issues",
+                "source": "https://github.com/cassarco/markdown-tools/tree/v2.0.0"
+            },
+            "time": "2026-02-03T14:54:04+00:00"
         },
         {
             "name": "chillerlan/php-qrcode",
@@ -13322,9 +13293,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "cassarco/markdown-tools": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
