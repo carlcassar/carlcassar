@@ -6,12 +6,10 @@
             </p>
 
             <p class="mt-4 text-lg md:text-2xl text-gray-500 dark:text-gray-400 leading-relaxed">
-                I'm <span class="text-black dark:text-white">@carlcassar</span> on
-                <x-link href="https://x.com/carlcassar">X</x-link>
-                ,
-                <x-link href="https://instagram.com/carlcassar">Instagram</x-link>
+                I'm <span class="text-black dark:text-white">Carl</span>. You can find me on
+                <x-link href="https://github.com/carlcassar" target="_blank" rel="noopener noreferrer">Github</x-link>
                 and
-                <x-link href="https://github.com/carlcassar">Github</x-link>
+                <x-link href="https://bsky.app/profile/carlcassar.com" target="_blank" rel="noopener noreferrer">Bluesky</x-link>
                 .
                 I've been making websites and apps
                 <x-link :href="route('articles.show','evolution-of-my-blog-a-wayback-machine-retrospective')">
