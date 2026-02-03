@@ -2,7 +2,6 @@
 
 use App\Models\Article;
 use Symfony\Component\HttpFoundation\Response;
-
 use function Pest\Laravel\get;
 
 test('there is a tags page that shows a list of tags', function () {
@@ -20,17 +19,15 @@ test('there is a tags page that shows a list of tags', function () {
     $response->assertDontSee('aws');
 });
 
-test('each tag its own page where articles for that tag are listed', function () {
-    $articleOne = Article::factory()->create(['tags' => collect(['laravel, php'])]);
-    $articleTwo = Article::factory()->create(['tags' => collect(['javascript, vue'])]);
+test('each tag has its own page where articles for that tag are listed', function () {
+    $articleOne = Article::factory()->create(['tags' => collect(['laravel', 'php'])]);
+    $articleTwo = Article::factory()->create(['tags' => collect(['javascript', 'vue'])]);
 
     $response = get(route('tags.show', 'laravel'));
     $response->assertStatus(Response::HTTP_OK);
-    $response->assertSee(Str::of($articleOne->title)->title());
-    $response->assertDontSee(Str::of($articleTwo->title)->title());
+    $response->assertSeeInOrder(['<h2', $articleOne->title, '</h2>']);
 
     $response = get(route('tags.show', 'vue'));
     $response->assertStatus(Response::HTTP_OK);
-    $response->assertDontSee(Str::of($articleOne->title)->title());
-    $response->assertSee(Str::of($articleTwo->title)->title());
+    $response->assertSeeInOrder(['<h2', $articleTwo->title, '</h2>']);
 });

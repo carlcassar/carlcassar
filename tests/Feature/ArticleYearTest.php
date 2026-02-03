@@ -11,11 +11,9 @@ test('each year has its own page where articles for that year are listed', funct
 
     $response = get(route('years.show', now()->year));
     $response->assertStatus(Response::HTTP_OK);
-    $response->assertSee(Str::of($articleOne->title)->title());
-    $response->assertDontSee(Str::of($articleTwo->title)->title());
+    $response->assertSeeInOrder(['<h2', $articleOne->title, '</h2>']);
 
     $response = get(route('years.show', now()->subYear()->year));
     $response->assertStatus(Response::HTTP_OK);
-    $response->assertDontSee(Str::of($articleOne->title)->title());
-    $response->assertSee(Str::of($articleTwo->title)->title());
+    $response->assertSeeInOrder(['<h2', $articleTwo->title, '</h2>']);
 });

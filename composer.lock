@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11c283f7818886cce23f3b150a50599d",
+    "content-hash": "2d22d0291e76687f5200b1c52e81c5b8",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -564,46 +564,43 @@
         },
         {
             "name": "cassarco/markdown-tools",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cassarco/markdown-tools.git",
-                "reference": "c86abc858840e59f2f46c247212e1deee294cb5b"
-            },
+            "version": "dev-main",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cassarco/markdown-tools/zipball/c86abc858840e59f2f46c247212e1deee294cb5b",
-                "reference": "c86abc858840e59f2f46c247212e1deee294cb5b",
-                "shasum": ""
+                "type": "path",
+                "url": "../markdown-tools",
+                "reference": "f16355aeb3e6eb667523fcce57a6dd335d275161"
             },
             "require": {
                 "cassarco/league-commonmark-wikilinks": "^1.0.2",
                 "php": "^8.3",
-                "spatie/laravel-package-tools": "^1.14.0",
+                "spatie/laravel-package-tools": "^1.16",
                 "symfony/dom-crawler": "^7.0"
             },
             "require-dev": {
-                "larastan/larastan": "^2.0.1",
+                "larastan/larastan": "^3.0",
                 "laravel/pint": "^1.14",
-                "nunomaduro/collision": "^7.8",
-                "orchestra/testbench": "^8.8",
-                "pestphp/pest": "^2.0",
-                "pestphp/pest-plugin-arch": "^2.0",
-                "pestphp/pest-plugin-laravel": "^2.0",
+                "nunomaduro/collision": "^8.0",
+                "orchestra/testbench": "^10.0",
+                "pestphp/pest": "^3.0",
+                "pestphp/pest-plugin-arch": "^3.0",
+                "pestphp/pest-plugin-laravel": "^3.0",
                 "phpstan/extension-installer": "^1.1",
-                "phpstan/phpstan": "^1.10",
-                "phpstan/phpstan-deprecation-rules": "^1.0",
-                "phpstan/phpstan-phpunit": "^1.0"
+                "phpstan/phpstan": "^2.0",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0"
             },
             "type": "library",
             "extra": {
+                "branch-alias": {
+                    "dev-main": "2.x-dev"
+                },
                 "laravel": {
-                    "aliases": {
-                        "MarkdownTools": "Cassarco\\MarkdownTools\\Facades\\MarkdownTools"
-                    },
                     "providers": [
                         "Cassarco\\MarkdownTools\\MarkdownToolsServiceProvider"
-                    ]
+                    ],
+                    "aliases": {
+                        "MarkdownTools": "Cassarco\\MarkdownTools\\Facades\\MarkdownTools"
+                    }
                 }
             },
             "autoload": {
@@ -611,7 +608,44 @@
                     "Cassarco\\MarkdownTools\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Cassarco\\MarkdownTools\\Tests\\": "tests/",
+                    "Workbench\\App\\": "workbench/app/"
+                }
+            },
+            "scripts": {
+                "post-autoload-dump": [
+                    "@composer run prepare"
+                ],
+                "clear": [
+                    "@php vendor/bin/testbench package:purge-markdown-tools --ansi"
+                ],
+                "prepare": [
+                    "@php vendor/bin/testbench package:discover --ansi"
+                ],
+                "build": [
+                    "@composer run prepare",
+                    "@php vendor/bin/testbench workbench:build --ansi"
+                ],
+                "start": [
+                    "Composer\\Config::disableProcessTimeout",
+                    "@composer run build",
+                    "@php vendor/bin/testbench serve"
+                ],
+                "analyse": [
+                    "vendor/bin/phpstan analyse"
+                ],
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "test-coverage": [
+                    "vendor/bin/pest --coverage"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -630,11 +664,9 @@
                 "markdown",
                 "markdown-tools"
             ],
-            "support": {
-                "issues": "https://github.com/cassarco/markdown-tools/issues",
-                "source": "https://github.com/cassarco/markdown-tools/tree/v1.0.0"
-            },
-            "time": "2024-03-24T23:58:48+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "chillerlan/php-qrcode",
@@ -13290,12 +13322,14 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "cassarco/markdown-tools": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.3"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }

@@ -1,11 +1,8 @@
 <?php
 
-use App\Models\Article;
-use Cassarco\MarkdownTools\MarkdownFile;
-use Illuminate\Support\Carbon;
+use App\Actions\MarkdownFileHandler;
+use App\Actions\MarkdownFileRules;
 use Symfony\Component\Yaml\Yaml;
-
-use function Laravel\Prompts\info;
 
 return [
 
@@ -21,51 +18,10 @@ return [
 
     'schemes' => [
 
-        // Give each scheme a name for your own organisation.
-        'markdown' => [
-
-            // Give the path to a folder of markdown files or a single markdown file.
+        'default' => [
             'path' => resource_path('markdown'),
-
-            // Specify the validation rules for front-matter properties.
-            'rules' => [
-                'uuid' => 'required|uuid',
-                'title' => 'required|string|min:3',
-                'description' => 'required|string|min:110|max:160',
-                'link' => 'required|url',
-                'tags' => 'required|array',
-                'published_at' => 'required|date',
-                'deleted_at' => 'nullable|date',
-                'created_at' => 'required|date',
-                'updated_at' => 'required|date',
-            ],
-
-            // Define a handler for each markdown file. You will have access to file:
-            //  - front-matter values
-            //  - markdown
-            //  - html
-            //  - htmlWithToc
-            //  - toc
-            'handler' => function (MarkdownFile $file) {
-                Article::updateOrCreate([
-                    'uuid' => $file->frontMatter()['uuid'],
-                ], [
-                    'uuid' => $file->frontMatter()['uuid'],
-                    'title' => $file->frontMatter()['title'],
-                    'slug' => $file->frontMatter()['slug'] ?? Str::slug($file->frontMatter()['title']),
-                    'description' => $file->frontMatter()['description'],
-                    'table_of_contents' => $file->toc(),
-                    'content' => $file->html(),
-                    'image' => $file->frontMatter()['image'],
-                    'tags' => collect($file->frontMatter()['tags']),
-                    'published_at' => Carbon::make($file->frontMatter()['published_at']),
-                    'deleted_at' => Carbon::make($file->frontMatter()['deleted_at']),
-                    'created_at' => Carbon::make($file->frontMatter()['created_at']),
-                    'updated_at' => Carbon::make($file->frontMatter()['updated_at']),
-                ]);
-
-                info("Processing {$file->frontMatter()['title']}");
-            },
+            'rules' => MarkdownFileRules::class,
+            'handler' => MarkdownFileHandler::class,
         ],
     ],
 

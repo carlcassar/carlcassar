@@ -4,12 +4,12 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Arr;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
-use Filament\Forms\Set;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
 use Livewire\Component;
 use Str;
 
@@ -31,7 +31,7 @@ class NotificationSettings extends Component implements HasForms
         );
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $form): Schema
     {
         return $form
             ->schema([

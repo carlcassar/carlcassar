@@ -78,8 +78,25 @@ class Article extends Model implements Feedable
 
     public function previewContent(): string
     {
+        $crawler = new Crawler($this->content);
+
+        if ($crawler->count() === 0) {
+            return Str::limit($this->content, 500);
+        }
+
+        $lastChild = $crawler->children();
+
+        if ($lastChild->count() === 0) {
+            return Str::limit($this->content, 500);
+        }
+
+        $nodes = $lastChild->last()->children();
+
+        if ($nodes->count() === 0) {
+            return Str::limit($crawler->text(), 500);
+        }
+
         $html = collect();
-        $nodes = (new Crawler($this->content))->children()->last()->children();
         $times = min(2, $nodes->count() - 1);
 
         return collect(range(0, $times))
